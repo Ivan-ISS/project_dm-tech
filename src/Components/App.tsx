@@ -1,4 +1,4 @@
-import './App.scss';
+import * as styles from './App.module.scss';
 import { useState } from 'react';
 
 export default function App() {
@@ -8,8 +8,8 @@ export default function App() {
 
     return (
         <div>
-            <h1>{count}</h1>
-            <button onClick={increment}>
+            <h1 className={styles.value}>{count}</h1>
+            <button className={styles.button} onClick={increment}>
                 <span>inc</span>
             </button>
         </div>
