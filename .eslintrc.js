@@ -7,7 +7,7 @@ module.exports = {
         'plugin:react/recommended',
         'plugin:react-hooks/recommended',
     ],
-    ignorePatterns: ['build'],
+    ignorePatterns: ['build', 'dist', 'webpack.config.js'],
     parser: '@typescript-eslint/parser',
     plugins: [
         '@typescript-eslint',
