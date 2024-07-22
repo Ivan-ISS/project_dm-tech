@@ -1,21 +1,22 @@
 import * as styles from './App.module.scss';
 import { useState } from 'react';
 import { Link/* , Outlet */ } from 'react-router-dom';
-import Content from './Content/Content';
+import { useAppSelector, useAppDispatch } from '@/redux/store';
+import { selectCounter } from '@/redux/slices/firstSelector';
+import { inc } from '@/redux/slices/firstSlice';
+import Content from '@/Components/Content/Content';
 import react from '@/assets/images/png/react.png';
 import webpack from '@/assets/images/jpeg/webpack.jpg';
 import AvatarSvg from '@/assets/images/svg/placeholderAvatar.svg';
 
-// TREE SHAKING
-function TODO(a: number) {
-    console.log(a);
-}
 
 export default function App() {
     const [ count, setCount ] = useState<number>(0);
+    const counter = useAppSelector(selectCounter);
+    const dispatch = useAppDispatch();
 
-    const increment = () => setCount(prev => prev + 1);
-    TODO(5123);
+    const handleIncrementState = () => setCount(prev => prev + 1);
+    const handleIncrementRedux = () => dispatch(inc());
 
     return (
         <div className={styles.wrapper}>
@@ -32,10 +33,18 @@ export default function App() {
                 <Link to={'/shop'} className={styles.link}>Shop</Link>
             </div>
             <div className={styles.counterblock}>
-                <h1 className={styles.value}>{count}</h1>
-                <button className={styles.button} onClick={increment}>
-                    counter
-                </button>
+                <div className={styles.counterState}>
+                    <h1 className={styles.value}>{count}</h1>
+                    <button className={styles.button} onClick={handleIncrementState}>
+                        counter state
+                    </button>
+                </div>
+                <div className={styles.counterStore}>
+                    <h1 className={styles.value}>{counter}</h1>
+                    <button className={styles.button} onClick={handleIncrementRedux}>
+                        counter redux
+                    </button>
+                </div>
             </div>
             <Content/>
             {/* <Outlet/> */}

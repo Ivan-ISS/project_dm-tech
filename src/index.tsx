@@ -1,9 +1,11 @@
 import './styles/styles.scss';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from '@/redux/store';
 // import { Suspense } from 'react';
 // import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App from './Components/App';
+import App from '@/Components/App';
 // import { LazyAbout } from '@/Components/Pages/About/About.lazy';
 // import { LazyShop } from '@/Components/Pages/Shop/Shop.lazy';
 
@@ -37,7 +39,9 @@ container.render(
 ); */
 
 container.render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
+    <Provider store={store}>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Provider>
 );

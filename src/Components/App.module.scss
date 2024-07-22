@@ -60,8 +60,19 @@
 
     .counterblock {
         display: flex;
-        flex-direction: column;
-        gap: 15px;
+        gap: 50px;
+
+        .counterState {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .counterStore {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
         .button {
             padding: 20px;

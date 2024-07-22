@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { Suspense } from 'react';
-import {LazyShop} from '../Pages/Shop/Shop.lazy';
-import {LazyAbout} from '../Pages/About/About.lazy';
+import {LazyShop} from '@/Components/Pages/Shop/Shop.lazy';
+import {LazyAbout} from '@/Components/Pages/About/About.lazy';
 
 export default function Content() {
 
