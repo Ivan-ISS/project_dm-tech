@@ -1,0 +1,26 @@
+@import "_colors";
+@import "_variables";
+@import "reset.scss";
+@import "../assets/fonts/fonts.css";
+
+::-webkit-scrollbar {
+    border-radius: 10px;
+    width: 12.5px;
+    height: 12.5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff;
+    border-radius: 10px;
+    position: absolute;
+    right: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbcbcb;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #acacac;
+}

@@ -1,11 +1,12 @@
 import path from 'path';
 import webpack from 'webpack';
-import { buildWebpack } from './config/build/buildWebpack';
-import { BuildMode, BuildPaths } from './config/build/types/types';
+import { buildWebpack } from './config/buildProject/buildWebpack';
+import { BuildMode, BuildPaths } from './config/buildProject/types/types';
 
 interface EnvVariables {
-    mode: BuildMode;
-    port: number;
+    mode?: BuildMode;
+    port?: number;
+    analyzer?: boolean; 
 }
 
 export default (env: EnvVariables) => {
@@ -21,6 +22,7 @@ export default (env: EnvVariables) => {
     const config: webpack.Configuration = buildWebpack({
         port: env.port ?? 3000,
         mode: env.mode ?? 'development',
+        analyzer: env.analyzer,
         paths,
     });
     return config;
