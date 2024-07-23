@@ -1,0 +1,53 @@
+@font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Nunito"),
+             url(../fonts/16489621a9b23085cc59.woff2) format("woff2"),
+             url(../fonts/9144703ca1c8225d762c.woff) format("woff");
+}
+
+@font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local("Nunito"),
+             url(../fonts/77e3ab6700fc4e52fce4.woff2) format("woff2"),
+             url(../fonts/f75afecb2220c7dda1a0.woff) format("woff");
+}
+
+@font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: local("Nunito"),
+             url(../fonts/ae2bc237a96280a82c27.woff2) format("woff2"),
+             url(../fonts/552ca45bd4b6acd00ed5.woff) format("woff");
+}
+
+@font-face {
+    font-family: "Circe Rounded";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local("Circe Rounded"),
+             url(../fonts/3ee2e7db9172197b6318.woff2) format("woff2"),
+             url(../fonts/be0b1eedf4f4b9bf898c.woff) format("woff");
+}
+
+@font-face {
+    font-family: "Circe Rounded";
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: local("Circe Rounded"),
+             url(../fonts/7e67c0579fe5b70ec8c9.woff2) format("woff2"),
+             url(../fonts/ddd87000ead3331e43c4.woff) format("woff");
+}
+*,*::before,*::after{margin:0;padding:0;border:0;box-sizing:border-box;vertical-align:baseline;font-weight:inherit;font-style:inherit;font-size:100%}ol,ul,li{list-style:none}a{text-decoration:none}h1,h2,h3,h4,h5,h6{font-weight:inherit;font-size:inherit}html,body{height:100%;font-family:"Nunito";color:#000;font-size:16px;font-weight:400;line-height:normal;background:#fff}#Aca5Y7cc{height:100%;overflow:hidden;overflow-y:auto}::-webkit-scrollbar{border-radius:10px;width:12.5px;height:12.5px}::-webkit-scrollbar-track{background:#fff;border-radius:10px;position:absolute;right:10px}::-webkit-scrollbar-thumb{background:#cbcbcb;border-radius:10px}::-webkit-scrollbar-thumb:hover{background:#acacac}
+.v0t1zSzr{display:flex;flex-direction:column;align-items:center;gap:35px;padding:25px}.v0t1zSzr .iZKxX_YM{display:flex;gap:50px;height:200px;align-items:center}.v0t1zSzr .iZKxX_YM .Wv_4l3Q7{width:100px;animation:Yh7lj17u 1.25s infinite ease-in-out}@keyframes Yh7lj17u{0%{transform:scale(0.9)}50%{transform:scale(1)}100%{transform:scale(0.9)}}.v0t1zSzr .iZKxX_YM .fUypFHP5{width:100px;animation:Yh7lj17u 1.25s infinite ease-in-out;animation-delay:.625s}@keyframes Yh7lj17u{0%{transform:scale(0.9)}50%{transform:scale(1)}100%{transform:scale(0.9)}}.v0t1zSzr .EmYhWHpy{color:#029491}.v0t1zSzr .C3HHgKkS{display:flex;gap:50px}.v0t1zSzr .C3HHgKkS .__fK7EI0{display:flex;flex-direction:column;gap:15px}.v0t1zSzr .C3HHgKkS .SKMOBpif{display:flex;flex-direction:column;gap:15px}.v0t1zSzr .C3HHgKkS .q6Fxkt1a{padding:20px;font-family:"Circe Rounded";font-weight:800;cursor:pointer;border:none;max-width:350px;width:100%;border-radius:5px;background:rgba(0,69,138,.9);color:#fff;transition:.3s ease;font-size:30px;text-transform:uppercase}.v0t1zSzr .C3HHgKkS .q6Fxkt1a:hover{color:#000;background:#fff;box-shadow:1px 2px 5px rgba(0,0,0,.4)}.v0t1zSzr .C3HHgKkS .q6Fxkt1a:active{scale:.85}.v0t1zSzr .C3HHgKkS .Tp5inZSV{font-family:"Circe Rounded";font-weight:800;font-size:100px;text-align:center}.v0t1zSzr .dObWHXag{font-size:24px;display:flex;flex-direction:column;align-items:center;gap:5px}.v0t1zSzr .dObWHXag .InxTiVTQ{color:#029491;font-weight:700;transition:.3s ease}.v0t1zSzr .dObWHXag .InxTiVTQ:hover{text-shadow:.2px .2px .5px rgba(0,0,0,.355),-0.2px -0.2px .5px rgba(0,0,0,.355),.2px -0.2px .5px rgba(0,0,0,.355),-0.2px .2px .5px rgba(0,0,0,.355);text-decoration:underline}
+
+/*# sourceMappingURL=main.badb1d5c.css.map*/
