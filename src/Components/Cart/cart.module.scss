@@ -1,0 +1,13 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.cart {
+    display: flex;
+    column-gap: 4px;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover > * {
+        color: $baseBrand;
+    }
+}

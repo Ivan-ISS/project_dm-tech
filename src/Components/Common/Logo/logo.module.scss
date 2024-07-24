@@ -1,0 +1,12 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.link {
+    display: flex;
+}
+
+.logo {
+    color: $baseBrand;
+    width: 150px;
+    height: 24px;
+}

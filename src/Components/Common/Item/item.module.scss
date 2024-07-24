@@ -1,0 +1,22 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.item {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.interactive {
+    transition: $transition-hover;
+    border-bottom: solid 3px transparent;
+    
+    &:hover {
+        color: $baseBrand;
+    }
+}
+
+.active {
+    border-bottom: solid 3px $baseBrand;
+    color: $baseBrand;
+}

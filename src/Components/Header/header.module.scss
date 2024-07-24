@@ -1,0 +1,41 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
+    .container {
+        min-height: 38px;
+        max-width: 1920px;
+        min-width: 300px;
+        margin: 0 auto;
+        padding: 5px 32px;
+        box-sizing: content-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 35px;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .header {
+        
+        .container {
+            padding: 5px 32px;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+
+    .header {
+        
+        .container {
+            gap: 10px;
+        }
+    }
+}

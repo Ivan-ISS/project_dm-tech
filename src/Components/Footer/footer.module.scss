@@ -1,0 +1,28 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.footer {
+    width: 100%;
+
+    .container {
+        max-width: 1920px;
+        min-width: 300px;
+        min-height: 25px;
+        margin: 0 auto;
+        padding: 5px 32px;
+        box-sizing: content-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .footer {
+        
+        .container {
+            padding: 5px 32px;
+        }
+    }
+}

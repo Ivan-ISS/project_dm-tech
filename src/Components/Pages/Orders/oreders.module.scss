@@ -1,0 +1,11 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.orders {
+    text-align: center;
+
+    .title {
+        font-family: 'Circe Rounded';
+        font-weight: 800;
+    }
+}

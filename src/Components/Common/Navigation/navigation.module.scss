@@ -1,0 +1,38 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.navigation {
+    min-height: inherit;
+
+    .list {
+        display: flex;
+        column-gap: 16px;
+        flex-wrap: wrap;
+        height: 100%;
+        min-height: inherit;
+
+        .link {
+            color: inherit;
+            height: 100%;
+            min-height: inherit;
+            display: flex;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .navigation {
+
+        .list {
+            column-gap: 25px;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+
+    .navigation {
+        display: none;
+    }
+}
