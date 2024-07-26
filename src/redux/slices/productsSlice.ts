@@ -13,7 +13,7 @@ export const fetchProducts = createAsyncThunk<
     'products/fetch',
     async (_, thunkAPI) => {
         try {
-            const response = await fetch(`${routes.urlProducts()}?Limit=15Page=1`, {
+            const response = await fetch(`${routes.urlProducts()}?page=1&limit=15`, {
                 method: 'GET',
                 credentials: 'include',
             });
