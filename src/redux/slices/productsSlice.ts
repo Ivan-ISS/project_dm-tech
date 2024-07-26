@@ -1,3 +1,4 @@
+import { IMeta, IProduct, IGetProducts, IError } from '@/types/entityTypes';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import routes from '@/routes';
 
@@ -6,7 +7,7 @@ export interface FetchProductsError {
 }
 
 export const fetchProducts = createAsyncThunk<
-    [],
+    IGetProducts,
     void,
     { rejectValue: FetchProductsError | undefined }
 >(
@@ -19,12 +20,12 @@ export const fetchProducts = createAsyncThunk<
             });
 
             if (!response.ok) {
-                const error = await response.json();
+                const error: IError = await response.json();
                 console.log('Ошибка ответа (статус не 200): ', error);
-                return thunkAPI.rejectWithValue({ message: error } as FetchProductsError);
+                return thunkAPI.rejectWithValue({ message: error.error } as FetchProductsError);
             }
 
-            const data = await response.json();
+            const data: IGetProducts = await response.json();
             console.log('Данные с сервера: ', data);
             return data;
         } catch (error) {
@@ -35,7 +36,12 @@ export const fetchProducts = createAsyncThunk<
 );
 
 export interface IState {
-    products: [];
+    products: IProduct[];
+    meta: IMeta | null;
+    queryParams: {
+        limit: number;
+        currentPage: number;
+    };
     status: 'not started' | 'in progress' | 'successfully' | 'download failed';
     error: string;
 }
@@ -44,6 +50,11 @@ export const productsSlice = createSlice({
     name: 'products',
     initialState: {
         products: [],
+        meta: null,
+        queryParams: {
+            limit: 15,
+            currentPage: 1,
+        },
         status: 'not started',
         error: '',
     } as IState,
@@ -55,9 +66,10 @@ export const productsSlice = createSlice({
             addCase(fetchProducts.pending, (state) => {
                 state.status = 'in progress';
             })
-            .addCase(fetchProducts.fulfilled, (state, action) => {
+            .addCase(fetchProducts.fulfilled, (state, action: PayloadAction<IGetProducts>) => {
                 state.status = 'successfully';
-                state.products = action.payload;
+                state.products = action.payload.data;
+                state.meta = action.payload.meta;
             })
             .addCase(fetchProducts.rejected, (state, action: PayloadAction<FetchProductsError | undefined>) => {
                 state.status = 'download failed';
