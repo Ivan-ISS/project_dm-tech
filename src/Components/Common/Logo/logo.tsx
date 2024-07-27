@@ -1,8 +1,9 @@
 import * as styles from './logo.module.scss';
+import { SVGAttributes } from 'react';
 import { Link } from 'react-router-dom';
 import LogoIcon from '@/assets/images/svg/logo.svg';
 
-export interface LogoProps {
+export interface LogoProps extends SVGAttributes<SVGSVGElement> {
     pathLink: string;
 }
 

@@ -1,12 +1,18 @@
 import * as styles from './products.module.scss';
+import { useAppSelector } from '@/redux/store';
+import { selectProducts } from '@/redux/slices/productsSelector';
+import ProductShortCard from '@/Components/productShortCard/productShortCard';
 
 export default function Products() {
+    const products = useAppSelector(selectProducts);
+
     return (
-        <div className={styles.products}>
-            <p className={styles.title}>PAGE PRODUCTS CONTENT</p>
-            <br/>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, dolorum reprehenderit! Nam dignissimos voluptates repudiandae. 
-            Id, animi sunt ut in, consequatur, suscipit commodi atque ad tenetur reiciendis quo omnis similique?
-        </div>
+        <section className={styles.products}>
+            <div className={styles.showcase}>
+                {products.length && products.map((product) => (
+                    <ProductShortCard key={product.id} product={product}/>
+                ))}
+            </div>
+        </section>
     );
 }

@@ -3,9 +3,19 @@
 
 .products {
     text-align: center;
+    display: flex;
+    justify-content: center;
 
-    .title {
-        font-family: 'Circe Rounded';
-        font-weight: 800;
+    .showcase {
+        max-width: 1346px;
+        justify-content: center;
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+
+        /* display: grid;
+        grid-template-columns: repeat(5, 250px);
+        grid-gap: 24px; */
     }
 }
