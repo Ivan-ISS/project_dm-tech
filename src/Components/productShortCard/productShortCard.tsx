@@ -22,7 +22,7 @@ export default function ProductShortCard({ product, ...props }: ProductShortCard
         }
     }, [picture]);
 
-    console.log('id :', id);
+    // console.log('id :', id);
 
     return (
         <div {...props} className={styles.productCard}>

@@ -6,15 +6,20 @@ export interface FetchProductsError {
     message: string;
 }
 
+export interface FetchProductsArgs {
+    page: number;
+    limit: number;
+}
+
 export const fetchProducts = createAsyncThunk<
     IGetProducts,
-    void,
+    FetchProductsArgs,
     { rejectValue: FetchProductsError | undefined }
 >(
     'products/fetch',
-    async (_, thunkAPI) => {
+    async (args, thunkAPI) => {
         try {
-            const response = await fetch(`${routes.urlProducts()}?page=1&limit=15`, {
+            const response = await fetch(`${routes.urlProducts()}?page=${args.page}&limit=${args.limit}`, {
                 method: 'GET',
                 credentials: 'include',
             });
@@ -42,6 +47,7 @@ export interface IState {
         limit: number;
         currentPage: number;
     };
+    totalProducts: number;
     status: 'not started' | 'in progress' | 'successfully' | 'download failed';
     error: string;
 }
@@ -55,11 +61,14 @@ export const productsSlice = createSlice({
             limit: 15,
             currentPage: 1,
         },
+        totalProducts: 0,
         status: 'not started',
         error: '',
     } as IState,
     reducers: {
-
+        increasePage: (state) => {
+            state.queryParams.currentPage += 1;
+        },
     },
     extraReducers: (builder) => {
         builder.
@@ -68,8 +77,11 @@ export const productsSlice = createSlice({
             })
             .addCase(fetchProducts.fulfilled, (state, action: PayloadAction<IGetProducts>) => {
                 state.status = 'successfully';
-                state.products = action.payload.data;
+                for (let i = 0; i < action.payload.data.length; i++) {
+                    state.products = [ ... state.products, action.payload.data[i]];
+                }
                 state.meta = action.payload.meta;
+                state.totalProducts = action.payload.meta.total;
             })
             .addCase(fetchProducts.rejected, (state, action: PayloadAction<FetchProductsError | undefined>) => {
                 state.status = 'download failed';
@@ -79,3 +91,5 @@ export const productsSlice = createSlice({
             });
     }
 });
+
+export const { increasePage } = productsSlice.actions;

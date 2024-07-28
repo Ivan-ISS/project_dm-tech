@@ -25,7 +25,6 @@ export default function Layout() {
             <main className={styles.main}>
                 <div className={styles.container}>
                     <Content/>
-                    Main
                 </div>
             </main>
             <Footer>
