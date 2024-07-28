@@ -19,3 +19,15 @@
         grid-gap: 24px; */
     }
 }
+
+@media (max-width: 560px) {
+
+    .products {
+
+        .showcase {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 18px;
+        }
+    }
+}

@@ -10,7 +10,7 @@
     .container {
         min-height: 38px;
         max-width: 1920px;
-        min-width: 300px;
+        min-width: 270px;
         margin: 0 auto;
         padding: 5px 32px;
         box-sizing: content-box;
@@ -21,21 +21,12 @@
     }
 }
 
-@media (max-width: 1024px) {
-
-    .header {
-        
-        .container {
-            padding: 5px 32px;
-        }
-    }
-}
-
 @media (max-width: 767px) {
 
     .header {
         
         .container {
+            padding: 5px 10px;
             gap: 10px;
         }
     }

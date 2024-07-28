@@ -1,5 +1,9 @@
-$boxShadowContainer: 0 0 30px 0 rgba(0, 0, 0, 0.15);
+@import "_colors";
+
+$boxShadowContainer: 0 0 30px 0 rgba($baseBlack, 0.15);
+$boxShadowSmallEl: 0px 0px 5px rgba($baseBlack, 0.4);
 
 $transitionHover: 0.3s ease;
 
 $baseFontSize: 16px;
+$mobileFontSize: 14px;

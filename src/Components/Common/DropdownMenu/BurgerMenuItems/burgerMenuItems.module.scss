@@ -1,0 +1,20 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+
+.link {
+    color: $baseBlack;
+    transition: $transitionHover;
+    border-left: solid 3px transparent;
+    font-weight: 700;
+    padding-left: 5px;
+    
+    &:hover {
+        color: $baseBrand;
+    }
+}
+
+.active {
+    border-left: solid 3px $baseBrand;
+    color: $baseBrand;
+}

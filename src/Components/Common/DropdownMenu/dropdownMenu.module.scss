@@ -1,0 +1,31 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.dropdownMenu {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    z-index: 1;
+
+    padding: 8px 7px;
+    min-width: 135px;
+    background: $baseWhite;
+    box-shadow: $boxShadowContainer;
+    border-radius: 8px;
+
+    .itemsList {
+    
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    
+        .item {
+            cursor: pointer;
+            width: fit-content;
+    
+            &:hover {
+                font-weight: 700;
+            }
+        }
+    }
+}

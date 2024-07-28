@@ -56,3 +56,17 @@
         }
     }
 }
+
+@media (max-width: 560px) {
+
+    .productCard {
+        min-width: 125px;
+
+        .infoBlock {
+
+            .price {
+                font-size: 18px;
+            }
+        }
+    }
+}

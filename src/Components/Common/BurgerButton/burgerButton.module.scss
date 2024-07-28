@@ -1,0 +1,46 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.burgerWrap {
+    position: relative;
+    display: none;
+
+    .burgerButton {
+        display: flex;
+        flex-direction: column;
+        row-gap: 3px;
+        background: transparent;
+        padding: 8.5px 5.5px;
+        cursor: pointer;
+
+        &:hover {
+            box-shadow: $boxShadowContainer;
+            border-radius: 25%;
+        }
+
+        .band {
+            display: block;
+            width: 22px;
+            border: solid 2px $baseBrand;
+            border-radius: 3px;
+        }
+    }
+
+    .active {
+        transition: $transitionHover;
+        rotate: 90deg;
+        box-shadow: $boxShadowSmallEl;
+        border-radius: 25%;
+    }
+
+    .inactive {
+        transition: $transitionHover;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .burgerWrap {
+        display: block;
+    }
+}

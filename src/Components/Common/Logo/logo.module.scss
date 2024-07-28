@@ -3,10 +3,22 @@
 
 .link {
     display: flex;
+
+    .logo {
+        color: $baseBrand;
+        width: 150px;
+        height: 24px;
+    }
 }
 
-.logo {
-    color: $baseBrand;
-    width: 150px;
-    height: 24px;
+@media (max-width: 560px) {
+
+    .link {
+
+        .logo {
+
+            width: 112.5px;
+            height: 18px;
+        }
+    }
 }

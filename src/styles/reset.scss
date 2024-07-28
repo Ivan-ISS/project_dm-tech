@@ -52,3 +52,10 @@ body {
     overflow: hidden;
     overflow-y: auto;
 }
+
+@media (max-width: 767px) {
+
+    body {
+        font-size: $mobileFontSize;
+    }
+}
