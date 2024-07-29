@@ -1,0 +1,53 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+
+.switch {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 41px;
+    height: 23px;
+
+    .input {
+        opacity: 1;
+        width: 0;
+        height: 0;
+
+        &:checked + .slider {
+            background-color: $baseBrand;
+            border: 1px solid transparent;
+        }
+
+        &:checked + .slider:before {
+            transform: translateX(85%);
+        }
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0px;
+        background: #fff;
+        transition: .4s;
+        border-radius: 30px;
+        border: 1px solid rgba($baseBlack, 0.2);
+
+        &:before {
+            position: absolute;
+            content: "";
+            height: 100%;
+            width: 52.5%;
+            border-radius: 50%;
+            left: 2%;
+            top: 0;
+            bottom: 0;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba($baseBlack, 0.4);
+            transition: .4s;
+        }
+    }
+}

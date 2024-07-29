@@ -7,8 +7,12 @@
     overflow: hidden;
     max-width: 250px;
 
+    display: flex;
+    flex-direction: column;
+
     .imgBlock {
         padding: 5px 5px 0;
+        flex-grow: 1;
         
         .image {
             width: 100%;

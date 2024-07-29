@@ -1,9 +1,12 @@
 import * as styles from './products.module.scss';
+import { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { selectProducts } from '@/redux/slices/productsSelector';
-import { fetchProducts, increasePage } from '@/redux/slices/productsSlice';
-import { selectQueryParams, selectTotalProducts } from '@/redux/slices/productsSelector';
+import { fetchProducts, increasePage, changePagination, reset } from '@/redux/slices/productsSlice';
+import { selectQueryParams, selectTotalProducts, selectIsPagination } from '@/redux/slices/productsSelector';
 import ProductShortCard from '@/Components/productShortCard/productShortCard';
+import Pagination from '../../Common/Pagination/pagination';
+import Switch from '../../Common/Switch/switch';
 import useScrollBot from '@/hooks/useScrollBot';
 
 export default function Products() {
@@ -11,22 +14,49 @@ export default function Products() {
     const queryParams = useAppSelector(selectQueryParams);
     const totalProducts = useAppSelector(selectTotalProducts);
     const products = useAppSelector(selectProducts);
+    const isPagination = useAppSelector(selectIsPagination);
+    const [ currentPage, setCurrentPage ] = useState<number>(1);
+    const [ totalPages, setTotalPages ] = useState<number>(0);
+
     const { targetElement: section } = useScrollBot({
         func: async () => {
-            if (totalProducts > queryParams.limit * (queryParams.currentPage - 1)) {
+            if (!isPagination && totalProducts > queryParams.limit * (queryParams.currentPage - 1)) {
                 await dispatch(fetchProducts({ page: queryParams.currentPage, limit: queryParams.limit }));
                 dispatch(increasePage());
             }
         }
     });
 
+    useEffect(() => {
+        setTotalPages(Math.floor(totalProducts / queryParams.limit));
+    }, [queryParams, totalProducts]);
+
+    useEffect(() => {
+        if (!isPagination) {
+            dispatch(reset());
+        }
+    }, [dispatch, isPagination, queryParams.limit]);
+
+    const handleClickPagination = (currentPage: number) => {
+        dispatch(fetchProducts({ page: currentPage, limit: queryParams.limit }));
+    };
+
     return (
         <section ref={section} className={styles.products}>
+            <Switch onClick={() => dispatch(changePagination())} isActive={isPagination} label={'Вкл/выкл пагинацию'}/>
             <div className={styles.showcase}>
                 {products.length && products.map((product, index) => (
                     <ProductShortCard key={index} product={product}/>
                 ))}
             </div>
+            { isPagination && totalPages &&
+                <Pagination
+                    totalPages={totalPages}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    handlePagination={handleClickPagination}
+                />
+            }
         </section>
     );
 }

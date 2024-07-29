@@ -1,0 +1,86 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+
+.button {
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    font-weight: 700;
+    background: $baseBrandLight2;
+    padding: 16px;
+    color: $baseBrand;
+    transition: $transitionHover;
+    max-width: 52px;
+    max-height: 52px;
+
+    &:hover {
+        background: $backgroundHoverSecBtn;
+    }
+
+    .text {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.rounded {
+    border-radius: 12px;
+}
+
+.leftRounded {
+    border-radius: 12px 0 0 12px;
+}
+
+.rightRounded {
+    border-radius: 0 12px 12px 0;
+}
+
+.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.active {
+    background: $baseBrand;
+    color: $baseWhite;
+
+    &:hover {
+        background: $baseBrand;
+    }
+}
+
+.blank {
+    background: transparent;
+    padding: 16px 8px;
+    max-width: 36px;
+    cursor: default;
+
+    &:hover {
+        background: transparent;
+    }
+}
+
+@media (max-width: 560px) {
+
+    .button {
+
+        padding: 3px;
+        max-width: 25px;
+        max-height: 25px;
+
+        .text {
+            width: 19px;
+            height: 19px;
+        }
+    }
+
+    .rounded {
+        border-radius: 4px;
+    }
+
+    .blank {
+        padding: 3px 0;
+        max-width: 18px;
+    }
+}

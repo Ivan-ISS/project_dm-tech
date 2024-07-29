@@ -4,7 +4,10 @@
 .products {
     text-align: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    row-gap: 25px;
 
     .showcase {
         max-width: 1346px;

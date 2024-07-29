@@ -1,0 +1,16 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.pagination {
+
+    display: flex;
+    gap: 8px;
+}
+
+@media (max-width: 560px) {
+
+    .button {
+
+        gap: 4px;
+    }
+}

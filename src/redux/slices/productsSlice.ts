@@ -42,12 +42,14 @@ export const fetchProducts = createAsyncThunk<
 
 export interface IState {
     products: IProduct[];
+    productsFirstPage: IProduct[];
     meta: IMeta | null;
     queryParams: {
         limit: number;
         currentPage: number;
     };
     totalProducts: number;
+    isPagination: boolean;
     status: 'not started' | 'in progress' | 'successfully' | 'download failed';
     error: string;
 }
@@ -56,16 +58,31 @@ export const productsSlice = createSlice({
     name: 'products',
     initialState: {
         products: [],
+        productsFirstPage: [],
         meta: null,
         queryParams: {
             limit: 15,
             currentPage: 1,
         },
         totalProducts: 0,
+        isPagination: false,
         status: 'not started',
         error: '',
     } as IState,
     reducers: {
+        reset: (state) => {
+            state.products = [];
+            state.products = state.productsFirstPage;
+            state.queryParams.currentPage = 2;
+        },
+        setFrontPageProdcuts: (state) => {
+            if (!state.productsFirstPage.length) {
+                state.productsFirstPage = state.products;
+            }
+        },
+        changePagination: (state) => {
+            state.isPagination = !state.isPagination;
+        },
         increasePage: (state) => {
             state.queryParams.currentPage += 1;
         },
@@ -77,8 +94,12 @@ export const productsSlice = createSlice({
             })
             .addCase(fetchProducts.fulfilled, (state, action: PayloadAction<IGetProducts>) => {
                 state.status = 'successfully';
-                for (let i = 0; i < action.payload.data.length; i++) {
-                    state.products = [ ... state.products, action.payload.data[i]];
+                if (!state.isPagination) {
+                    for (let i = 0; i < action.payload.data.length; i++) {
+                        state.products = [ ... state.products, action.payload.data[i]];
+                    }
+                } else {
+                    state.products = action.payload.data;
                 }
                 state.meta = action.payload.meta;
                 state.totalProducts = action.payload.meta.total;
@@ -92,4 +113,4 @@ export const productsSlice = createSlice({
     }
 });
 
-export const { increasePage } = productsSlice.actions;
+export const { setFrontPageProdcuts, increasePage, changePagination, reset } = productsSlice.actions;
