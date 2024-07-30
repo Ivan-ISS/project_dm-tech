@@ -2,6 +2,40 @@
 @import "/src/styles/_variables";
 
 .productItem {
+    position: relative;
     display: flex;
     justify-content: center;
+    
+    .backButton {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        column-gap: 4px;
+        font-family: inherit;
+        background: transparent;
+        height: fit-content;
+        cursor: pointer;
+        color: $baseBrand;
+    }
+}
+
+@media (max-width: 1050px) {
+
+    .productItem {
+
+        .backButton {
+            top: -25px;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+
+    .productItem {
+
+        .backButton {
+            display: none;
+        }
+    }
 }
