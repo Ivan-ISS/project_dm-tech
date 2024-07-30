@@ -1,15 +1,19 @@
 import * as styles from './products.module.scss';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { selectProducts } from '@/redux/slices/productsSelector';
 import { fetchProducts, increasePage, changePagination, reset } from '@/redux/slices/productsSlice';
 import { selectQueryParams, selectTotalProducts, selectIsPagination } from '@/redux/slices/productsSelector';
-import ProductShortCard from '@/Components/productShortCard/productShortCard';
+// import { fetchProduct } from '@/redux/slices/productItemSlice/productItemSlice';
+import ProductShortCard from '@/Components/ProductShortCard/productShortCard';
 import Pagination from '../../Common/Pagination/pagination';
 import Switch from '../../Common/Switch/switch';
 import useScrollBot from '@/hooks/useScrollBot';
+import routes from '@/routes';
 
 export default function Products() {
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const queryParams = useAppSelector(selectQueryParams);
     const totalProducts = useAppSelector(selectTotalProducts);
@@ -41,12 +45,17 @@ export default function Products() {
         dispatch(fetchProducts({ page: currentPage, limit: queryParams.limit }));
     };
 
+    const handleClickCard = (id: string) => {
+        navigate(`${routes.product()}/${id}`);
+        // dispatch(fetchProduct({ id: id }));
+    };
+
     return (
         <section ref={section} className={styles.products}>
             <Switch onClick={() => dispatch(changePagination())} isActive={isPagination} label={'Вкл/выкл пагинацию'}/>
             <div className={styles.showcase}>
                 {products.length && products.map((product, index) => (
-                    <ProductShortCard key={index} product={product}/>
+                    <ProductShortCard key={index} product={product} handleClickCard={handleClickCard}/>
                 ))}
             </div>
             { isPagination && totalPages &&

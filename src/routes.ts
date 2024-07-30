@@ -9,7 +9,7 @@ interface IRoutes {
 
 const routes: IRoutes = {
     products: () => '/',
-    product: () => '/:id',
+    product: () => '/product',
     orders: () => '/orders',
     urlProducts: () => `${BASE_URL}/products`,
 };

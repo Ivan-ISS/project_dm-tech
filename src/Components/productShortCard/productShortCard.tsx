@@ -7,9 +7,10 @@ import formatToPrice from '@/utils/formatToPrice';
 
 export interface ProductShortCardProps extends HTMLAttributes<HTMLDivElement> {
     product: IProduct;
+    handleClickCard?: (id: string) => void;
 }
 
-export default function ProductShortCard({ product, ...props }: ProductShortCardProps) {
+export default function ProductShortCard({ product, handleClickCard, ...props }: ProductShortCardProps) {
     const { id, title, price, picture, rating } = product;
     const [imageUrl, setImageUrl] = useState(placeholderImg);
 
@@ -22,10 +23,8 @@ export default function ProductShortCard({ product, ...props }: ProductShortCard
         }
     }, [picture]);
 
-    // console.log('id :', id);
-
     return (
-        <div {...props} className={styles.productCard}>
+        <div {...props} className={styles.productCard} onClick={() => handleClickCard && handleClickCard(id)}>
             <div className={styles.imgBlock}>
                 <img className={styles.image} src={imageUrl} alt={'product image'}/>
             </div>
