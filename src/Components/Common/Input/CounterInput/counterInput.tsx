@@ -8,7 +8,6 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
 }
 
 export default function CounterInput({ value, isDisabled, handleChangeInput, ...props }: InputProps) {
-    console.log('value: ', value);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         let value = parseFloat(event.target.value);

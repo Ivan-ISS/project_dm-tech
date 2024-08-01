@@ -39,6 +39,7 @@ export default function Pagination ({ totalPages, currentPage, setCurrentPage, h
         <div className={styles.pagination}>
             <SecondaryButton
                 edges={'rounded'}
+                adaptive={true}
                 onClick={ () => setCurrentPage(currentPage - 1) }
                 isDisabled={currentPage === 1}
             >
@@ -49,12 +50,14 @@ export default function Pagination ({ totalPages, currentPage, setCurrentPage, h
                     key={index}
                     text={page}
                     edges={'rounded'}
+                    adaptive={true}
                     isActive={page === currentPage}
                     onClick={ typeof page === 'number' ? () => handleClick(page) : () => null }
                 />
             ))}
             <SecondaryButton
                 edges={'rounded'}
+                adaptive={true}
                 onClick={ () => setCurrentPage(currentPage + 1) }
                 isDisabled={currentPage === totalPages}
             >

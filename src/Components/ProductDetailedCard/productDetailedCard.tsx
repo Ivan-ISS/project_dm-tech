@@ -78,7 +78,7 @@ export default function ProductDetailedCard({ product }: ProductDetailedCardProp
                             <div className={styles.buttonPanel}>
                                 <Counter
                                     idEntity={id}
-                                    value={findProductInCart(cart, id).quantity}
+                                    value={findProductInCart(cart, id)?.quantity || 0}
                                     handleClickCounter={(id, quantity) => handleClickCounter(id, quantity)}
                                 /> 
                                 <PrimaryButton text={'Оформить заказ'}/>

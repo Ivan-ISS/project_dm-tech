@@ -2,8 +2,8 @@
 @import "/src/styles/_variables";
 
 .counterInput {
-    width: 52px;
     height: 52px;
+    width: 100%;
 
     .input {
         color: $baseBlack;

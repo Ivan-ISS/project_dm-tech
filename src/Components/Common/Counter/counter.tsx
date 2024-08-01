@@ -45,6 +45,7 @@ export default function Counter({ idEntity, value, indicatorOfChange, handleClic
             <SecondaryButton
                 segment={'counter'}
                 edges={'leftRounded'}
+                adaptive={false}
                 onClick={handleClickMinus}
                 // isDisabled={count === 1}
             >
@@ -54,6 +55,7 @@ export default function Counter({ idEntity, value, indicatorOfChange, handleClic
             <SecondaryButton
                 segment={'counter'}
                 edges={'rightRounded'}
+                adaptive={false}
                 onClick={handleClickPlus}
                 // isDisabled={count === 1}
             >

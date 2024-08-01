@@ -73,6 +73,8 @@
 
             .buttonPanel {
                 display: flex;
+                justify-content: center;
+                align-items: center;
                 gap: 8px;
             }
 
@@ -147,6 +149,22 @@
 
                 &:hover {
                     border-bottom: 2px solid $baseBrand;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 850px) {
+
+    .detailedCard {
+
+        .data {
+
+            .infoBlock {
+
+                .buttonPanel {
+                    flex-direction: column;
                 }
             }
         }
