@@ -1,0 +1,45 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.counterInput {
+    width: 52px;
+    height: 52px;
+
+    .input {
+        color: $baseBlack;
+        padding: 14px;
+        outline: none;
+        background: $baseBrandLight2;
+        font-family: inherit;
+        font-weight: 700;
+        line-height: 20px;
+        text-align: center;
+        width: 100%;
+        border: 2px solid transparent;
+        transition: $transitionHover;
+
+        &:hover {
+            background: $backgroundHoverSecBtn;
+        }
+
+        &:focus {
+            border: 2px solid $baseBrand;
+        }
+
+        .value {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .disabled {
+        opacity: 0.4;
+        pointer-events: none;
+    }
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

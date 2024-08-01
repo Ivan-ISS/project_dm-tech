@@ -24,6 +24,14 @@
     }
 }
 
+.segmentCounter {
+
+    &:active {
+        background: $baseBrand;
+        color: $baseWhite;
+    }
+}
+
 .rounded {
     border-radius: 12px;
 }

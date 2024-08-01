@@ -17,6 +17,10 @@
     &:hover {
         background: $backgroundHoverPrimBtn;
     }
+
+    &:active {
+        background: $backgroundActivePrimBtn;
+    }
 }
 
 .disabled {

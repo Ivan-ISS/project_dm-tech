@@ -32,7 +32,7 @@ export default function Products() {
     });
 
     useEffect(() => {
-        setTotalPages(Math.floor(totalProducts / queryParams.limit));
+        setTotalPages(Math.ceil(totalProducts / queryParams.limit));
     }, [queryParams, totalProducts]);
 
     useEffect(() => {

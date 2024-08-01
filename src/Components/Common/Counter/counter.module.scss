@@ -1,0 +1,13 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.counter {
+    display: flex;
+    max-width: max-content;
+    width: 156px;
+    height: 52px;
+
+    .quantity {
+        padding: 12px 31px;
+    }
+}

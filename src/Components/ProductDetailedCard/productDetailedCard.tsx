@@ -1,19 +1,28 @@
 import * as styles from './productDetailedCard.module.scss';
 import { IProduct } from '@/types/entityTypes';
 import { useState, useEffect } from 'react';
+import { useAppSelector, useAppDispatch } from '@/redux/store';
+import { updateCart, addToCartReqArgs } from '@/redux/slices/cartSlice/cartSlice';
+import { selectCart, selectCartReqArgs } from '@/redux/slices/cartSlice/cartSelector';
 import Stars from '@/assets/images/svg/stars.svg';
 import ArrowUndo from '@/assets/images/svg/arrowUndo.svg';
 import PrimaryButton from '../Common/PrimaryButton/primaryButton';
 import formatToPrice from '@/utils/formatToPrice';
 import Item from '../Common/Item/item';
+import Counter from '../Common/Counter/counter';
 import placeholderImg from '@/assets/images/png/placeholderImg.png';
+import hasProductInCart from '@/utils/hasProductInCart';
+import findProductInCart from '@/utils/findProductInCart';
 
 export interface ProductDetailedCardProps {
     product: IProduct;
 }
 
 export default function ProductDetailedCard({ product }: ProductDetailedCardProps) {
-    const { title, price, picture, rating } = product;
+    const dispatch = useAppDispatch();
+    const cartReqArgs = useAppSelector(selectCartReqArgs);
+    const cart = useAppSelector(selectCart);
+    const { id, title, price, picture, rating } = product;
     const [imageUrl, setImageUrl] = useState(placeholderImg);
 
     useEffect(() => {
@@ -24,6 +33,18 @@ export default function ProductDetailedCard({ product }: ProductDetailedCardProp
             img.onerror = () => setImageUrl(placeholderImg);
         }
     }, [picture]);
+
+    useEffect(() => {
+        dispatch(updateCart({ data: cartReqArgs.data }));
+    }, [cartReqArgs.data, dispatch]);
+
+    const handleClickAddToCart = async () => {
+        dispatch(addToCartReqArgs({ id, quantity: 1 }));
+    };
+
+    const handleClickCounter = async (id: string, quantity: number) => {
+        dispatch(addToCartReqArgs({ id, quantity }));
+    };
 
     return (
         <div className={styles.detailedCard}>
@@ -49,7 +70,20 @@ export default function ProductDetailedCard({ product }: ProductDetailedCardProp
                         <div className={styles.price}>
                             {price && formatToPrice(price)} &#8381;
                         </div>
-                        <PrimaryButton text={'Добавить в корзину'}/>
+                        {
+                            !hasProductInCart(cart, id)
+                            ? 
+                            <PrimaryButton text={'Добавить в корзину'} onClick={handleClickAddToCart}/>
+                            : 
+                            <div className={styles.buttonPanel}>
+                                <Counter
+                                    idEntity={id}
+                                    value={findProductInCart(cart, id).quantity}
+                                    handleClickCounter={(id, quantity) => handleClickCounter(id, quantity)}
+                                /> 
+                                <PrimaryButton text={'Оформить заказ'}/>
+                            </div>
+                        }
                     </div>
                     <div>
                         <div className={styles.undo}>
