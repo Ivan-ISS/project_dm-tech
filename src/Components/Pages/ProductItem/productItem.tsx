@@ -3,16 +3,20 @@ import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { fetchProduct } from '@/redux/slices/productItemSlice/productItemSlice';
-import { selectItemProduct } from '@/redux/slices/productItemSlice/productSliceSelector';
+import { selectItemProduct, selectProductStatus, selectProductError } from '@/redux/slices/productItemSlice/productSliceSelector';
 import ProductDetailedCard from '../../ProductDetailedCard/productDetailedCard';
 import ArrowLeft from '@/assets/images/svg/arrowLeft.svg';
 import Item from '../../Common/Item/item';
+import Loader from '../../Common/Loader/loader';
+import Error from '../LoadError/loadError';
 import routes from '@/routes';
 
 export default function ProductItem() {
     const dispatch = useAppDispatch();
+    const productStatus = useAppSelector(selectProductStatus);
     const product = useAppSelector(selectItemProduct);
     const { id } = useParams();
+    const productError = useAppSelector(selectProductError);
     const navigate = useNavigate();
     // const product = products.find(product => product.id === id);
 
@@ -26,7 +30,13 @@ export default function ProductItem() {
                 <ArrowLeft width={20} height={20}/>
                 <Item text={'Назад'}/>
             </button>
-            <ProductDetailedCard product={product}/>
+            { 
+                productStatus === 'in progress' ?
+                <div className={styles.wrapLoader}><Loader/></div> : 
+                productError ?  
+                <Error text={productError}/> : 
+                <ProductDetailedCard product={product}/>
+            }
         </section>
     );
 }

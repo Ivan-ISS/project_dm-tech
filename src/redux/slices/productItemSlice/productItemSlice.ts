@@ -59,10 +59,12 @@ export const productItemSlice = createSlice({
         builder.
             addCase(fetchProduct.pending, (state) => {
                 state.status = 'in progress';
+                state.error = '';
             }).
             addCase(fetchProduct.fulfilled, (state, action: PayloadAction<IProduct>) => {
                 state.status = 'successfully';
                 state.product = action.payload;
+                state.error = '';
             }).
             addCase(fetchProduct.rejected, (state, action: PayloadAction<FetchProductError | undefined>) => {
                 state.status = 'download failed';

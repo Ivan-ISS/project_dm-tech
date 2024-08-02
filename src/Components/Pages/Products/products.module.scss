@@ -9,6 +9,11 @@
     align-items: center;
     row-gap: 25px;
 
+    .wrapLoader {
+        margin-top: 30vh;
+        margin-bottom: 30vh;
+    }
+
     .showcase {
         max-width: 1346px;
         justify-content: center;
