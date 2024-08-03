@@ -9,9 +9,13 @@ import Navigation from '../Common/Navigation/navigation';
 import Cart from '../Cart/cart';
 import BurgerButton from '../Common/BurgerButton/burgerButton';
 import DropdownMenu from '../Common/DropdownMenu/dropdownMenu';
+import CartModal from '../Common/Modal/CartModal/cartModal';
+import CartWidget from '../CartWidget/cartWidget';
+import usePortal from '@/hooks/usePortal';
 
 export default function Layout() {
-
+    const { isOpenPortal, openPortal, closePortal, Portal } = usePortal();
+    
     return (
         <div className={styles.layout}>
             <Header>
@@ -20,7 +24,7 @@ export default function Layout() {
                 </BurgerButton>
                 <Logo pathLink={routes.products()}/>
                 <Navigation navigationItems={navigationItems}/>
-                <Cart/>
+                <Cart onClick={!isOpenPortal ? openPortal : closePortal}/>
             </Header>
             <main className={styles.main}>
                 <div className={styles.container}>
@@ -30,6 +34,7 @@ export default function Layout() {
             <Footer>
                 Подвал
             </Footer>
+            { isOpenPortal && <Portal><CartModal insert={<CartWidget/>}/></Portal> }
         </div>
     );
 }
