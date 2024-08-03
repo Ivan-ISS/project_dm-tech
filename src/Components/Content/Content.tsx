@@ -11,7 +11,7 @@ export default function Content() {
         <Routes>
             <Route path={ routes.products() } element={ <Products/> }></Route>
             <Route path={ routes.orders() } element={ <Suspense fallback={'loading...'}><LazyOrders/></Suspense> }></Route>
-            <Route path={ routes.product() } element={ <ProductItem/> }></Route>
+            <Route path={ `${routes.product()}/:id` } element={ <ProductItem/> }></Route>
         </Routes>
     );
 }

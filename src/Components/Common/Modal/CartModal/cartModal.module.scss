@@ -1,0 +1,17 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.modal {
+    position: fixed;
+    top: 58px;
+    right: -100%;
+    z-index: 1;
+    opacity: 0;
+    transition: $transitionHover;
+}
+
+.modalShow {
+    right: 40px;
+    opacity: 1;
+    transition: $transitionHover;
+}

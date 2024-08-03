@@ -24,6 +24,14 @@
     }
 }
 
+.segmentCounter {
+
+    &:active {
+        background: $baseBrand;
+        color: $baseWhite;
+    }
+}
+
 .rounded {
     border-radius: 12px;
 }
@@ -63,7 +71,7 @@
 
 @media (max-width: 560px) {
 
-    .button {
+    .buttonAdaptive {
 
         padding: 3px;
         max-width: 25px;

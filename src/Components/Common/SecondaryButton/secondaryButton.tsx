@@ -3,13 +3,15 @@ import { ButtonHTMLAttributes } from 'react';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     text?: number | string;
-    edges?: 'rounded' | 'leftRounded' | 'rightRounded'
+    segment?: 'counter'; 
+    edges?: 'rounded' | 'leftRounded' | 'rightRounded';
+    adaptive: boolean;
     isActive?: boolean;
     isDisabled?: boolean;
     children?: JSX.Element;
 }
 
-export default function Button({ text, edges, isActive, isDisabled, children, ...props }: ButtonProps) {
+export default function Button({ text, segment, edges, adaptive, isActive, isDisabled, children, ...props }: ButtonProps) {
 
     const handleClickBtn = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         if (props.onClick) {
@@ -24,7 +26,9 @@ export default function Button({ text, edges, isActive, isDisabled, children, ..
             className={`
                 ${styles.button}
                 ${text === '...' ? styles.blank : null}
+                ${segment ? styles.segmentCounter : null}
                 ${edges && styles[edges]}
+                ${adaptive ? styles.buttonAdaptive : null}
                 ${isActive ? styles.active : null}
                 ${isDisabled ? styles.disabled : null}
             `}

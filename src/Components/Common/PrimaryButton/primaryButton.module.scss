@@ -1,0 +1,37 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+
+.button {
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    font-weight: 700;
+    background: $baseBrand;
+    padding: 16px;
+    color: $baseWhite;
+    transition: $transitionHover;
+    border-radius: 12px;
+    width: 100%;
+
+    &:hover {
+        background: $backgroundHoverPrimBtn;
+    }
+
+    &:active {
+        background: $backgroundActivePrimBtn;
+    }
+}
+
+.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.active {
+    background: $backgroundActivePrimBtn;
+
+    &:hover {
+        background: $backgroundActivePrimBtn;
+    }
+}

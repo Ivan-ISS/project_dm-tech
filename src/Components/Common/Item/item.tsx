@@ -20,7 +20,7 @@ export default function Item({ text, value, isActive, interactive, ...props }: I
             `}
         >
             <>
-                {text}{value && ` (${value})`}
+                {text}{value ? ` (${value})` : ''}
             </>
         </div>
     );
