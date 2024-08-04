@@ -1,0 +1,61 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.basketCard {
+    display: flex;
+    align-items: center;
+    column-gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid $baseGrayLight1;
+
+    .imgBlock {
+        max-width: 52px;
+        max-height: 52px;
+
+        .image {
+            width: 100%;
+        }
+    }
+
+    .title {
+        max-width: 144px;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        max-height: 22px;
+    }
+
+    .counterWrap {
+        max-width: 156px;
+    }
+
+    .price {
+        width: 112px;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+
+        .priceForOne {
+            font-size: 12px;
+            color: $baseGray;
+        }
+
+        .priceForAll {
+            font-family: 'Circe Rounded';
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .trashButton {
+            display: flex;
+            column-gap: 4px;
+            font-family: inherit;
+            background: transparent;
+            height: fit-content;
+            cursor: pointer;
+            color: $baseFocus;
+        }
+    }
+}

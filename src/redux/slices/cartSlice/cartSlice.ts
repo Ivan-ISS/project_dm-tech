@@ -45,9 +45,38 @@ export const updateCart = createAsyncThunk<
     }
 );
 
+export const getCart = createAsyncThunk<
+    IGetCart[] | undefined,
+    void,
+    { rejectValue: undefined }
+>(
+    'getCart/fetch',
+    async () => {
+        try {
+            const response = await fetch(routes.urlGetCart(), {
+                method: 'GET',
+                credentials: 'include',
+            });
+            
+            if (!response.ok) {
+                const error: IError = await response.json();
+                console.log('Ошибка ответа (статус не 200): ', error);
+            }
+
+            const data: IGetCart[] = await response.json();
+            console.log('Данные с сервера: ', data);
+            return data;
+        } catch (error) {
+            console.log('Ошибки асинхроннго кода: ', error);
+        }
+    }
+);
+
 export interface IState {
     cart: IGetCart[];
     cartReqArgs: IUpdateCart;
+    totalPrice: number;
+    limitPrice: number;
     status: 'not started' | 'in progress' | 'successfully' | 'download failed';
     error: string;
 }
@@ -59,6 +88,8 @@ export const cartSlice = createSlice({
         cartReqArgs: {
             data: [],
         },
+        totalPrice: 0,
+        limitPrice: 50000,
         status: 'not started',
         error: '',
     } as IState,
@@ -72,7 +103,7 @@ export const cartSlice = createSlice({
                 ];
             } else {
                 const index = state.cartReqArgs.data.findIndex(item => item.id === action.payload.id);
-                if (action.payload.quantity < 1) {
+                if (action.payload.quantity < 0) {
                     state.cartReqArgs.data.splice(index, 1);
                 } else {
                     state.cartReqArgs.data[index].quantity = action.payload.quantity;
@@ -89,12 +120,30 @@ export const cartSlice = createSlice({
             addCase(updateCart.fulfilled, (state, action: PayloadAction<IGetCart[]>) => {
                 state.status = 'successfully';
                 state.cart = action.payload;
+                state.totalPrice = state.cart.reduce((sum, item) => {
+                    return sum + item.quantity * item.product.price;
+                }, 0);
             }).
             addCase(updateCart.rejected, (state, action: PayloadAction<UpdateCartError | undefined>) => {
                 state.status = 'download failed';
                 if (action.payload) {
                     state.error = action.payload.message;
                 }
+            }).
+            addCase(getCart.pending, (state) => {
+                state.status = 'in progress';
+            }).
+            addCase(getCart.fulfilled, (state, action: PayloadAction<IGetCart[] | undefined>) => {
+                state.status = 'successfully';
+                if (action.payload) {
+                    state.cart = action.payload;
+                }
+                state.totalPrice = state.cart.reduce((sum, item) => {
+                    return sum + item.quantity * item.product.price;
+                }, 0);
+            }).
+            addCase(getCart.rejected, (state) => {
+                state.status = 'download failed';
             });
     }
 });

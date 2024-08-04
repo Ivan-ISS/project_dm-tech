@@ -8,11 +8,12 @@ import IconMinus from '@/assets/images/svg/minus.svg';
 export interface CounterProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     idEntity: string;
     value: number;
+    canBeDisabled?: boolean;
     indicatorOfChange?: number;
     handleClickCounter: (id: string, quantity: number) => void;
 }
 
-export default function Counter({ idEntity, value, indicatorOfChange, handleClickCounter, ...props }: CounterProps) {
+export default function Counter({ idEntity, value, canBeDisabled=false, indicatorOfChange, handleClickCounter, ...props }: CounterProps) {
     let [ count, setCount ] = useState(value);
 
     useEffect(() => {
@@ -47,7 +48,7 @@ export default function Counter({ idEntity, value, indicatorOfChange, handleClic
                 edges={'leftRounded'}
                 adaptive={false}
                 onClick={handleClickMinus}
-                // isDisabled={count === 1}
+                isDisabled={canBeDisabled && count < 1}
             >
                 <IconMinus width={20} height={20}/>
             </SecondaryButton>

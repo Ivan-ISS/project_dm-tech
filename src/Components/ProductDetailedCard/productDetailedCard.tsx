@@ -74,7 +74,7 @@ export default function ProductDetailedCard({ product }: ProductDetailedCardProp
                             !hasProductInCart(cart, id)
                             ? 
                             <PrimaryButton text={'Добавить в корзину'} onClick={handleClickAddToCart}/>
-                            : 
+                            :
                             <div className={styles.buttonPanel}>
                                 <Counter
                                     idEntity={id}
