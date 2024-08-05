@@ -12,13 +12,14 @@ export default function useCloseOut({ func }: IUseScrollBot) {
         const root = document.getElementById('root');
         const window = document.documentElement;
 
+        if (window.clientHeight > 1259) {
+            func();
+        }
+
         const handleScroll = () => {
 
             if (root && targetElement.current /* && check */) {
-                if (
-                    (window.clientHeight + root.scrollTop - 121 >= targetElement.current.clientHeight) ||
-                    (targetElement.current.scrollHeight <= window.clientHeight)
-                ) {
+                if (window.clientHeight + root.scrollTop - 121 >= targetElement.current.clientHeight) {
                     func();
                     /* check = false; */
                 }
