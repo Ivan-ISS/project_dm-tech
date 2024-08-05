@@ -3,7 +3,7 @@
 
 .basketCard {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     column-gap: 16px;
     padding: 16px 0;
@@ -14,6 +14,13 @@
         max-height: 52px;
         min-width: 40px;
         min-height: 40px;
+        cursor: pointer;
+        transition: $transitionHover;
+
+        &:hover ~ .title {
+            text-shadow: $textShadowSlim;
+            color: $baseBrand;
+        }
 
         .image {
             width: 100%;
@@ -22,6 +29,8 @@
 
     .title {
         max-width: 144px;
+        cursor: pointer;
+        transition: $transitionHover;
 
         display: -webkit-box;
         -webkit-line-clamp: 1;
@@ -29,6 +38,11 @@
         line-clamp: 1;
         overflow: hidden;
         max-height: 22px;
+
+        &:hover {
+            text-shadow: $textShadowSlim;
+            color: $baseBrand;
+        }
     }
 
     .counterWrap {

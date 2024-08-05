@@ -1,9 +1,10 @@
 import * as styles from './productDetailedCard.module.scss';
 import { IProduct } from '@/types/entityTypes';
+import { IResultValidateCart } from '@/types/dataTypes';
 import { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { updateCart, addToCartReqArgs } from '@/redux/slices/cartSlice/cartSlice';
-import { selectCart, selectCartReqArgs } from '@/redux/slices/cartSlice/cartSelector';
+import { selectCart, selectCartReqArgs, selectTotalPrice } from '@/redux/slices/cartSlice/cartSelector';
 import Stars from '@/assets/images/svg/stars.svg';
 import ArrowUndo from '@/assets/images/svg/arrowUndo.svg';
 import PrimaryButton from '../Common/PrimaryButton/primaryButton';
@@ -13,6 +14,7 @@ import Counter from '../Common/Counter/counter';
 import placeholderImg from '@/assets/images/png/placeholderImg.png';
 import hasProductInCart from '@/utils/hasProductInCart';
 import findProductInCart from '@/utils/findProductInCart';
+import validateCart from '@/utils/validateCart';
 
 export interface ProductDetailedCardProps {
     product: IProduct;
@@ -20,10 +22,12 @@ export interface ProductDetailedCardProps {
 
 export default function ProductDetailedCard({ product }: ProductDetailedCardProps) {
     const dispatch = useAppDispatch();
+    const totalPrice = useAppSelector(selectTotalPrice);
     const cartReqArgs = useAppSelector(selectCartReqArgs);
     const cart = useAppSelector(selectCart);
     const { id, title, price, picture, rating } = product;
     const [imageUrl, setImageUrl] = useState(placeholderImg);
+    const [ resValidate, setRestValidate ] = useState<IResultValidateCart>();
 
     useEffect(() => {
         if (picture) {
@@ -33,6 +37,10 @@ export default function ProductDetailedCard({ product }: ProductDetailedCardProp
             img.onerror = () => setImageUrl(placeholderImg);
         }
     }, [picture]);
+
+    useEffect(() => {
+        setRestValidate(validateCart(cart, totalPrice));
+    }, [cart, totalPrice]);
 
     useEffect(() => {
         dispatch(updateCart({ data: cartReqArgs.data }));
@@ -66,7 +74,7 @@ export default function ProductDetailedCard({ product }: ProductDetailedCardProp
                             />
                         </div>
                     </div>
-                    <div>
+                    <div className={styles.buttonPanel}>
                         <div className={styles.price}>
                             {price && formatToPrice(price)} &#8381;
                         </div>
@@ -81,9 +89,17 @@ export default function ProductDetailedCard({ product }: ProductDetailedCardProp
                                     value={findProductInCart(cart, id)?.quantity || 0}
                                     handleClickCounter={(id, quantity) => handleClickCounter(id, quantity)}
                                 /> 
-                                <PrimaryButton text={'Оформить заказ'}/>
+                                <PrimaryButton
+                                    text={'Оформить заказ'}
+                                    isDisabled={ resValidate && (
+                                        !resValidate.maxPrice.isValid ||
+                                        !resValidate.minPrice.isValid ||
+                                        !resValidate.maxQuantity.isValid
+                                    )}
+                                />
                             </div>
                         }
+                        { resValidate && !resValidate.maxPrice.isValid ? <div className={styles.errorMessage}>{resValidate.maxPrice.error}</div> : null }
                     </div>
                     <div>
                         <div className={styles.undo}>

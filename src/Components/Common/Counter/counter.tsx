@@ -58,7 +58,7 @@ export default function Counter({ idEntity, value, canBeDisabled=false, indicato
                 edges={'rightRounded'}
                 adaptive={false}
                 onClick={handleClickPlus}
-                // isDisabled={count === 1}
+                isDisabled={count > 9}
             >
                 <IconPlus width={20} height={20}/>
             </SecondaryButton>

@@ -141,6 +141,7 @@ export const cartSlice = createSlice({
                 state.totalPrice = state.cart.reduce((sum, item) => {
                     return sum + item.quantity * item.product.price;
                 }, 0);
+                state.cartReqArgs = prepareDataToCartReqArgs(state.cart);
             }).
             addCase(getCart.rejected, (state) => {
                 state.status = 'download failed';

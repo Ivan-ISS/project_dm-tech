@@ -34,7 +34,7 @@ export default function Layout() {
             <Footer>
                 Подвал
             </Footer>
-            { isOpenPortal && <Portal><CartModal insert={<CartWidget/>}/></Portal> }
+            { isOpenPortal && <Portal><CartModal insert={<CartWidget handleClickProduct={closePortal}/>}/></Portal> }
         </div>
     );
 }
