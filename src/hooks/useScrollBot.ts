@@ -6,7 +6,7 @@ export interface IUseScrollBot {
 
 export default function useCloseOut({ func }: IUseScrollBot) {
     const targetElement = useRef<HTMLDivElement>(null);
-    let check = true;
+    /* let check = true; */
 
     useEffect(() => {
         const root = document.getElementById('root');
@@ -14,9 +14,14 @@ export default function useCloseOut({ func }: IUseScrollBot) {
 
         const handleScroll = () => {
 
-            if (root && targetElement.current && check && (window.clientHeight + root.scrollTop - 121 >= targetElement.current.clientHeight)) {
-                func();
-                check = false;
+            if (root && targetElement.current /* && check */) {
+                if (
+                    (window.clientHeight + root.scrollTop - 121 >= targetElement.current.clientHeight) ||
+                    (targetElement.current.scrollHeight <= window.clientHeight)
+                ) {
+                    func();
+                    /* check = false; */
+                }
             }
         };
     

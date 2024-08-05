@@ -26,7 +26,7 @@ export default function Products() {
 
     const { targetElement: section } = useScrollBot({
         func: async () => {
-            if (!isPagination && totalProducts > queryParams.limit * (queryParams.currentPage - 1)) {
+            if (!isPagination && productsStatus === 'successfully' && totalProducts > queryParams.limit * (queryParams.currentPage - 1)) {
                 await dispatch(fetchProducts({ page: queryParams.currentPage, limit: queryParams.limit }));
                 dispatch(increasePage());
             }
