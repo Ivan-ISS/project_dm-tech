@@ -1,19 +1,84 @@
 @import "/src/styles/_colors";
 @import "/src/styles/_variables";
 
-.cartModal {
+.cart {
     width: 100%;
     height: 100%;
     max-width: 560px;
     min-width: 300px;
     max-height: 500px;
     background: $baseWhite;
-    padding: 24px;
+    padding: 8px 24px 24px;
     box-shadow: 0 16px 40px 0 rgba(23, 32, 41, 0.32);
     border-radius: 24px;
-    z-index: 1000;
-    display: flex;
+    z-index: 1;
 
     display: flex;
     flex-direction: column;
+    row-gap: 16px;
+
+    .list {
+        overflow-y: auto;
+        padding-right: 16px;
+
+        .itemList {
+            position: relative;
+
+            .warningMessage,
+            .errorMessage {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                font-size: 10px;
+                font-weight: 700;
+            }
+
+            .errorMessage {
+                color: $baseFocus;
+            }
+        }
+    }
+
+    .totalPrice {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        column-gap: 16px;
+
+        .label {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .price {
+            font-family: "Circe Rounded";
+            font-weight: 800;
+            font-size: 28px;
+        }
+    }
+
+    .message {
+        font-family: "Circe Rounded";
+        text-align: center;
+        font-size: 24px;
+        font-weight: 700;
+        min-width: 270px;
+    }
+
+    .error {
+        width: 100%;
+        font-size: 14px;
+        font-weight: 700;
+        color: $baseFocus;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .cart {
+        padding: 8px 10px;
+        max-width: none;
+        max-height: calc(100% - 48px);
+        border-radius: 0;
+    }
 }

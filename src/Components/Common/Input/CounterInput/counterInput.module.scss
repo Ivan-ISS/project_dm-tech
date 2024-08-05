@@ -4,6 +4,7 @@
 .counterInput {
     height: 52px;
     width: 100%;
+    min-width: 52px;
 
     .input {
         color: $baseBlack;

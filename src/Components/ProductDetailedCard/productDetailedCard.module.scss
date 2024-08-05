@@ -63,19 +63,32 @@
                     min-height: 16px;
                 }
             }
-    
-            .price {
-                font-family: 'Circe Rounded';
-                font-weight: 800;
-                font-size: 28px;
-                margin-bottom: 8px;
-            }
 
             .buttonPanel {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 8px;
+                position: relative;
+    
+                .price {
+                    font-family: 'Circe Rounded';
+                    font-weight: 800;
+                    font-size: 28px;
+                    margin-bottom: 8px;
+                }
+
+                .buttonPanel {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 8px;
+                }
+
+                .errorMessage {
+                    position: absolute;
+                    bottom: -15px;
+                    right: 5px;
+                    font-size: 10px;
+                    font-weight: 700;
+                    color: $baseFocus;
+                }
             }
 
             .undo {

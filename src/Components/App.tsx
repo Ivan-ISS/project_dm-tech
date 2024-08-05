@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { fetchProducts, increasePage, setFrontPageProdcuts } from '@/redux/slices/productsSlice';
 import { selectQueryParams, selectProducts } from '@/redux/slices/productsSelector';
+import { getCart } from '@/redux/slices/cartSlice/cartSlice';
 import Layout from '@/Components/Layout/layout';
 
 export default function App() {
@@ -10,6 +11,7 @@ export default function App() {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
+        dispatch(getCart());
         dispatch(fetchProducts({ page: queryParams.currentPage, limit: queryParams.limit }));
         dispatch(increasePage());
     }, [dispatch]);

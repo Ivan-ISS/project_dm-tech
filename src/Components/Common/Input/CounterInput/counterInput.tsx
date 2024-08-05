@@ -14,6 +14,9 @@ export default function CounterInput({ value, isDisabled, handleChangeInput, ...
         if (value < 0 || event.target.value === '') {
             value = 0;
         }
+        if (value > 10) {
+            value = 10;
+        }
         handleChangeInput(value);
     };
 

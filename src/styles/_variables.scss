@@ -13,3 +13,9 @@ $textShadow:
     -0.2px -0.2px 1.5px rgba(0, 0, 0, 0.355),
     0.2px -0.2px 1.5px rgba(0, 0, 0, 0.355),
     -0.2px 0.2px 1.5px rgba(0, 0, 0, 0.355);
+
+$textShadowSlim: 
+    0.1px 0.1px 1px rgba($baseBrand, 0.355),
+    -0.1px -0.1px 1px rgba($baseBrand, 0.355),
+    0.1px -0.1px 1px rgba($baseBrand, 0.355),
+    -0.1px 0.1px 1px rgba($baseBrand, 0.355);
