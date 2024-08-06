@@ -1,8 +1,9 @@
 import * as styles from './cartWidget.module.scss';
 import { IResultValidateCart } from '@/types/dataTypes';
 import { useState, useEffect } from 'react';
-import { useAppSelector } from '@/redux/store';
+import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { selectCart, selectTotalPrice } from '@/redux/slices/cartSlice/cartSelector';
+import { submitCart } from '@/redux/slices/ordersSlice/ordersSlice';
 import ProductBasketCard from '../ProductBasketCard/productBasketCard';
 import PrimaryButton from '../Common/PrimaryButton/primaryButton';
 import formatToPrice from '@/utils/formatToPrice';
@@ -13,6 +14,7 @@ export interface CartWidgetProps {
 }
 
 export default function CartWidget({ handleClickProduct }: CartWidgetProps) {
+    const dispatch = useAppDispatch();
     const cart = useAppSelector(selectCart);
     const totalPrice = useAppSelector(selectTotalPrice);
     const [ resValidate, setRestValidate ] = useState<IResultValidateCart>();
@@ -20,6 +22,11 @@ export default function CartWidget({ handleClickProduct }: CartWidgetProps) {
     useEffect(() => {
         setRestValidate(validateCart(cart, totalPrice));
     }, [cart, totalPrice]);
+
+    const handleClickOrder = () => {
+        handleClickProduct();
+        dispatch(submitCart());
+    };
 
     return (
         <div className={styles.cart}>
@@ -63,7 +70,7 @@ export default function CartWidget({ handleClickProduct }: CartWidgetProps) {
                     !resValidate.minPrice.isValid ||
                     !resValidate.maxQuantity.isValid
                 )}
-                onClick={handleClickProduct}
+                onClick={handleClickOrder}
             />
             { resValidate && !resValidate.maxPrice.isValid ? <div className={styles.error}>{resValidate.maxPrice.error}</div> : null }
             { resValidate && !resValidate.maxQuantity.isValid ? <div className={styles.error}>{resValidate.maxQuantity.error}</div> : null }

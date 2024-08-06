@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { updateCart, addToCartReqArgs } from '@/redux/slices/cartSlice/cartSlice';
 import { selectCart, selectCartReqArgs, selectTotalPrice } from '@/redux/slices/cartSlice/cartSelector';
+import { submitCart } from '@/redux/slices/ordersSlice/ordersSlice';
 import Stars from '@/assets/images/svg/stars.svg';
 import ArrowUndo from '@/assets/images/svg/arrowUndo.svg';
 import PrimaryButton from '../Common/PrimaryButton/primaryButton';
@@ -54,6 +55,10 @@ export default function ProductDetailedCard({ product }: ProductDetailedCardProp
         dispatch(addToCartReqArgs({ id, quantity }));
     };
 
+    const handleClickOrder = () => {
+        dispatch(submitCart());
+    };
+
     return (
         <div className={styles.detailedCard}>
             <div className={styles.data}>
@@ -96,6 +101,7 @@ export default function ProductDetailedCard({ product }: ProductDetailedCardProp
                                         !resValidate.minPrice.isValid ||
                                         !resValidate.maxQuantity.isValid
                                     )}
+                                    onClick={handleClickOrder}
                                 />
                             </div>
                         }
