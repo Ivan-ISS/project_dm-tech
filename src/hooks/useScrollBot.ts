@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export interface IUseScrollBot {
     func: () => void;
@@ -7,13 +7,15 @@ export interface IUseScrollBot {
 export default function useCloseOut({ func }: IUseScrollBot) {
     const targetElement = useRef<HTMLDivElement>(null);
     /* let check = true; */
+    const [ check, setCheck ] = useState<boolean>(true);
 
     useEffect(() => {
         const root = document.getElementById('root');
         const window = document.documentElement;
 
-        if (window.clientHeight > 1259) {
+        if (check && window.clientHeight > 1259) {
             func();
+            setCheck(false);
         }
 
         const handleScroll = () => {
