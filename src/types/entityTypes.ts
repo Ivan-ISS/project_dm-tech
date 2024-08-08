@@ -47,5 +47,5 @@ export interface IGetOrder {
         count: number;
         total: number;
     };
-    data: IOrderInfo[];
+    data: IOrderInfo[][];
 }

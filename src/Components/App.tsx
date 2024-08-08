@@ -15,7 +15,7 @@ export default function App() {
 
     useEffect(() => {
         dispatch(getCart());
-        dispatch(getOrders({ page: 1, limit: 15 }));
+        dispatch(getOrders({ page: 1, limit: 20 }));
     }, [dispatch, singleOrder]);
 
     useEffect(() => {
