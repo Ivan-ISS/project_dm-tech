@@ -28,8 +28,10 @@ export default function Layout() {
     } = usePortal();
 
     useEffect(() => {
-        openOrder();
-        setTimeout(closeOrder, 3000);
+        if (singleOrder.length) {
+            openOrder();
+            setTimeout(closeOrder, 3000);
+        }
     }, [singleOrder]);
     
     return (
