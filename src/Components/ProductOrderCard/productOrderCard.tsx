@@ -1,18 +1,25 @@
 import * as styles from './productOrderCard.module.scss';
 import { IOrderInfo } from '@/types/entityTypes';
+import { useNavigate } from 'react-router-dom';
 import Picture from '../Common/Picture/picture';
 import formatToPrice from '@/utils/formatToPrice';
+import routes from '@/routes';
 
 export interface ProductOrderCardProps {
     data: IOrderInfo;
 }
 
 export default function ProductOrderCard({ data }: ProductOrderCardProps) {
-    const { title, price, picture } = data.product;
+    const { id, title, price, picture } = data.product;
     const { quantity } = data;
+    const navigate = useNavigate();
+
+    const handleClickCard = () => {
+        navigate(`${routes.product()}/${id}`);
+    };
 
     return (
-        <div className={styles.card}>
+        <div className={styles.card} onClick={handleClickCard}>
             <div className={styles.imgBlock}>
                 <Picture src={picture} alt={'product image'}/>
             </div>

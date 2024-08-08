@@ -16,7 +16,6 @@ export default function Orders() {
             if (ordersStatus === 'successfully' && totalOrders > queryParams.limit * (queryParams.currentPage - 1)) {
                 await dispatch(getOrders({ page: queryParams.currentPage, limit: queryParams.limit }));
                 dispatch(increasePage());
-                console.log('queryParams.currentPage: ', queryParams.currentPage);
             }
         }
     });

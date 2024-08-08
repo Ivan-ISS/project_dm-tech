@@ -9,7 +9,7 @@ export interface CartWidgetProps {
     orderIndex: number;
 }
 
-export default function CartWidget({ order, orderIndex }: CartWidgetProps) {
+export default function OrderWidget({ order, orderIndex }: CartWidgetProps) {
 
     return (
         <div className={styles.order}>
