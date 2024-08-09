@@ -7,12 +7,13 @@ import ProductOrderCard from '../ProductOrderCard/productOrderCard';
 import PrimaryBurron from '../Common/PrimaryButton/primaryButton';
 
 
-export interface CartWidgetProps {
+export interface OrderWidgetProps {
     order: IOrderInfo[];
     orderIndex: number;
+    handleClick: () => void;
 }
 
-export default function OrderWidget({ order, orderIndex }: CartWidgetProps) {
+export default function OrderWidget({ order, orderIndex, handleClick }: OrderWidgetProps) {
     const dispatch = useAppDispatch();
     const [ cartReqArgs, setCartReqArgs ] = useState<{ id: string, quantity: number }[]>([]);
 
@@ -24,7 +25,8 @@ export default function OrderWidget({ order, orderIndex }: CartWidgetProps) {
         setCartReqArgs(updatedCartReqArgs);
     }, [order]);
 
-    const handleClickAddToCart = async () => {
+    const handleClickAddToCart = () => {
+        handleClick();
         dispatch(addToCartReqArgs(cartReqArgs));
     };
 
