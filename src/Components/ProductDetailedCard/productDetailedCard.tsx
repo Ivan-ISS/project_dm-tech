@@ -48,11 +48,11 @@ export default function ProductDetailedCard({ product }: ProductDetailedCardProp
     }, [cartReqArgs.data, dispatch]);
 
     const handleClickAddToCart = async () => {
-        dispatch(addToCartReqArgs({ id, quantity: 1 }));
+        dispatch(addToCartReqArgs([{ id, quantity: 1 }]));
     };
 
     const handleClickCounter = async (id: string, quantity: number) => {
-        dispatch(addToCartReqArgs({ id, quantity }));
+        dispatch(addToCartReqArgs([{ id, quantity }]));
     };
 
     const handleClickOrder = () => {
