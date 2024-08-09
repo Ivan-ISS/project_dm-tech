@@ -27,6 +27,6 @@
 }
   
 .closeButtonShow::after {
-    transform: rotate(135deg);
+    transform: rotate(-45deg);
     transition: $transitionHover;
 }

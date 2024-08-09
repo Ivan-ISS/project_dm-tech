@@ -3,6 +3,7 @@ import { useSelector, useDispatch, TypedUseSelectorHook } from 'react-redux';
 import { productsSlice } from './slices/productsSlice';
 import { productItemSlice } from './slices/productItemSlice/productItemSlice';
 import { cartSlice } from './slices/cartSlice/cartSlice';
+import { ordersSlice } from './slices/ordersSlice/ordersSlice';
 
 
 const store = configureStore({
@@ -10,6 +11,7 @@ const store = configureStore({
         productsData: productsSlice.reducer,
         productItemData: productItemSlice.reducer,
         cartSlice: cartSlice.reducer,
+        ordersData: ordersSlice.reducer,
     },
 });
 

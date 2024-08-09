@@ -1,0 +1,18 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.orders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .set {
+        max-width: 1280px;
+        width: 100%;
+        font-family: 'Circe Rounded';
+        font-weight: 800;
+        display: flex;
+        flex-direction: column;
+        row-gap: 24px;
+    }
+}

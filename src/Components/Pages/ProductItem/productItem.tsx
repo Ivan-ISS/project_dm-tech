@@ -9,7 +9,6 @@ import ArrowLeft from '@/assets/images/svg/arrowLeft.svg';
 import Item from '../../Common/Item/item';
 import Loader from '../../Common/Loader/loader';
 import Error from '../LoadError/loadError';
-import routes from '@/routes';
 
 export default function ProductItem() {
     const dispatch = useAppDispatch();
@@ -26,7 +25,7 @@ export default function ProductItem() {
 
     return (
         <section className={styles.productItem}>
-            <button className={styles.backButton} onClick={() => navigate(routes.products())}>
+            <button className={styles.backButton} onClick={() => navigate(-1)}>
                 <ArrowLeft width={20} height={20}/>
                 <Item text={'Назад'}/>
             </button>

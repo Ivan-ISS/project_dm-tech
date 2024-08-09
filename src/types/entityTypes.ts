@@ -39,3 +39,13 @@ export interface IGetCart {
     quantity: number;
     createdAt: string;
 }
+
+export interface IOrderInfo extends IGetCart {}
+
+export interface IGetOrder {
+    meta: {
+        count: number;
+        total: number;
+    };
+    data: IOrderInfo[][];
+}

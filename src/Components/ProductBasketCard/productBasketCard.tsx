@@ -33,7 +33,7 @@ export default function ProductBasketCard({ product, quantity, handleClickProduc
     }, [picture]);
 
     const handleClickCounter = async (id: string, quantity: number) => {
-        dispatch(addToCartReqArgs({ id, quantity }));
+        dispatch(addToCartReqArgs([{ id, quantity }]));
     };
 
     const handleClickCard = () => {

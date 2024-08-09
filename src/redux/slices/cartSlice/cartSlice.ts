@@ -94,19 +94,21 @@ export const cartSlice = createSlice({
         error: '',
     } as IState,
     reducers: {
-        addToCartReqArgs: (state, action: PayloadAction<{ id: string, quantity: number }>) => {
+        addToCartReqArgs: (state, action: PayloadAction<{ id: string, quantity: number }[]>) => {
             state.cartReqArgs = prepareDataToCartReqArgs(state.cart);   // чтобы инф-я была всегда актуальной в store
-            if (!hasProductInReqArgs(state.cartReqArgs, action.payload.id)) {
-                state.cartReqArgs.data = [
-                    ...state.cartReqArgs.data,
-                    { id: action.payload.id, quantity: action.payload.quantity }
-                ];
-            } else {
-                const index = state.cartReqArgs.data.findIndex(item => item.id === action.payload.id);
-                if (action.payload.quantity < 0) {
-                    state.cartReqArgs.data.splice(index, 1);
+            for (let i = 0; i < action.payload.length; i++) {
+                if (!hasProductInReqArgs(state.cartReqArgs, action.payload[i].id)) {
+                    state.cartReqArgs.data = [
+                        ...state.cartReqArgs.data,
+                        { id: action.payload[i].id, quantity: action.payload[i].quantity }
+                    ];
                 } else {
-                    state.cartReqArgs.data[index].quantity = action.payload.quantity;
+                    const index = state.cartReqArgs.data.findIndex(item => item.id === action.payload[i].id);
+                    if (action.payload[i].quantity < 0) {
+                        state.cartReqArgs.data.splice(index, 1);
+                    } else {
+                        state.cartReqArgs.data[index].quantity = action.payload[i].quantity;
+                    }
                 }
             }
             console.log('state.cartReqArgs.data: ', state.cartReqArgs.data);
