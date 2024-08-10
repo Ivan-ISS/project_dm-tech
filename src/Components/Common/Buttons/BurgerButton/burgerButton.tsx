@@ -1,5 +1,5 @@
 import * as styles from './burgerButton.module.scss';
-import { ButtonHTMLAttributes } from 'react';
+import { useState, useEffect, ButtonHTMLAttributes } from 'react';
 import useCloseOut from '@/hooks/useCloseOut';
 
 export interface BurgerButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -7,11 +7,20 @@ export interface BurgerButtonProps extends ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 export default function BurgerButton({ children, ...props }: BurgerButtonProps) {
-    const { 
-        isOpen: menuOpen, 
-        handleClick: handleClickBtn, 
-        targetElement: burgerButton 
+    const [ show, setShow ] = useState<boolean>(false);
+    const {
+        isOpen: menuOpen,
+        handleClick: handleClickBtn,
+        targetElement: burgerButton
     } = useCloseOut();
+
+    useEffect(() => {
+        if (menuOpen) {
+            setShow(true);
+        } else {
+            setTimeout(() => setShow(false), 300); // Для плавного ичезновения (чтобы стили успели отработать)
+        } 
+    }, [menuOpen]);
 
     return (
         <div ref={burgerButton} className={styles.burgerWrap}>
@@ -20,7 +29,9 @@ export default function BurgerButton({ children, ...props }: BurgerButtonProps) 
                 <span className={styles.band}></span>
                 <span className={styles.band}></span>
             </button>
-            { menuOpen && children }
+            <div className={`${styles.insert} ${menuOpen ? styles.insertShow : null}`}>
+                { show && children }
+            </div>
         </div>
     );
 }

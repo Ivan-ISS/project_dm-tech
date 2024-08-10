@@ -10,13 +10,7 @@
         flex-direction: column;
         row-gap: 3px;
         background: transparent;
-        padding: 8.5px 5.5px;
         cursor: pointer;
-
-        &:hover {
-            box-shadow: $boxShadowContainer;
-            border-radius: 25%;
-        }
 
         .band {
             display: block;
@@ -29,11 +23,23 @@
     .active {
         transition: $transitionHover;
         rotate: 90deg;
-        box-shadow: $boxShadowSmallEl;
-        border-radius: 25%;
     }
 
     .inactive {
+        transition: $transitionHover;
+    }
+
+    .insert {
+        position: absolute;
+        top: 40px;
+        left: 0;
+        z-index: 1;
+        opacity: 0;
+        transition: $transitionHover;
+    }
+
+    .insertShow {
+        opacity: 1;
         transition: $transitionHover;
     }
 }
