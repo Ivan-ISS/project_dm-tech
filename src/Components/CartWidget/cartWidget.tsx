@@ -5,7 +5,7 @@ import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { selectCart, selectTotalPrice } from '@/redux/slices/cartSlice/cartSelector';
 import { submitCart } from '@/redux/slices/ordersSlice/ordersSlice';
 import ProductBasketCard from '../ProductBasketCard/productBasketCard';
-import PrimaryButton from '../Common/PrimaryButton/primaryButton';
+import PrimaryButton from '../Common/Buttons/PrimaryButton/primaryButton';
 import formatToPrice from '@/utils/formatToPrice';
 import validateCart from '@/utils/validateCart';
 

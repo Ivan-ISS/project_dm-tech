@@ -10,7 +10,7 @@ import Content from '../Content/content';
 import Logo from '../Common/Logo/logo';
 import Navigation from '../Common/Navigation/navigation';
 import Cart from '../Cart/cart';
-import BurgerButton from '../Common/BurgerButton/burgerButton';
+import BurgerButton from '../Common/Buttons/BurgerButton/burgerButton';
 import DropdownMenu from '../Common/DropdownMenu/dropdownMenu';
 import DefaultModal from '../Common/Modal/DefaultModal/defaultModal';
 import CartModal from '../Common/Modal/CartModal/cartModal';

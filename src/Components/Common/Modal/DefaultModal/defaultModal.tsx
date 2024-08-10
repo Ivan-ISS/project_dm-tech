@@ -1,6 +1,6 @@
 import * as styles from './defaultModal.module.scss';
 import { HTMLAttributes, useState, useEffect, ReactNode } from 'react';
-import CloseButton from '../../CloseButton/closeButton';
+import CloseButton from '../../Buttons/CloseButton/closeButton';
 
 export interface DefaultModalProps extends HTMLAttributes<HTMLDivElement>{
     closeModal: () => void;

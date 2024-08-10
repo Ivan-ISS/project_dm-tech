@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useAppDispatch } from '@/redux/store';
 import { addToCartReqArgs } from '@/redux/slices/cartSlice/cartSlice';
 import ProductOrderCard from '../ProductOrderCard/productOrderCard';
-import PrimaryBurron from '../Common/PrimaryButton/primaryButton';
+import PrimaryBurron from '../Common/Buttons/PrimaryButton/primaryButton';
 
 
 export interface OrderWidgetProps {
