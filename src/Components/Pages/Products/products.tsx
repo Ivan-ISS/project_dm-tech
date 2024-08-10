@@ -5,7 +5,7 @@ import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { selectProducts, selectProductsStatus } from '@/redux/slices/productsSelector';
 import { fetchProducts, increasePage, changePagination, reset } from '@/redux/slices/productsSlice';
 import { updateCart } from '@/redux/slices/cartSlice/cartSlice';
-import { selectCartReqArgs } from '@/redux/slices/cartSlice/cartSelector';
+import { selectCartReqArgs, selectCart } from '@/redux/slices/cartSlice/cartSelector';
 import { selectQueryParams, selectTotalProducts, selectIsPagination } from '@/redux/slices/productsSelector';
 // import { fetchProduct } from '@/redux/slices/productItemSlice/productItemSlice';
 import ProductShortCard from '@/Components/ProductShortCard/productShortCard';
@@ -23,6 +23,7 @@ export default function Products() {
     const totalProducts = useAppSelector(selectTotalProducts);
     const products = useAppSelector(selectProducts);
     const cartReqArgs = useAppSelector(selectCartReqArgs);
+    const cart = useAppSelector(selectCart);
     const isPagination = useAppSelector(selectIsPagination);
     const [ currentPage, setCurrentPage ] = useState<number>(1);
     const [ totalPages, setTotalPages ] = useState<number>(0);
@@ -47,10 +48,10 @@ export default function Products() {
     }, [dispatch, isPagination, queryParams.limit]);
 
     useEffect(() => {
-        if (cartReqArgs.data.length) {
+        if (cartReqArgs.data.length || (cart.length === 1 && !cartReqArgs.data.length)) {
             dispatch(updateCart({ data: cartReqArgs.data }));
         }
-    }, [cartReqArgs.data, dispatch]);
+    }, [cart.length, cartReqArgs.data, dispatch]);
 
     const handleClickPagination = (currentPage: number) => {
         dispatch(fetchProducts({ page: currentPage, limit: queryParams.limit }));

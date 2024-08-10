@@ -44,10 +44,10 @@ export default function ProductDetailedCard({ product }: ProductDetailedCardProp
     }, [cart, totalPrice]);
 
     useEffect(() => {
-        if (cartReqArgs.data.length) {
+        if (cartReqArgs.data.length || (cart.length === 1 && !cartReqArgs.data.length)) {
             dispatch(updateCart({ data: cartReqArgs.data }));
         }
-    }, [cartReqArgs.data, dispatch]);
+    }, [cart.length, cartReqArgs.data, dispatch]);
 
     const handleClickAddToCart = async () => {
         dispatch(addToCartReqArgs([{ id, quantity: 1 }]));
