@@ -1,0 +1,24 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.full {
+    font-family: 'Circe Rounded';
+    font-weight: 700;
+    font-size: 28px;
+}
+
+.trancated {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    line-clamp: 1;
+    overflow: hidden;
+    max-height: 22px;
+}
+
+@media (max-width: 767px) {
+
+    .full {
+        font-size: 22px;
+    }
+}

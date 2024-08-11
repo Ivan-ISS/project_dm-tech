@@ -1,0 +1,58 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.description {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    padding: 24px;
+    background: $baseWhite;
+    border-radius: 16px;
+
+    .title {
+        font-weight: 700;
+        font-size: 20px;
+    }
+
+    .descriptionText {
+
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+
+        h3 {
+            font-weight: 800;
+        }
+
+        li {
+            position: relative;
+            margin: 3px 0;
+            padding-left: 40px;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 9px;
+                left: 20px;
+                transform: translateY(-25%);
+                width: 5px;
+                height: 5px;
+                background: $baseGray;
+                border-radius: 50%;
+            }
+        }
+
+        strong {
+            font-weight: 700;
+        }
+
+        a {
+            color: $baseBrand;
+            border-bottom: 2px solid transparent;
+
+            &:hover {
+                border-bottom: 2px solid $baseBrand;
+            }
+        }
+    }
+}

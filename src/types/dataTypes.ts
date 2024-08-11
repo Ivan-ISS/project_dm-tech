@@ -3,6 +3,10 @@ export interface INavigationItems {
     pathName: string;
 }
 
+export interface ITextData {
+    productDetailedCard: string[];
+}
+
 export interface ILoadParams {
     firstPage: number;
     limit: number;

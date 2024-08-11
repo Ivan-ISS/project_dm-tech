@@ -1,0 +1,25 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.buttonPanel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.errorMessage {
+    position: absolute;
+    bottom: -15px;
+    right: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    color: $baseFocus;
+}
+
+@media (max-width: 850px) {
+
+    .buttonPanel {
+        flex-direction: column;
+    }
+}

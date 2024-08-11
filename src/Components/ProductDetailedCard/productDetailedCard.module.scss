@@ -1,13 +1,13 @@
 @import "/src/styles/_colors";
 @import "/src/styles/_variables";
 
-.detailedCard {
+.card {
     display: flex;
     flex-direction: column;
     row-gap: 24px;
     max-width: 800px;
 
-    .data {
+    .body {
         display: flex;
         gap: 24px;
         padding: 24px;
@@ -19,9 +19,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-        
-            .image {
-                width: 100%;
+
+            img {
                 max-width: 374px;
             }
         }
@@ -32,76 +31,11 @@
             row-gap: 16px;
             min-width: calc(50% - 72px);
 
-            .title {
-                font-family: 'Circe Rounded';
-                font-weight: 700;
-                font-size: 28px;
-                margin-bottom: 8px;
-    
-                /* display: -webkit-box;
-                -webkit-line-clamp: 1;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                max-height: 38px; */
-            }
-    
-            .rating {
+            .elCard {
                 position: relative;
                 display: flex;
-    
-                .substrate {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    min-width: 76px;
-                    min-height: 16px;
-                    color: $baseBrandLight3;
-                }
-    
-                .fill {
-                    min-width: 76px;
-                    min-height: 16px;
-                }
-            }
-
-            .buttonPanel {
-                position: relative;
-    
-                .price {
-                    font-family: 'Circe Rounded';
-                    font-weight: 800;
-                    font-size: 28px;
-                    margin-bottom: 8px;
-                }
-
-                .buttonPanel {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 8px;
-                }
-
-                .errorMessage {
-                    position: absolute;
-                    bottom: -15px;
-                    right: 5px;
-                    font-size: 10px;
-                    font-weight: 700;
-                    color: $baseFocus;
-                }
-            }
-
-            .undo {
-                display: flex;
-                column-gap: 8px;
-                margin-bottom: 8px;
-
-                .arrowUndo {
-                    
-                    path {
-                        fill: $baseBrand;
-                    }
-                }
+                flex-direction: column;
+                row-gap: 8px;
             }
             
             .postscript {
@@ -110,106 +44,13 @@
             }
         }
     }
-
-    .description {
-        display: flex;
-        flex-direction: column;
-        row-gap: 16px;
-        padding: 24px;
-        background: $baseWhite;
-        border-radius: 16px;
-
-        .label {
-            font-weight: 700;
-            font-size: 20px;
-        }
-
-        .descriptionText {
-
-            display: flex;
-            flex-direction: column;
-            row-gap: 10px;
-
-            h3 {
-                font-weight: 800;
-            }
-
-            li {
-                position: relative;
-                margin: 3px 0;
-                padding-left: 40px;
-
-                &::before {
-                    content: '';
-                    position: absolute;
-                    top: 9px;
-                    left: 20px;
-                    transform: translateY(-25%);
-                    width: 5px;
-                    height: 5px;
-                    background: $baseGray;
-                    border-radius: 50%;
-                }
-            }
-
-            strong {
-                font-weight: 700;
-            }
-
-            a {
-                color: $baseBrand;
-                border-bottom: 2px solid transparent;
-
-                &:hover {
-                    border-bottom: 2px solid $baseBrand;
-                }
-            }
-        }
-    }
-}
-
-@media (max-width: 850px) {
-
-    .detailedCard {
-
-        .data {
-
-            .infoBlock {
-
-                .buttonPanel {
-                    flex-direction: column;
-                }
-            }
-        }
-    }
-}
-
-@media (max-width: 767px) {
-
-    .detailedCard {
-
-        .data {
-
-            .infoBlock {
-
-                .title {
-                    font-size: 22px;
-                }
-
-                .price {
-                    font-size: 22px;
-                }
-            }
-        }
-    }
 }
 
 @media (max-width: 560px) {
 
-    .detailedCard {
+    .card {
 
-        .data {
-
+        .body {
             flex-direction: column;
         }
     }

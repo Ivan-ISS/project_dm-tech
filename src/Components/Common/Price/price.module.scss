@@ -1,0 +1,51 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.tiny {
+    font-size: 12px;
+}
+
+.small {
+    font-weight: 700;
+}
+
+.medium {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.large {
+    font-weight: 800;
+    font-size: 22px;
+}
+
+.huge {
+    font-family: 'Circe Rounded';
+    font-weight: 800;
+    font-size: 28px;
+}
+
+@media (max-width: 350px) {
+
+    .tiny {
+        font-size: 10px;
+    }
+    
+    .medium {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 560px) {
+
+    .large {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .huge {
+        font-size: 22px;
+    }
+}

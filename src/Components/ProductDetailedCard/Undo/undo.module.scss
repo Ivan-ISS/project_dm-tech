@@ -1,0 +1,14 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.undo {
+    display: flex;
+    column-gap: 8px;
+
+    .arrowUndo {
+        
+        path {
+            fill: $baseBrand;
+        }
+    }
+}

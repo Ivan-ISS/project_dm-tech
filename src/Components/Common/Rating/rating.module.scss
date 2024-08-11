@@ -1,0 +1,21 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.rating {
+    position: relative;
+    display: flex;
+
+    .substrate {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 76px;
+        min-height: 16px;
+        color: $baseBrandLight3;
+    }
+
+    .fill {
+        min-width: 76px;
+        min-height: 16px;
+    }
+}
