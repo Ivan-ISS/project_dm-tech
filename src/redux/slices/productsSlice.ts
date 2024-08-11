@@ -1,3 +1,4 @@
+import { productsLoadParams } from '@/data';
 import { IMeta, IProduct, IGetProducts, IError } from '@/types/entityTypes';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import routes from '@/routes';
@@ -61,8 +62,8 @@ export const productsSlice = createSlice({
         productsFirstPage: [],
         meta: null,
         queryParams: {
-            limit: 15,
-            currentPage: 1,
+            limit: productsLoadParams.limit,
+            currentPage: productsLoadParams.firstPage,
         },
         totalProducts: 0,
         isPagination: false,

@@ -3,6 +3,11 @@ export interface INavigationItems {
     pathName: string;
 }
 
+export interface ILoadParams {
+    firstPage: number;
+    limit: number;
+}
+
 export interface IResultValidateCart {
     minPrice: {
         isValid: boolean;

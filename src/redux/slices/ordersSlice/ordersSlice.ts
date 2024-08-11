@@ -1,3 +1,4 @@
+import { ordersLoadParams } from '@/data';
 import { IOrderInfo, IGetOrder, IError } from '@/types/entityTypes';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import routes from '@/routes';
@@ -95,8 +96,8 @@ export const ordersSlice = createSlice({
             data: [],
         },
     queryParams: {
-        limit: 15,
-        currentPage: 1,
+        limit: ordersLoadParams.limit,
+        currentPage: ordersLoadParams.firstPage,
     },
     singleOrder: [],
     status: 'not started',

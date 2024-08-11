@@ -25,9 +25,11 @@ export default function usePortal() {
             modalRoot.appendChild(elRef.current);
         }
 
+        const currentEl = elRef.current;
+
         return () => {
-            if (elRef.current) {
-                modalRoot?.removeChild(elRef.current);
+            if (currentEl) {
+                modalRoot?.removeChild(currentEl);
             }
         };
     }, []);

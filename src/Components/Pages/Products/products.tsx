@@ -7,7 +7,6 @@ import { fetchProducts, increasePage, changePagination, reset } from '@/redux/sl
 import { updateCart } from '@/redux/slices/cartSlice/cartSlice';
 import { selectCartReqArgs, selectCart } from '@/redux/slices/cartSlice/cartSelector';
 import { selectQueryParams, selectTotalProducts, selectIsPagination } from '@/redux/slices/productsSelector';
-// import { fetchProduct } from '@/redux/slices/productItemSlice/productItemSlice';
 import ProductShortCard from '@/Components/ProductShortCard/productShortCard';
 import Pagination from '../../Common/Pagination/pagination';
 import Switch from '../../Common/Switch/switch';
@@ -25,7 +24,6 @@ export default function Products() {
     const cartReqArgs = useAppSelector(selectCartReqArgs);
     const cart = useAppSelector(selectCart);
     const isPagination = useAppSelector(selectIsPagination);
-    // const [ currentPage, setCurrentPage ] = useState<number>(1);
     const [ totalPages, setTotalPages ] = useState<number>(0);
 
     const { targetElement: section } = useScrollBot({
@@ -53,13 +51,12 @@ export default function Products() {
         }
     }, [cart.length, cartReqArgs.data, dispatch]);
 
-    const handleClickPagination = useCallback((currentPage: number) => {
+    const handleClickPagination = useCallback((currentPage: number) => {    // В useCallback ф-я не пересоздается при каждом рендереs
         dispatch(fetchProducts({ page: currentPage, limit: queryParams.limit }));
     }, [dispatch, queryParams.limit]);
 
     const handleClickCard = (id: string) => {
         navigate(`${routes.product()}/${id}`);
-        // dispatch(fetchProduct({ id: id }));
     };
 
     return (
@@ -80,8 +77,6 @@ export default function Products() {
             { isPagination && totalPages &&
                 <Pagination
                     totalPages={totalPages}
-                    // currentPage={currentPage}
-                    // setCurrentPage={setCurrentPage}
                     handlePagination={handleClickPagination}
                 />
             }
