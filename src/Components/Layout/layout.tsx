@@ -32,7 +32,7 @@ export default function Layout() {
             openOrder();
             setTimeout(closeOrder, 3000);
         }
-    }, [singleOrder]);
+    }, [closeOrder, openOrder, singleOrder]);
     
     return (
         <div className={styles.layout}>

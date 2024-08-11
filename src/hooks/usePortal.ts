@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, ReactNode, HTMLAttributes } from 'react';
+import { useState, useEffect, useRef, useCallback, ReactNode, HTMLAttributes } from 'react';
 import { createPortal } from 'react-dom';
 
 export interface PortalProps extends HTMLAttributes<HTMLDivElement> {
@@ -9,15 +9,15 @@ export default function usePortal() {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const elRef = useRef<HTMLDivElement | null>(document.createElement('div'));
 
-    const openPortal = () => {
+    const openPortal = useCallback(() => {
         setIsOpen(true);
         //setTimeout(() => document.addEventListener('click', handleClickOutside), 200);
-    };
+    }, []);
 
-    const closePortal = () => {
+    const closePortal = useCallback(() => {
         setIsOpen(false);
         //document.removeEventListener('click', handleClickOutside);
-    };
+    }, []);
     
     useEffect(() => {
         const modalRoot = document.getElementById('modal');
