@@ -3,37 +3,21 @@ import { useEffect, useState } from 'react';
 import SecondaryButton from '../Buttons/SecondaryButton/secondaryButton';
 import ArrowLeft from '@/assets/images/svg/arrowLeft.svg';
 import ArrowRight from '@/assets/images/svg/arrowRight.svg';
+import getPaginationView from '@/utils/getPaginationView';
 
 export interface PaginationProps {
     totalPages: number;
-    currentPage: number;
-    setCurrentPage: (page: number) => void;
     handlePagination: (currentPage: number) => void;
 }
 
-export default function Pagination ({ totalPages, currentPage, setCurrentPage, handlePagination }: PaginationProps) {
-    const [ showPages, setShowPages ] = useState<(string | number)[]>([1, 2, 3, '...', totalPages - 2, totalPages - 1, totalPages]);
-
-    const updateShowPages = () => {
-        if (currentPage === 3) {
-            setShowPages([2, 3, 4, '...', totalPages - 2, totalPages - 1, totalPages]);
-        } else if (currentPage === totalPages - 2) {
-            setShowPages([1, 2, 3, '...', totalPages - 3, totalPages - 2, totalPages - 1]);
-        } else if (currentPage > 3 && currentPage < totalPages - 2) {
-            setShowPages([1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages]);
-        } else {
-            setShowPages([1, 2, 3, '...', totalPages - 2, totalPages - 1, totalPages]);
-        }
-    };
+export default function Pagination({ totalPages, handlePagination }: PaginationProps) {
+    const [ showPages, setShowPages ] = useState<(string | number)[]>([]);
+    const [ currentPage, setCurrentPage ] = useState<number>(1);
 
     useEffect(() => {
-        updateShowPages();
+        setShowPages(getPaginationView(totalPages, currentPage));
         handlePagination(currentPage);
-    }, [currentPage]);
-
-    const handleClick = (page: number) => {
-        setCurrentPage(page);
-    };
+    }, [currentPage, handlePagination, totalPages]);
 
     return (
         <div className={styles.pagination}>
@@ -52,7 +36,7 @@ export default function Pagination ({ totalPages, currentPage, setCurrentPage, h
                     edges={'rounded'}
                     adaptive={true}
                     isActive={page === currentPage}
-                    onClick={ typeof page === 'number' ? () => handleClick(page) : () => null }
+                    onClick={ typeof page === 'number' ? () => setCurrentPage(page) : () => null }
                 />
             ))}
             <SecondaryButton

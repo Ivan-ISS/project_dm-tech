@@ -9,31 +9,26 @@ export interface CounterProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     idEntity: string;
     value: number;
     canBeDisabled?: boolean;
-    indicatorOfChange?: number;
     handleClickCounter: (id: string, quantity: number) => void;
 }
 
-export default function Counter({ idEntity, value, canBeDisabled=false, indicatorOfChange, handleClickCounter, ...props }: CounterProps) {
-    let [ count, setCount ] = useState(value);
+export default function Counter({ idEntity, value, canBeDisabled=false, handleClickCounter }: CounterProps) {
+    const [ count, setCount ] = useState(value);
 
     useEffect(() => {
         setCount(value);
-    }, [value, indicatorOfChange]);
+    }, [value]);
 
-    const handleClickPlus = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        if (props.onClick) {
-            props.onClick(e);
-        }
-        setCount(count += 1);
-        handleClickCounter(idEntity, count);
+    const handleClickPlus = () => {
+        const countNext = count + 1;
+        setCount(countNext);
+        handleClickCounter(idEntity, countNext);
     };
 
-    const handleClickMinus = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        if (props.onClick) {
-            props.onClick(e);
-        }
-        setCount(count -= 1);
-        handleClickCounter(idEntity, count);
+    const handleClickMinus = () => {
+        const countPrev = count - 1;
+        setCount(countPrev);
+        handleClickCounter(idEntity, countPrev);
     };
 
     const handleChangeInput = (count: number) => {

@@ -1,5 +1,5 @@
 import * as styles from './products.module.scss';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { selectProducts, selectProductsStatus } from '@/redux/slices/productsSelector';
@@ -25,7 +25,7 @@ export default function Products() {
     const cartReqArgs = useAppSelector(selectCartReqArgs);
     const cart = useAppSelector(selectCart);
     const isPagination = useAppSelector(selectIsPagination);
-    const [ currentPage, setCurrentPage ] = useState<number>(1);
+    // const [ currentPage, setCurrentPage ] = useState<number>(1);
     const [ totalPages, setTotalPages ] = useState<number>(0);
 
     const { targetElement: section } = useScrollBot({
@@ -53,9 +53,9 @@ export default function Products() {
         }
     }, [cart.length, cartReqArgs.data, dispatch]);
 
-    const handleClickPagination = (currentPage: number) => {
+    const handleClickPagination = useCallback((currentPage: number) => {
         dispatch(fetchProducts({ page: currentPage, limit: queryParams.limit }));
-    };
+    }, [dispatch, queryParams.limit]);
 
     const handleClickCard = (id: string) => {
         navigate(`${routes.product()}/${id}`);
@@ -80,8 +80,8 @@ export default function Products() {
             { isPagination && totalPages &&
                 <Pagination
                     totalPages={totalPages}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
+                    // currentPage={currentPage}
+                    // setCurrentPage={setCurrentPage}
                     handlePagination={handleClickPagination}
                 />
             }
