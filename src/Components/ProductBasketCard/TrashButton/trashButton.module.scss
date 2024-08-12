@@ -1,0 +1,12 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.trashButton {
+    display: flex;
+    column-gap: 4px;
+    font-family: inherit;
+    background: transparent;
+    height: fit-content;
+    cursor: pointer;
+    color: $baseFocus;
+}

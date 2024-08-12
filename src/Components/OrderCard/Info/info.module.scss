@@ -1,0 +1,21 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+
+.info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 8px;
+    max-width: max-content;
+    white-space: nowrap;
+
+    .value {
+        text-align: left;
+    }
+
+    .label {
+        text-align: right;
+        color: $baseGray;
+    }
+}

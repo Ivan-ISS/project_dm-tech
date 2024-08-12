@@ -1,48 +1,29 @@
 import * as styles from './productShortCard.module.scss';
 import { IProduct } from '@/types/entityTypes';
-import { HTMLAttributes, useState, useEffect } from 'react';
-import Stars from '@/assets/images/svg/stars.svg';
-import placeholderImg from '@/assets/images/png/placeholderImg.png';
-import formatToPrice from '@/utils/formatToPrice';
+import Picture from '../Common/Picture/picture';
+import Title from '../Common/Title/title';
+import Rating from '../Common/Rating/rating';
+import Price from '../Common/Price/price';
 
-export interface ProductShortCardProps extends HTMLAttributes<HTMLDivElement> {
+export interface ProductShortCardProps {
     product: IProduct;
-    handleClickCard?: (id: string) => void;
+    handleClickCard: (id: string) => void;
 }
 
-export default function ProductShortCard({ product, handleClickCard, ...props }: ProductShortCardProps) {
+export default function ProductShortCard({ product, handleClickCard }: ProductShortCardProps) {
     const { id, title, price, picture, rating } = product;
-    const [imageUrl, setImageUrl] = useState(placeholderImg);
-
-    useEffect(() => {
-        if (picture) {
-            const img = new Image();
-            img.src = picture;
-            img.onload = () => setImageUrl(picture);
-            img.onerror = () => setImageUrl(placeholderImg);
-        }
-    }, [picture]);
 
     return (
-        <div {...props} className={styles.productCard} onClick={() => handleClickCard && handleClickCard(id)}>
+        <div className={styles.card} onClick={() => handleClickCard(id)}>
             <div className={styles.imgBlock}>
-                <img className={styles.image} src={imageUrl} alt={'product image'}/>
+                <Picture src={picture} alt={'product image'}/>
             </div>
             <div className={styles.infoBlock}>
-                <div className={styles.title}>
-                    {title}
+                <Title text={title} view={'trancated'}/>
+                <div className={styles.elCard}>
+                    <Rating rating={rating}/>
                 </div>
-                <div className={styles.rating}>
-                    <Stars className={styles.substrate}/>
-                    <Stars
-                        className={styles.fill}
-                        color={`${rating ? '#fabc22' : '#f2f6fa'}`}
-                        clipPath={`inset(0 ${rating ? (1 - rating / 5) * 100 : 0}% 0 0)`}
-                    />
-                </div>
-                <div className={styles.price}>
-                    {price && formatToPrice(price)} &#8381;
-                </div>
+                <Price price={price} size={'large'}/>
             </div>
         </div>
     );

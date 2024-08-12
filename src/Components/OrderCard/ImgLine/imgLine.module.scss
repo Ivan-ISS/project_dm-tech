@@ -1,0 +1,40 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.imgLine {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+
+    .imgBlock {
+        min-width: 48px;
+        min-height: 48px;
+        max-width: 48px;
+        max-height: 48px;
+    }
+
+    .ellipsis {
+        height: max-content;
+        align-self: end;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .imgLine {
+
+        .imgBlock {
+            min-width: 36px;
+            min-height: 36px;
+            max-width: 36px;
+            max-height: 36px;
+        }
+    }
+}
+
+@media (max-width: 450px) {
+
+    .imgLine {
+        display: none;
+    }
+}

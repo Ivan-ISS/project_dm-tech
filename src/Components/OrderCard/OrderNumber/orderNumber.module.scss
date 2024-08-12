@@ -1,0 +1,29 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.orderNumber {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+    min-width: 80px;
+
+    .label {
+        color: $baseGray;
+    }
+
+    .value {
+        font-size: 20px;
+        font-weight: 700;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .orderNumber {
+        min-width: 60px;
+
+        .value {
+            font-size: 16px;
+        }
+    }
+}

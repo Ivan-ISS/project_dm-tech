@@ -1,16 +1,15 @@
 @import "/src/styles/_colors";
 @import "/src/styles/_variables";
 
-.productCard {
+.card {
+    display: flex;
+    flex-direction: column;
     border-radius: 16px;
     background: $baseWhite;
     overflow: hidden;
     max-width: 250px;
     transition: $transitionHover;
     cursor: pointer;
-
-    display: flex;
-    flex-direction: column;
 
     &:hover {
         box-shadow: $boxShadowContainer;
@@ -21,64 +20,24 @@
         padding: 5px 5px 0;
         flex-grow: 1;
         
-        .image {
-            width: 100%;
+        img {
             max-width: 450px;
         }
     }
 
     .infoBlock {
         padding: 12px 16px 16px;
+        text-align: start;
 
-        .title {
-            text-align: left;
-
-            display: -webkit-box;
-            -webkit-line-clamp: 1;
-            -webkit-box-orient: vertical;
-            line-clamp: 1;
-            overflow: hidden;
-            max-height: 22px;
-        }
-
-        .rating {
-            position: relative;
-            display: flex;
+        .elCard {
             margin-bottom: 8px;
-
-            .substrate {
-                position: absolute;
-                top: 0;
-                left: 0;
-                min-width: 76px;
-                min-height: 16px;
-                color: $baseBrandLight3;
-            }
-
-            .fill {
-                min-width: 76px;
-                min-height: 16px;
-            }
-        }
-
-        .price {
-            font-weight: 800;
-            font-size: 22px;
-            text-align: left;
         }
     }
 }
 
 @media (max-width: 560px) {
 
-    .productCard {
+    .card {
         min-width: 125px;
-
-        .infoBlock {
-
-            .price {
-                font-size: 18px;
-            }
-        }
     }
 }

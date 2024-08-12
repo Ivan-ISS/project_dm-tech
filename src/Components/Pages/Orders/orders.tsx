@@ -1,6 +1,6 @@
 import * as styles from './orders.module.scss';
 import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { getOrders, increasePage } from '@/redux/slices/ordersSlice/ordersSlice';
 import { selectOrders, selectQueryParams, selectTotalOrders, selectOrdersStatus } from '@/redux/slices/ordersSlice/ordersSelector';
 import { updateCart } from '@/redux/slices/cartSlice/cartSlice';
@@ -35,7 +35,7 @@ export default function Orders() {
         <section ref={section} className={styles.orders}>
             <div className={styles.set}>
                 {orders.data.map((order, index) => (
-                    <OrderCard key={index} order={order} orderIndex={index + 1} handleClickOrder={ () => null }/>
+                    <OrderCard key={index} order={order} orderIndex={index + 1}/>
                 ))}
             </div>
         </section>

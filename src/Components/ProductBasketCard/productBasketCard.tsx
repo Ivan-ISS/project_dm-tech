@@ -1,14 +1,13 @@
 import * as styles from './productBasketCard.module.scss';
 import { IProduct } from '@/types/entityTypes';
-import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '@/redux/store';
 import { addToCartReqArgs } from '@/redux/slices/cartSlice/cartSlice';
+import Cost from './Cost/cost';
+import Picture from '../Common/Picture/picture';
+import Title from '../Common/Title/title';
 import Counter from '../Common/Counter/counter';
-import Item from '../Common/Item/item';
-import Trash from '@/assets/images/svg/trash.svg';
-import placeholderImg from '@/assets/images/png/placeholderImg.png';
-import formatToPrice from '@/utils/formatToPrice';
+import TrashButton from './TrashButton/trashButton';
 import routes from '@/routes';
 
 export interface ProductBasketCardProps {
@@ -19,20 +18,10 @@ export interface ProductBasketCardProps {
 
 export default function ProductBasketCard({ product, quantity, handleClickProduct }: ProductBasketCardProps) {
     const { id, title, price, picture } = product;
-    const [imageUrl, setImageUrl] = useState(placeholderImg);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (picture) {
-            const img = new Image();
-            img.src = picture;
-            img.onload = () => setImageUrl(picture);
-            img.onerror = () => setImageUrl(placeholderImg);
-        }
-    }, [picture]);
-
-    const handleClickCounter = async (id: string, quantity: number) => {
+    const handleClickBtn = async (id: string, quantity: number) => {
         dispatch(addToCartReqArgs([{ id, quantity }]));
     };
 
@@ -42,35 +31,28 @@ export default function ProductBasketCard({ product, quantity, handleClickProduc
     };
 
     return (
-        <div className={styles.basketCard}>
+        <div className={styles.card}>
             <div className={styles.imgBlock} onClick={handleClickCard}>
-                <img className={styles.image} src={imageUrl} alt={'product image'}/>
+                <Picture src={picture} alt={'product image'}/>
             </div>
-            <div className={styles.title} onClick={handleClickCard}>
-                {title}
+            <div className={styles.elTitle} onClick={handleClickCard}>
+                <Title text={title} view={'trancated'}/>
             </div>
-            <div className={styles.counterWrap}>
-                <Counter idEntity={id} value={quantity} canBeDisabled={true} handleClickCounter={handleClickCounter}/>
+            <div className={styles.elCounter}>
+                <Counter idEntity={id} value={quantity} canBeDisabled={true} handleClickCounter={handleClickBtn}/>
             </div>
-            <div className={styles.price}>
-            { 
-                quantity > 0
-                ?
-                <>
-                    <div className={styles.priceForOne}>
-                        {price && formatToPrice(price)} &#8381; за шт
-                    </div>
-                    <div className={styles.priceForAll}>
-                        {price && formatToPrice(price * quantity)} &#8381;
-                    </div>
-                </>
-                :
-                <button className={styles.trashButton} onClick={ () => handleClickCounter(id, -1) }>
-                    <Trash width={20} height={20}/>
-                    <Item text={'Удалить'}/>
-                </button>
+            {
+                quantity > 0 &&
+                <div className={styles.elCard}>
+                    <Cost price={price} quantity={quantity}/>
+                </div>
             }
-            </div>
+            {
+                quantity <= 0 &&
+                <div className={styles.elCard}>
+                    <TrashButton onClick={ () => handleClickBtn(id, -1) }/>
+                </div>
+            }
         </div>
     );
 }

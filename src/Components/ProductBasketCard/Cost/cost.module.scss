@@ -1,0 +1,16 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+
+.cost {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+@media (max-width: 350px) {
+
+    .cost {
+        min-width: 70px;
+    }
+}

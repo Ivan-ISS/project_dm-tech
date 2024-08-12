@@ -1,10 +1,11 @@
 @import "/src/styles/_colors";
 @import "/src/styles/_variables";
 
-.orderCard {
+.card {
     display: flex;
-    column-gap: 16px;
+    justify-content: space-between;
     align-items: center;
+    column-gap: 16px;
     font-weight: 700;
     border-radius: 16px;
     padding: 24px;
@@ -16,94 +17,15 @@
         box-shadow: $boxShadowContainer;
     }
 
-    .orderNumber {
+    .elCard {
         display: flex;
-        flex-direction: column;
-        row-gap: 4px;
-        min-width: 80px;
-
-        .number {
-            font-size: 20px;
-            font-weight: 700;
-        }
+        column-gap: 16px;
     }
-
-    .orderImgLine {
-        display: flex;
-        column-gap: 8px;
-
-        .imgBlock {
-            min-width: 48px;
-            min-height: 48px;
-            max-width: 48px;
-            max-height: 48px;
-        }
-
-        .ellipsis {
-            height: max-content;
-            align-self: end;
-        }
-    }
-
-    .orderInfo {
-        display: flex;
-        justify-content: end;
-        width: 100%;
-
-        .info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            column-gap: 8px;
-            max-width: max-content;
-            white-space: nowrap;
-    
-            .value {
-                text-align: left;
-            }
-    
-            .label {
-                text-align: right;
-            }
-        }
-    }
-}
-
-.label {
-    color: $baseGray;
 }
 
 @media (max-width: 767px) {
 
-    .orderCard {
+    .card {
         padding: 12px 8px;
-
-        .orderImgLine {
-
-            .imgBlock {
-                min-width: 36px;
-                min-height: 36px;
-                max-width: 36px;
-                max-height: 36px;
-            }
-        }
-
-        .orderNumber {
-            min-width: 60px;
-    
-            .number {
-                font-size: 16px;
-            }
-        }
-    }
-}
-
-@media (max-width: 450px) {
-
-    .orderCard {
-
-        .orderImgLine {
-            display: none;
-        }
     }
 }
