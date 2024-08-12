@@ -3,7 +3,7 @@ import { IProduct } from '@/types/entityTypes';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '@/redux/store';
 import { addToCartReqArgs } from '@/redux/slices/cartSlice/cartSlice';
-import Cost from './Cost/cost';
+import PriceGroup from '../Common/PriceGroup/priceGroup';
 import Picture from '../Common/Picture/picture';
 import Title from '../Common/Title/title';
 import Counter from '../Common/Counter/counter';
@@ -44,7 +44,7 @@ export default function ProductBasketCard({ product, quantity, handleClickProduc
             {
                 quantity > 0 &&
                 <div className={styles.elCard}>
-                    <Cost price={price} quantity={quantity}/>
+                    <PriceGroup price={price} quantity={quantity}/>
                 </div>
             }
             {

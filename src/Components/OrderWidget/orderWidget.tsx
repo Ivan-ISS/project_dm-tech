@@ -3,7 +3,7 @@ import { IOrderInfo } from '@/types/entityTypes';
 import { useState, useEffect } from 'react';
 import { useAppDispatch } from '@/redux/store';
 import { addToCartReqArgs } from '@/redux/slices/cartSlice/cartSlice';
-import ProductOrderCard from '../ProductOrderCard/productOrderCard';
+import OrderWidgetCard from './OrderWidgetCard/orderWidgetCard';
 import PrimaryBurron from '../Common/Buttons/PrimaryButton/primaryButton';
 
 
@@ -31,18 +31,20 @@ export default function OrderWidget({ order, orderIndex, handleClick }: OrderWid
     };
 
     return (
-        <div className={styles.order}>
-            <div className={styles.heading}>
+        <div className={styles.widget}>
+            <h2 className={styles.heading}>
                 Состав заказа № {orderIndex}
-            </div>
+            </h2>
             <ul className={styles.list}>
                 {order.map((item, index) => (
                     <li key={index}>
-                        <ProductOrderCard data={item}/>
+                        <OrderWidgetCard data={item}/>
                     </li>
                 ))}
             </ul>
-            <PrimaryBurron style={{ maxWidth: '300px', alignSelf: 'end' }} text={'Добавить в корзину'} onClick={handleClickAddToCart}/>
+            <div className={styles.button}>
+                <PrimaryBurron text={'Добавить в корзину'} onClick={handleClickAddToCart}/>
+            </div>
         </div>
     );
 }

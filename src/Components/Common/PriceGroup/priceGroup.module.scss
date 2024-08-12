@@ -2,7 +2,7 @@
 @import "/src/styles/_variables";
 
 
-.cost {
+.group {
     display: flex;
     flex-direction: column;
     align-items: end;
@@ -10,7 +10,7 @@
 
 @media (max-width: 350px) {
 
-    .cost {
+    .group {
         min-width: 70px;
     }
 }

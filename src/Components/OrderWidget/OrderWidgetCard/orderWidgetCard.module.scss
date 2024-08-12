@@ -1,0 +1,41 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.card {
+    display: grid;
+    grid-template-columns: 52px 1fr 50px minmax(100px, 112px);
+    column-gap: 24px;
+    align-items: center;
+    padding: 6px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: $transitionHover;
+
+    &:hover {
+        box-shadow: $boxShadowSmallEl;
+    }
+
+    .imgBlock {
+        max-width: 52px;
+        max-height: 52px;
+        min-width: 52px;
+        min-height: 52px;
+    }
+
+    .elPriceGroup {
+        max-width: 112px;
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 530px) {
+
+    .card {
+        grid-template-columns: 52px 50px 1fr;
+        column-gap: 8px;
+        
+        .elTitle {
+            display: none;
+        }
+    }
+}
