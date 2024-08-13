@@ -1,5 +1,6 @@
 import * as styles from './buttonPanel.module.scss';
 import { IResultValidateCart } from '@/types/dataTypes';
+import { defaultStateValid } from '@/data';
 import { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { addToCartReqArgs } from '@/redux/slices/cartSlice/cartSlice';
@@ -16,7 +17,7 @@ export interface ButtonPanelProps {
 }
 
 export default function ButtonPanel({ id }: ButtonPanelProps) {
-    const [ resValidate, setResValidate ] = useState<IResultValidateCart>();
+    const [ resValidate, setResValidate ] = useState<IResultValidateCart>(defaultStateValid);
     const cart = useAppSelector(selectCart);
     const totalPrice = useAppSelector(selectTotalPrice);
     const dispatch = useAppDispatch();
@@ -52,16 +53,16 @@ export default function ButtonPanel({ id }: ButtonPanelProps) {
                     /> 
                     <PrimaryButton
                         text={'Оформить заказ'}
-                        isDisabled={ resValidate && (
+                        isDisabled={
                             !resValidate.maxPrice.isValid ||
                             !resValidate.minPrice.isValid ||
                             !resValidate.maxQuantity.isValid
-                        )}
+                        }
                         onClick={handleClickOrder}
                     />
                 </div>
             }
-            { resValidate && !resValidate.maxPrice.isValid ? <div className={styles.errorMessage}>{resValidate.maxPrice.error}</div> : null }
+            { !resValidate.maxPrice.isValid && <div className={styles.errorMessage}>{resValidate.maxPrice.error}</div> }
         </>
     );
 }

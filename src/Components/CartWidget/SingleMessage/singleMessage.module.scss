@@ -1,0 +1,12 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.warningMessage,
+.errorMessage {
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.errorMessage {
+    color: $baseFocus;
+}

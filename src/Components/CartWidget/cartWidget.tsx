@@ -1,12 +1,16 @@
 import * as styles from './cartWidget.module.scss';
+import { defaultStateValid } from '@/data';
 import { IResultValidateCart } from '@/types/dataTypes';
 import { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { selectCart, selectTotalPrice } from '@/redux/slices/cartSlice/cartSelector';
 import { submitCart } from '@/redux/slices/ordersSlice/ordersSlice';
-import ProductBasketCard from '../ProductBasketCard/productBasketCard';
+import SingleMessage from './SingleMessage/singleMessage';
+import GroupMessage from './GroupMessage/groupMessage';
+import BasketWidgetCard from './BasketWidgetCard/basketWidgetCard';
+import Title from '../Common/Title/title';
+import Price from '../Common/Price/price';
 import PrimaryButton from '../Common/Buttons/PrimaryButton/primaryButton';
-import formatToPrice from '@/utils/formatToPrice';
 import validateCart from '@/utils/validateCart';
 
 export interface CartWidgetProps {
@@ -17,10 +21,10 @@ export default function CartWidget({ handleClickProduct }: CartWidgetProps) {
     const dispatch = useAppDispatch();
     const cart = useAppSelector(selectCart);
     const totalPrice = useAppSelector(selectTotalPrice);
-    const [ resValidate, setRestValidate ] = useState<IResultValidateCart>();
+    const [ resValidate, setResValidate ] = useState<IResultValidateCart>(defaultStateValid);
 
     useEffect(() => {
-        setRestValidate(validateCart(cart, totalPrice));
+        setResValidate(validateCart(cart, totalPrice));
     }, [cart, totalPrice]);
 
     const handleClickOrder = () => {
@@ -29,51 +33,41 @@ export default function CartWidget({ handleClickProduct }: CartWidgetProps) {
     };
 
     return (
-        <div className={styles.cart}>
+        <div className={styles.widget}>
             {
                 cart.length
                 ?
                 <ul className={styles.list}>
                     {cart.map((item, index) => (
                         <li key={index} className={styles.itemList}>
-                            <ProductBasketCard product={item.product} quantity={item.quantity} handleClickProduct={handleClickProduct}/>
-                            {
-                                resValidate && resValidate.warnQuantity.productId.find(id => id === item.product.id) &&
-                                <div className={styles.warningMessage}>
-                                    {resValidate.warnQuantity.warning}
-                                </div>
-                            }
-                            {
-                                resValidate &&  resValidate.maxQuantity.productId.find(id => id === item.product.id) &&
-                                <div className={styles.errorMessage}>
-                                    {resValidate.maxQuantity.error}
-                                </div>
-                            }
+                            <BasketWidgetCard
+                                product={item.product}
+                                quantity={item.quantity}
+                                handleClickProduct={handleClickProduct}
+                            />
+                            <div className={styles.elSingleMessage}>
+                                <SingleMessage resValidate={resValidate} itemId={item.product.id}/>
+                            </div>
                         </li>
                     ))}
                 </ul>
                 :
-                <div className={styles.message}>
-                    Корзина ждёт товаров
-                </div>
+                <Title text={'Корзина ждёт товаров'} view={'full'}/>
             }
             <div className={styles.totalPrice}>
                 <div className={styles.label}>Итого</div>
-                <div className={styles.price}>
-                    { formatToPrice(totalPrice) } &#8381;
-                </div>
+                <Price price={totalPrice} size={'huge'}/>
             </div>
             <PrimaryButton
                 text={'Оформить заказ'}
-                isDisabled={ resValidate && (
+                isDisabled={
                     !resValidate.maxPrice.isValid ||
                     !resValidate.minPrice.isValid ||
                     !resValidate.maxQuantity.isValid
-                )}
+                }
                 onClick={handleClickOrder}
             />
-            { resValidate && !resValidate.maxPrice.isValid ? <div className={styles.error}>{resValidate.maxPrice.error}</div> : null }
-            { resValidate && !resValidate.maxQuantity.isValid ? <div className={styles.error}>{resValidate.maxQuantity.error}</div> : null }
+            <GroupMessage resValidate={resValidate}/>
         </div>
     );
 }
