@@ -2,7 +2,7 @@ import * as styles from './orderWidget.module.scss';
 import { IOrderInfo } from '@/types/entityTypes';
 import { useState, useEffect } from 'react';
 import { useAppDispatch } from '@/redux/store';
-import { addToCartReqArgs } from '@/redux/slices/cartSlice/cartSlice';
+import { addToCart } from '@/redux/slices/cartSlice/cartSlice';
 import OrderWidgetCard from './OrderWidgetCard/orderWidgetCard';
 import PrimaryBurron from '../Common/Buttons/PrimaryButton/primaryButton';
 
@@ -27,7 +27,7 @@ export default function OrderWidget({ order, orderIndex, handleClick }: OrderWid
 
     const handleClickAddToCart = () => {
         handleClick();
-        dispatch(addToCartReqArgs(cartReqArgs));
+        dispatch(addToCart(cartReqArgs));
     };
 
     return (

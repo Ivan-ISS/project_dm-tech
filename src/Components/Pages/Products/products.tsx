@@ -1,11 +1,10 @@
 import * as styles from './products.module.scss';
 import { useEffect, useCallback } from 'react';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
-import { selectProducts, selectStatus } from '@/redux/slices/productsSelector';
-import { fetchProducts, increasePage, changePagination } from '@/redux/slices/productsSlice';
+import { selectProducts, selectStatus, selectParams, selectIsPagination } from '@/redux/slices/productsSlice/productsSelector';
+import { fetchProducts, increasePage, changePagination } from '@/redux/slices/productsSlice/productsSlice';
 import { updateCart } from '@/redux/slices/cartSlice/cartSlice';
-import { selectCartReqArgs, selectCart } from '@/redux/slices/cartSlice/cartSelector';
-import { selectParams, selectIsPagination } from '@/redux/slices/productsSelector';
+import { selectCartState, selectCart } from '@/redux/slices/cartSlice/cartSelector';
 import ProductCard from './ProductCard/productCard';
 import Pagination from '../../Common/Pagination/pagination';
 import Switch from '../../Common/Switch/switch';
@@ -17,7 +16,7 @@ export default function Products() {
     const status = useAppSelector(selectStatus);
     const { limit, currentPage, totalProducts, totalPages } = useAppSelector(selectParams);
     const products = useAppSelector(selectProducts);
-    const cartReqArgs = useAppSelector(selectCartReqArgs);
+    const cartState = useAppSelector(selectCartState);
     const cart = useAppSelector(selectCart);
     const isPagination = useAppSelector(selectIsPagination);
 
@@ -31,10 +30,10 @@ export default function Products() {
     });
 
     useEffect(() => {
-        if (cartReqArgs.data.length || (cart.length === 1 && !cartReqArgs.data.length)) {
-            dispatch(updateCart({ data: cartReqArgs.data }));
+        if (cartState.length || (cart.length === 1 && !cartState.length)) {
+            dispatch(updateCart({ data: cartState }));
         }
-    }, [cart.length, cartReqArgs.data, dispatch]);
+    }, [cart.length, cartState, dispatch]);
 
     const handleClickPagination = useCallback((currentPage: number) => {
         dispatch(fetchProducts({ page: currentPage, limit: limit }));

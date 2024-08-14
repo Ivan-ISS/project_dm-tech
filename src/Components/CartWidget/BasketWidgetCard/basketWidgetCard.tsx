@@ -2,7 +2,7 @@ import * as styles from './basketWidgetCard.module.scss';
 import { IProduct } from '@/types/entityTypes';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '@/redux/store';
-import { addToCartReqArgs } from '@/redux/slices/cartSlice/cartSlice';
+import { addToCart } from '@/redux/slices/cartSlice/cartSlice';
 import PriceGroup from '../../Common/PriceGroup/priceGroup';
 import Picture from '../../Common/Picture/picture';
 import Title from '../../Common/Title/title';
@@ -22,7 +22,7 @@ export default function BasketWidgetCard({ product, quantity, handleClickProduct
     const navigate = useNavigate();
 
     const handleClickBtn = async (id: string, quantity: number) => {
-        dispatch(addToCartReqArgs([{ id, quantity }]));
+        dispatch(addToCart([{ id, quantity }]));
     };
 
     const handleClickCard = () => {

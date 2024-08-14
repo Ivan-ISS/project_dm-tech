@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useSelector, useDispatch, TypedUseSelectorHook } from 'react-redux';
-import { productsSlice } from './slices/productsSlice';
+import { productsSlice } from './slices/productsSlice/productsSlice';
 import { productItemSlice } from './slices/productItemSlice/productItemSlice';
 import { cartSlice } from './slices/cartSlice/cartSlice';
 import { ordersSlice } from './slices/ordersSlice/ordersSlice';

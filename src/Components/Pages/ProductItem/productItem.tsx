@@ -5,7 +5,7 @@ import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { fetchProduct } from '@/redux/slices/productItemSlice/productItemSlice';
 import { selectProduct, selectStatus, selectError } from '@/redux/slices/productItemSlice/productSliceSelector';
 import { updateCart } from '@/redux/slices/cartSlice/cartSlice';
-import { selectCart, selectCartReqArgs } from '@/redux/slices/cartSlice/cartSelector';
+import { selectCart, selectCartState } from '@/redux/slices/cartSlice/cartSelector';
 import ProductDetailedCard from './ProductDetailedCard/productDetailedCard';
 import ArrowLeft from '@/assets/images/svg/arrowLeft.svg';
 import Item from '../../Common/Item/item';
@@ -17,7 +17,7 @@ export default function ProductItem() {
     const status = useAppSelector(selectStatus);
     const product = useAppSelector(selectProduct);
     const { id } = useParams();
-    const cartReqArgs = useAppSelector(selectCartReqArgs);
+    const cartState = useAppSelector(selectCartState);
     const cart = useAppSelector(selectCart);
     const error = useAppSelector(selectError);
     const navigate = useNavigate();
@@ -28,10 +28,10 @@ export default function ProductItem() {
     }, [dispatch, id]);
 
     useEffect(() => {
-        if (cartReqArgs.data.length || (cart.length === 1 && !cartReqArgs.data.length)) {
-            dispatch(updateCart({ data: cartReqArgs.data }));
+        if (cartState.length || (cart.length === 1 && !cartState.length)) {
+            dispatch(updateCart({ data: cartState }));
         }
-    }, [cart.length, cartReqArgs.data, dispatch]);
+    }, [cart.length, cartState, dispatch]);
 
     return (
         <section className={styles.productItem}>

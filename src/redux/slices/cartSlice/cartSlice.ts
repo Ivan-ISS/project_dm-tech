@@ -1,7 +1,7 @@
 import { IError, IUpdateCart, IGetCart } from '@/types/entityTypes';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import hasProductInReqArgs from '@/utils/hasProductInReqArgs';
-import prepareDataToCartReqArgs from '@/utils/prepareDataToCartReqArgs';
+import prepareDataToCart from '@/utils/prepareDataToCart';
 import routes from '@/routes';
 
 export interface UpdateCartError {
@@ -74,7 +74,7 @@ export const getCart = createAsyncThunk<
 
 export interface IState {
     cart: IGetCart[];
-    cartReqArgs: IUpdateCart;
+    cartState: IUpdateCart;
     totalPrice: number;
     limitPrice: number;
     status: 'not started' | 'in progress' | 'successfully' | 'download failed';
@@ -85,7 +85,7 @@ export const cartSlice = createSlice({
     name: 'updateCart',
     initialState: {
         cart: [],
-        cartReqArgs: {
+        cartState: {
             data: [],
         },
         totalPrice: 0,
@@ -94,24 +94,24 @@ export const cartSlice = createSlice({
         error: '',
     } as IState,
     reducers: {
-        addToCartReqArgs: (state, action: PayloadAction<{ id: string, quantity: number }[]>) => {
-            state.cartReqArgs = prepareDataToCartReqArgs(state.cart);   // чтобы инф-я была всегда актуальной в store
+        addToCart: (state, action: PayloadAction<{ id: string, quantity: number }[]>) => {
+            state.cartState = prepareDataToCart(state.cart);   // чтобы инф-я была всегда актуальной в store
             for (let i = 0; i < action.payload.length; i++) {
-                if (!hasProductInReqArgs(state.cartReqArgs, action.payload[i].id)) {
-                    state.cartReqArgs.data = [
-                        ...state.cartReqArgs.data,
+                if (!hasProductInReqArgs(state.cartState, action.payload[i].id)) {
+                    state.cartState.data = [
+                        ...state.cartState.data,
                         { id: action.payload[i].id, quantity: action.payload[i].quantity }
                     ];
                 } else {
-                    const index = state.cartReqArgs.data.findIndex(item => item.id === action.payload[i].id);
+                    const index = state.cartState.data.findIndex(item => item.id === action.payload[i].id);
                     if (action.payload[i].quantity < 0) {
-                        state.cartReqArgs.data.splice(index, 1);
+                        state.cartState.data.splice(index, 1);
                     } else {
-                        state.cartReqArgs.data[index].quantity = action.payload[i].quantity;
+                        state.cartState.data[index].quantity = action.payload[i].quantity;
                     }
                 }
             }
-            console.log('state.cartReqArgs.data: ', state.cartReqArgs.data);
+            console.log('state.cartState.data: ', state.cartState.data);
         }
     },
     extraReducers: (builder) => {
@@ -143,7 +143,7 @@ export const cartSlice = createSlice({
                 state.totalPrice = state.cart.reduce((sum, item) => {
                     return sum + item.quantity * item.product.price;
                 }, 0);
-                state.cartReqArgs = prepareDataToCartReqArgs(state.cart);
+                state.cartState = prepareDataToCart(state.cart);
             }).
             addCase(getCart.rejected, (state) => {
                 state.status = 'download failed';
@@ -151,4 +151,4 @@ export const cartSlice = createSlice({
     }
 });
 
-export const { addToCartReqArgs } = cartSlice.actions;
+export const { addToCart } = cartSlice.actions;

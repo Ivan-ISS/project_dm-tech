@@ -4,7 +4,7 @@ import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { getOrders, increasePage } from '@/redux/slices/ordersSlice/ordersSlice';
 import { selectOrders, selectParams, selectStatus } from '@/redux/slices/ordersSlice/ordersSelector';
 import { updateCart } from '@/redux/slices/cartSlice/cartSlice';
-import { selectCartReqArgs, selectCart } from '@/redux/slices/cartSlice/cartSelector';
+import { selectCartState, selectCart } from '@/redux/slices/cartSlice/cartSelector';
 import ProductOrderCard from './ProductOrderCard/productOrderCard';
 import useScrollBot from '@/hooks/useScrollBot';
 
@@ -13,7 +13,7 @@ export default function Orders() {
     const orders = useAppSelector(selectOrders);
     const { limit, currentPage, totalOrders } = useAppSelector(selectParams);
     const status = useAppSelector(selectStatus);
-    const cartReqArgs = useAppSelector(selectCartReqArgs);
+    const cartState = useAppSelector(selectCartState);
     const cart = useAppSelector(selectCart);
 
     const { targetElement: section } = useScrollBot({
@@ -26,10 +26,10 @@ export default function Orders() {
     });
 
     useEffect(() => {
-        if (cartReqArgs.data.length || (cart.length === 1 && !cartReqArgs.data.length)) {
-            dispatch(updateCart({ data: cartReqArgs.data }));
+        if (cartState.length || (cart.length === 1 && !cartState.length)) {
+            dispatch(updateCart({ data: cartState }));
         }
-    }, [cart.length, cartReqArgs.data, dispatch]);
+    }, [cart.length, cartState, dispatch]);
 
     return (
         <section ref={section} className={styles.orders}>

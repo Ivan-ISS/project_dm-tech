@@ -1,8 +1,8 @@
 import { productsLoadParams, ordersLoadParams } from '@/data';
 import { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
-import { fetchProducts, increasePage } from '@/redux/slices/productsSlice';
-import { selectIsPagination } from '@/redux/slices/productsSelector';
+import { fetchProducts, increasePage } from '@/redux/slices/productsSlice/productsSlice';
+import { selectIsPagination } from '@/redux/slices/productsSlice/productsSelector';
 import { getCart } from '@/redux/slices/cartSlice/cartSlice';
 import { getOrders, increasePage as increasePageOrders } from '@/redux/slices/ordersSlice/ordersSlice';
 import { selectSingleOrder } from '@/redux/slices/ordersSlice/ordersSelector';

@@ -1,6 +1,6 @@
 import { IGetCart, IUpdateCart } from '@/types/entityTypes';
 
-export default function prepareDataToCartReqArgs(dataToPrepare: IGetCart[]): IUpdateCart {
+export default function prepareDataToCart(dataToPrepare: IGetCart[]): IUpdateCart {
 
     const result: IUpdateCart = { data: [] };
 

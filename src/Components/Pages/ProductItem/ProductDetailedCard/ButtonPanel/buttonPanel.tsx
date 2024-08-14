@@ -3,7 +3,7 @@ import { IResultValidateCart } from '@/types/dataTypes';
 import { defaultStateValid } from '@/data';
 import { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
-import { addToCartReqArgs } from '@/redux/slices/cartSlice/cartSlice';
+import { addToCart } from '@/redux/slices/cartSlice/cartSlice';
 import { selectCart, selectTotalPrice } from '@/redux/slices/cartSlice/cartSelector';
 import { submitCart } from '@/redux/slices/ordersSlice/ordersSlice';
 import PrimaryButton from '@/Components/Common/Buttons/PrimaryButton/primaryButton';
@@ -27,11 +27,11 @@ export default function ButtonPanel({ id }: ButtonPanelProps) {
     }, [cart, totalPrice]);
 
     const handleClickAddToCart = async () => {
-        dispatch(addToCartReqArgs( [{ id, quantity: 1 }] ));
+        dispatch(addToCart( [{ id, quantity: 1 }] ));
     };
 
     const handleClickCounter = async (id: string, quantity: number) => {
-        dispatch(addToCartReqArgs( [{ id, quantity }] ));
+        dispatch(addToCart( [{ id, quantity }] ));
     };
 
     const handleClickOrder = () => {
