@@ -53,10 +53,12 @@ export default function Products() {
                         <Loader/>
                     </div>
                 ) : (
-                    <div className={styles.showcase}>
-                        {products.map((product, index) => (
-                            <ProductCard key={index} product={product}/>
-                        ))}
+                    <div className={styles.wrapShowcase}>
+                        <div className={styles.showcase}>
+                            {products.map((product, index) => (
+                                <ProductCard key={index} product={product}/>
+                            ))}
+                        </div>
                     </div>
                 )
             }

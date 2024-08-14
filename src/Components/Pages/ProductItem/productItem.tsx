@@ -4,6 +4,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { fetchProduct } from '@/redux/slices/productItemSlice/productItemSlice';
 import { selectProduct, selectStatus, selectError } from '@/redux/slices/productItemSlice/productSliceSelector';
+import { updateCart } from '@/redux/slices/cartSlice/cartSlice';
+import { selectCart, selectCartReqArgs } from '@/redux/slices/cartSlice/cartSelector';
 import ProductDetailedCard from './ProductDetailedCard/productDetailedCard';
 import ArrowLeft from '@/assets/images/svg/arrowLeft.svg';
 import Item from '../../Common/Item/item';
@@ -15,6 +17,8 @@ export default function ProductItem() {
     const status = useAppSelector(selectStatus);
     const product = useAppSelector(selectProduct);
     const { id } = useParams();
+    const cartReqArgs = useAppSelector(selectCartReqArgs);
+    const cart = useAppSelector(selectCart);
     const error = useAppSelector(selectError);
     const navigate = useNavigate();
     // const product = products.find(product => product.id === id);
@@ -22,6 +26,12 @@ export default function ProductItem() {
     useEffect(() => {
         dispatch(fetchProduct({ id: id as string }));
     }, [dispatch, id]);
+
+    useEffect(() => {
+        if (cartReqArgs.data.length || (cart.length === 1 && !cartReqArgs.data.length)) {
+            dispatch(updateCart({ data: cartReqArgs.data }));
+        }
+    }, [cart.length, cartReqArgs.data, dispatch]);
 
     return (
         <section className={styles.productItem}>

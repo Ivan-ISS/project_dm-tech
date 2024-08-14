@@ -27,25 +27,22 @@ export interface IGetProducts {
     data: IProduct[];
 }
 
-export interface IUpdateCart {
-    data: {
-        id: string;
-        quantity: number;
-    }[];
-}
-
-export interface IGetCart {
+export interface IOrderInfo {
     product: IProduct;
     quantity: number;
     createdAt: string;
 }
 
-export interface IOrderInfo extends IGetCart {}
-
 export interface IGetOrder {
-    meta: {
-        count: number;
-        total: number;
-    };
+    meta: IMeta;
     data: IOrderInfo[][];
+}
+
+export interface IGetCart extends IOrderInfo {}
+
+export interface IUpdateCart {
+    data: {
+        id: string;
+        quantity: number;
+    }[];
 }

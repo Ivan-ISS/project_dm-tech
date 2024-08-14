@@ -1,10 +1,6 @@
 import * as styles from './productDetailedCard.module.scss';
 import { textData } from '@/data';
 import { IProduct } from '@/types/entityTypes';
-import { useEffect } from 'react';
-import { useAppSelector, useAppDispatch } from '@/redux/store';
-import { updateCart } from '@/redux/slices/cartSlice/cartSlice';
-import { selectCart, selectCartReqArgs } from '@/redux/slices/cartSlice/cartSelector';
 import Picture from '../../../Common/Picture/picture';
 import Title from '../../../Common/Title/title';
 import Rating from '../../../Common/Rating/rating';
@@ -18,16 +14,7 @@ export interface ProductDetailedCardProps {
 }
 
 export default function ProductDetailedCard({ product }: ProductDetailedCardProps) {
-    const dispatch = useAppDispatch();
-    const cartReqArgs = useAppSelector(selectCartReqArgs);
-    const cart = useAppSelector(selectCart);
     const { id, title, price, picture, rating, description } = product;
-
-    useEffect(() => {
-        if (cartReqArgs.data.length || (cart.length === 1 && !cartReqArgs.data.length)) {
-            dispatch(updateCart({ data: cartReqArgs.data }));
-        }
-    }, [cart.length, cartReqArgs.data, dispatch]);
 
     return (
         <div className={styles.card}>

@@ -1,5 +1,5 @@
 import { ordersLoadParams } from '@/data';
-import { IOrderInfo, IGetOrder, IError } from '@/types/entityTypes';
+import { IOrderInfo, IGetOrder, IMeta, IError } from '@/types/entityTypes';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import routes from '@/routes';
 
@@ -75,11 +75,13 @@ export const getOrders = createAsyncThunk<
 );
 
 export interface IState {
-    orders: IGetOrder;
+    orders: IOrderInfo[][];
     singleOrder: IOrderInfo[];
+    meta: IMeta | null;
     params: {
         limit: number;
         currentPage: number;
+        totalOrders: number;
     };
     status: 'not started' | 'in progress' | 'successfully' | 'download failed';
     error: string;
@@ -88,20 +90,16 @@ export interface IState {
 export const ordersSlice = createSlice({
     name: 'oredersSlice',
     initialState: {
-        orders: {
-            meta: {
-                count: 0,
-                total: 0,
-            },
-            data: [],
+        orders: [],
+        singleOrder: [],
+        meta: null,
+        params: {
+            limit: ordersLoadParams.limit,
+            currentPage: ordersLoadParams.firstPage,
+            totalOrders: 0,
         },
-    params: {
-        limit: ordersLoadParams.limit,
-        currentPage: ordersLoadParams.firstPage,
-    },
-    singleOrder: [],
-    status: 'not started',
-    error: '',
+        status: 'not started',
+        error: '',
     } as IState,
     reducers: {
         increasePage: (state) => {
@@ -116,8 +114,8 @@ export const ordersSlice = createSlice({
             addCase(submitCart.fulfilled, (state, action: PayloadAction<IOrderInfo[]>) => {
                 state.status = 'successfully';
                 state.singleOrder = action.payload;
-                if (state.params.currentPage > Math.ceil(state.orders.meta.total / state.params.limit)) {
-                    state.orders.data = [ ... state.orders.data, action.payload ];
+                if (state.params.currentPage > Math.ceil(state.params.totalOrders / state.params.limit)) {
+                    state.orders = [ ... state.orders, action.payload ];
                 }
             }).
             addCase(submitCart.rejected, (state, action: PayloadAction<SubmitCartError | undefined>) => {
@@ -131,10 +129,11 @@ export const ordersSlice = createSlice({
             }).
             addCase(getOrders.fulfilled, (state, action: PayloadAction<IGetOrder>) => {
                 state.status = 'successfully';
-                state.orders.meta = action.payload.meta;
                 for (let i = 0; i < action.payload.data.length; i++) {
-                    state.orders.data = [ ... state.orders.data, action.payload.data[i]];
+                    state.orders = [ ... state.orders, action.payload.data[i]];
                 }
+                state.meta = action.payload.meta;
+                state.params.totalOrders = action.payload.meta.total;
             }).
             addCase(getOrders.rejected, (state, action: PayloadAction<SubmitCartError | undefined>) => {
                 state.status = 'download failed';
