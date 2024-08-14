@@ -43,13 +43,13 @@ export const fetchProducts = createAsyncThunk<
 
 export interface IState {
     products: IProduct[];
-    productsFirstPage: IProduct[];
     meta: IMeta | null;
-    queryParams: {
+    params: {
         limit: number;
         currentPage: number;
+        totalProducts: number;
+        totalPages: number;
     };
-    totalProducts: number;
     isPagination: boolean;
     status: 'not started' | 'in progress' | 'successfully' | 'download failed';
     error: string;
@@ -59,33 +59,25 @@ export const productsSlice = createSlice({
     name: 'products',
     initialState: {
         products: [],
-        productsFirstPage: [],
         meta: null,
-        queryParams: {
+        params: {
             limit: productsLoadParams.limit,
             currentPage: productsLoadParams.firstPage,
+            totalProducts: 0,
+            totalPages: 0,
         },
-        totalProducts: 0,
         isPagination: false,
         status: 'not started',
         error: '',
     } as IState,
     reducers: {
-        reset: (state) => {
-            state.products = [];
-            state.products = state.productsFirstPage;
-            state.queryParams.currentPage = 2;
-        },
-        setFrontPageProdcuts: (state) => {
-            if (!state.productsFirstPage.length) {
-                state.productsFirstPage = state.products;
-            }
-        },
         changePagination: (state) => {
             state.isPagination = !state.isPagination;
+            state.products = [];
+            state.params.currentPage = 1;
         },
         increasePage: (state) => {
-            state.queryParams.currentPage += 1;
+            state.params.currentPage += 1;
         },
     },
     extraReducers: (builder) => {
@@ -103,7 +95,8 @@ export const productsSlice = createSlice({
                     state.products = action.payload.data;
                 }
                 state.meta = action.payload.meta;
-                state.totalProducts = action.payload.meta.total;
+                state.params.totalProducts = action.payload.meta.total;
+                state.params.totalPages = Math.ceil(state.params.totalProducts / state.params.limit);
             })
             .addCase(fetchProducts.rejected, (state, action: PayloadAction<FetchProductsError | undefined>) => {
                 state.status = 'download failed';
@@ -114,4 +107,4 @@ export const productsSlice = createSlice({
     }
 });
 
-export const { setFrontPageProdcuts, increasePage, changePagination, reset } = productsSlice.actions;
+export const { increasePage, changePagination } = productsSlice.actions;

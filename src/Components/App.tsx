@@ -1,15 +1,15 @@
 import { productsLoadParams, ordersLoadParams } from '@/data';
 import { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
-import { fetchProducts, increasePage, setFrontPageProdcuts } from '@/redux/slices/productsSlice';
-import { selectProducts } from '@/redux/slices/productsSelector';
+import { fetchProducts, increasePage } from '@/redux/slices/productsSlice';
+import { selectIsPagination } from '@/redux/slices/productsSelector';
 import { getCart } from '@/redux/slices/cartSlice/cartSlice';
 import { getOrders, increasePage as increasePageOrders } from '@/redux/slices/ordersSlice/ordersSlice';
 import { selectSingleOrder } from '@/redux/slices/ordersSlice/ordersSelector';
 import Layout from '@/Components/Layout/layout';
 
 export default function App() {
-    const products = useAppSelector(selectProducts);
+    const isPagination = useAppSelector(selectIsPagination);
     const singleOrder = useAppSelector(selectSingleOrder);
     const dispatch = useAppDispatch();
 
@@ -23,11 +23,7 @@ export default function App() {
 
         dispatch(fetchProducts({ page: ordersLoadParams.firstPage, limit: ordersLoadParams.limit }));
         dispatch(increasePage());
-    }, [dispatch]);
-
-    useEffect(() => {
-        dispatch(setFrontPageProdcuts());
-    }, [dispatch, products]);
+    }, [dispatch, isPagination]);
 
     return (
         <Layout/>
