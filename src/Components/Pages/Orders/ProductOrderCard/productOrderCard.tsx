@@ -1,11 +1,11 @@
-import * as styles from './orderCard.module.scss';
+import * as styles from './productOrderCard.module.scss';
 import { IOrderInfo } from '@/types/entityTypes';
 import { useState, useEffect } from 'react';
 import OrderNumber from './OrderNumber/orderNumber';
 import ImgLine from './ImgLine/imgLine';
 import Info from './Info/info';
-import OrderModal from '../Common/Modal/OrderModal/orderModal';
-import OrderWidget from '../OrderWidget/orderWidget';
+import OrderModal from '../../../Common/Modal/OrderModal/orderModal';
+import OrderWidget from '../../../OrderWidget/orderWidget';
 import usePortal from '@/hooks/usePortal';
 
 export interface OrderCardProps {
@@ -35,18 +35,21 @@ export default function OrderCard({ order, orderIndex }: OrderCardProps) {
                     <Info createdAt={order[0].createdAt} price={price}/>
                 </div>
             </div>
-            {
-                isOpenPortal &&
+            {isOpenPortal && (
                 <Portal>
                     <OrderModal
                         insert={
-                            <OrderWidget order={order} orderIndex={orderIndex} handleClick={closePortal}/>
+                            <OrderWidget
+                                order={order}
+                                orderIndex={orderIndex}
+                                handleClick={closePortal}
+                            />
                         }
                         overlay={true}
                         closeModal={closePortal}
                     />
                 </Portal>
-            }
+            )}
         </div>
     );
 }

@@ -1,5 +1,5 @@
 import * as styles from './info.module.scss';
-import Price from '../../Common/Price/price';
+import Price from '../../../../Common/Price/price';
 import formatDate from '@/utils/formatDate';
 
 export interface InfoProps {

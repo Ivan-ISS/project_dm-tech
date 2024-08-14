@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { fetchProduct } from '@/redux/slices/productItemSlice/productItemSlice';
-import { selectItemProduct, selectProductStatus, selectProductError } from '@/redux/slices/productItemSlice/productSliceSelector';
-import ProductDetailedCard from '../../ProductDetailedCard/productDetailedCard';
+import { selectProduct, selectStatus, selectError } from '@/redux/slices/productItemSlice/productSliceSelector';
+import ProductDetailedCard from './ProductDetailedCard/productDetailedCard';
 import ArrowLeft from '@/assets/images/svg/arrowLeft.svg';
 import Item from '../../Common/Item/item';
 import Loader from '../../Common/Loader/loader';
@@ -12,10 +12,10 @@ import Error from '../LoadError/loadError';
 
 export default function ProductItem() {
     const dispatch = useAppDispatch();
-    const productStatus = useAppSelector(selectProductStatus);
-    const product = useAppSelector(selectItemProduct);
+    const status = useAppSelector(selectStatus);
+    const product = useAppSelector(selectProduct);
     const { id } = useParams();
-    const productError = useAppSelector(selectProductError);
+    const error = useAppSelector(selectError);
     const navigate = useNavigate();
     // const product = products.find(product => product.id === id);
 
@@ -29,13 +29,15 @@ export default function ProductItem() {
                 <ArrowLeft width={20} height={20}/>
                 <Item text={'Назад'}/>
             </button>
-            { 
-                productStatus === 'in progress' ?
-                <div className={styles.wrapLoader}><Loader/></div> : 
-                productError ?  
-                <Error text={productError}/> : 
+            {status === 'in progress' ? (
+                <div className={styles.elLoader}>
+                    <Loader/>
+                </div>
+            ) : error ? (
+                <Error text={error}/> 
+            ) : (
                 <ProductDetailedCard product={product}/>
-            }
+            )}
         </section>
     );
 }

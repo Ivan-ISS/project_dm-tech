@@ -77,7 +77,7 @@ export const getOrders = createAsyncThunk<
 export interface IState {
     orders: IGetOrder;
     singleOrder: IOrderInfo[];
-    queryParams: {
+    params: {
         limit: number;
         currentPage: number;
     };
@@ -95,7 +95,7 @@ export const ordersSlice = createSlice({
             },
             data: [],
         },
-    queryParams: {
+    params: {
         limit: ordersLoadParams.limit,
         currentPage: ordersLoadParams.firstPage,
     },
@@ -105,7 +105,7 @@ export const ordersSlice = createSlice({
     } as IState,
     reducers: {
         increasePage: (state) => {
-            state.queryParams.currentPage += 1;
+            state.params.currentPage += 1;
         },
     },
     extraReducers: (builder) => {
@@ -116,7 +116,7 @@ export const ordersSlice = createSlice({
             addCase(submitCart.fulfilled, (state, action: PayloadAction<IOrderInfo[]>) => {
                 state.status = 'successfully';
                 state.singleOrder = action.payload;
-                if (state.queryParams.currentPage > Math.ceil(state.orders.meta.total / state.queryParams.limit)) {
+                if (state.params.currentPage > Math.ceil(state.orders.meta.total / state.params.limit)) {
                     state.orders.data = [ ... state.orders.data, action.payload ];
                 }
             }).
