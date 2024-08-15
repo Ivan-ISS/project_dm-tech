@@ -2,13 +2,13 @@ import * as styles from './orderModal.module.scss';
 import { HTMLAttributes, useState, useEffect, ReactNode } from 'react';
 import CloseButton from '../../Buttons/CloseButton/closeButton';
 
-export interface DefaultModalProps extends HTMLAttributes<HTMLDivElement>{
+export interface OrderModalProps extends HTMLAttributes<HTMLDivElement>{
     closeModal: () => void;
     insert: JSX.Element | ReactNode;
     overlay?: boolean;
 }
 
-export default function DefaultModal({ closeModal, insert, overlay, ...props }: DefaultModalProps) {
+export default function OrderModal({ closeModal, insert, overlay, ...props }: OrderModalProps) {
     const [ show, setShow ] = useState<boolean>(false);
 
     useEffect(() => {

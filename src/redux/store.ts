@@ -10,7 +10,7 @@ const store = configureStore({
     reducer: {
         productsData: productsSlice.reducer,
         productItemData: productItemSlice.reducer,
-        cartSlice: cartSlice.reducer,
+        cartData: cartSlice.reducer,
         ordersData: ordersSlice.reducer,
     },
 });

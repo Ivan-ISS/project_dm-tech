@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { fetchProduct } from '@/redux/slices/productItemSlice/productItemSlice';
-import { selectProduct, selectStatus, selectError } from '@/redux/slices/productItemSlice/productSliceSelector';
+import { selectProduct, selectStatus, selectError } from '@/redux/slices/productItemSlice/productItemSelector';
 import { updateCart } from '@/redux/slices/cartSlice/cartSlice';
 import { selectCart, selectCartState } from '@/redux/slices/cartSlice/cartSelector';
 import ProductDetailedCard from './ProductDetailedCard/productDetailedCard';

@@ -84,8 +84,8 @@ export const productsSlice = createSlice({
         builder.
             addCase(fetchProducts.pending, (state) => {
                 state.status = 'in progress';
-            })
-            .addCase(fetchProducts.fulfilled, (state, action: PayloadAction<IGetProducts>) => {
+            }).
+            addCase(fetchProducts.fulfilled, (state, action: PayloadAction<IGetProducts>) => {
                 state.status = 'successfully';
                 if (!state.isPagination) {
                     for (let i = 0; i < action.payload.data.length; i++) {
@@ -97,8 +97,8 @@ export const productsSlice = createSlice({
                 state.meta = action.payload.meta;
                 state.params.totalProducts = action.payload.meta.total;
                 state.params.totalPages = Math.ceil(state.params.totalProducts / state.params.limit);
-            })
-            .addCase(fetchProducts.rejected, (state, action: PayloadAction<FetchProductsError | undefined>) => {
+            }).
+            addCase(fetchProducts.rejected, (state, action: PayloadAction<FetchProductsError | undefined>) => {
                 state.status = 'download failed';
                 if (action.payload) {
                     state.error = action.payload.message;

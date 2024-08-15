@@ -35,7 +35,7 @@ export default function Orders() {
         <section ref={section} className={styles.orders}>
             <div className={styles.set}>
                 {orders.map((order, index) => (
-                    <ProductOrderCard key={index} order={order} orderIndex={index + 1}/>
+                    <ProductOrderCard key={index} order={order} orderNum={index + 1}/>
                 ))}
             </div>
         </section>

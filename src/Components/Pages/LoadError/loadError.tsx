@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import PrimaryButton from '../../Common/Buttons/PrimaryButton/primaryButton';
 import routes from '../../../routes';
 
-export interface ErrorProps {
+export interface LoadErrorProps {
     text: string;
 }
 
-export default function Error({ text }: ErrorProps) {
+export default function LoadError({ text }: LoadErrorProps) {
     const navigate = useNavigate();
 
     return (

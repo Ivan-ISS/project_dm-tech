@@ -10,10 +10,10 @@ import usePortal from '@/hooks/usePortal';
 
 export interface OrderCardProps {
     order: IOrderInfo[];
-    orderIndex: number;
+    orderNum: number;
 }
 
-export default function OrderCard({ order, orderIndex }: OrderCardProps) {
+export default function OrderCard({ order, orderNum }: OrderCardProps) {
     const pictures = order.map((item) => item.product.picture);
     const { isOpenPortal, openPortal, closePortal, Portal } = usePortal();
     const [ price, setPrice] = useState<number>(0);
@@ -28,7 +28,7 @@ export default function OrderCard({ order, orderIndex }: OrderCardProps) {
         <div>
             <div className={styles.card} onClick={openPortal}>
                 <div className={styles.elCard}>
-                    <OrderNumber orderNum={orderIndex}/>
+                    <OrderNumber orderNum={orderNum}/>
                     <ImgLine pictures={pictures}/>
                 </div>
                 <div className={styles.elCard}>
@@ -41,7 +41,7 @@ export default function OrderCard({ order, orderIndex }: OrderCardProps) {
                         insert={
                             <OrderWidget
                                 order={order}
-                                orderIndex={orderIndex}
+                                orderIndex={orderNum}
                                 handleClick={closePortal}
                             />
                         }

@@ -1,11 +1,11 @@
 import * as styles from './groupMessage.module.scss';
 import { IResultValidateCart } from '@/types/dataTypes';
 
-export interface IGroupMessageProps {
+export interface GroupMessageProps {
     resValidate: IResultValidateCart;
 }
 
-export default function GroupMessage({ resValidate }: IGroupMessageProps) {
+export default function GroupMessage({ resValidate }: GroupMessageProps) {
 
     return (
         <>
