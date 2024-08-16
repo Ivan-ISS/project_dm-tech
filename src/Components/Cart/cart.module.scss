@@ -1,19 +1,54 @@
 @import "/src/styles/_colors";
 @import "/src/styles/_variables";
 
-.cart {
-    display: flex;
-    column-gap: 4px;
-    align-items: center;
-    cursor: pointer;
+.wrapCart {
 
-    & div,
-    & svg {
+    .cart {
+        display: flex;
+        column-gap: 4px;
+        align-items: center;
+        cursor: pointer;
+
+        & div,
+        & svg {
+            transition: $transitionHover;
+        }
+
+        &:hover div,
+        &:hover svg {
+            color: $baseBrand;
+        }
+    }
+
+    .insert {
+        position: fixed;
+        top: 58px;
+        right: -5%;
+        z-index: 1;
+        opacity: 0;
         transition: $transitionHover;
     }
 
-    &:hover div,
-    &:hover svg {
-        color: $baseBrand;
+    .insertShow {
+        right: 40px;
+        opacity: 1;
+        transition: $transitionHover;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .wrapCart {
+
+        .insert {
+            top: 48px;
+            right: -100%;
+            height: 100%;
+        }
+
+        .insertShow {
+            width: 100%;
+            right: 0;
+        }
     }
 }

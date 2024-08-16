@@ -13,26 +13,18 @@ import Cart from '../Cart/cart';
 import BurgerButton from '../Common/Buttons/BurgerButton/burgerButton';
 import DropdownMenu from '../Common/DropdownMenu/dropdownMenu';
 import DefaultModal from '../Common/Modal/DefaultModal/defaultModal';
-import CartModal from '../Common/Modal/CartModal/cartModal';
-import CartWidget from '../CartWidget/cartWidget';
 import usePortal from '@/hooks/usePortal';
 
 export default function Layout() {
     const singleOrder = useAppSelector(selectSingleOrder);
     const { isOpenPortal, openPortal, closePortal, Portal } = usePortal();
-    const {
-        isOpenPortal: isOpenOrder,
-        openPortal: openOrder,
-        closePortal: closeOrder,
-        Portal: Order
-    } = usePortal();
 
     useEffect(() => {
         if (singleOrder.length) {
-            openOrder();
-            setTimeout(closeOrder, 3000);
+            openPortal();
+            setTimeout(closePortal, 3000);
         }
-    }, [closeOrder, openOrder, singleOrder]);
+    }, [closePortal, openPortal, singleOrder]);
     
     return (
         <div className={styles.layout}>
@@ -42,7 +34,7 @@ export default function Layout() {
                 </BurgerButton>
                 <Logo pathLink={routes.products()}/>
                 <Navigation navigationItems={navigationItems}/>
-                <Cart onClick={!isOpenPortal ? openPortal : closePortal}/>
+                <Cart/>
             </Header>
             <main className={styles.main}>
                 <div className={styles.container}>
@@ -52,8 +44,7 @@ export default function Layout() {
             <Footer>
                 Подвал
             </Footer>
-            { isOpenPortal && <Portal><CartModal insert={<CartWidget handleClickProduct={closePortal}/>}/></Portal> }
-            { isOpenOrder && <Order><DefaultModal insert={<div style={{ textAlign: 'center' }}>Ваш заказ оформлен</div>} closeModal={closeOrder}/></Order> }
+            { isOpenPortal && <Portal><DefaultModal insert={<div style={{ textAlign: 'center' }}>Ваш заказ оформлен</div>} closeModal={closePortal}/></Portal> }
         </div>
     );
 }
