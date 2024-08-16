@@ -6,7 +6,7 @@ import { fetchProduct } from '@/redux/slices/productItemSlice/productItemSlice';
 import { selectProduct, selectStatus, selectError } from '@/redux/slices/productItemSlice/productItemSelector';
 import ProductDetailedCard from './ProductDetailedCard/productDetailedCard';
 import IconButton from '../../Common/Buttons/IconButton/iconButton';
-import Loader from '../../Common/Loader/loader';
+import WheelLoader from '../../Common/Loader/WheelLoader/wheelLoader';
 import Error from '../LoadError/loadError';
 
 export default function ProductItem() {
@@ -29,7 +29,7 @@ export default function ProductItem() {
             </div>
             {status === 'in progress' ? (
                 <div className={styles.elLoader}>
-                    <Loader/>
+                    <WheelLoader/>
                 </div>
             ) : error ? (
                 <Error text={error}/> 

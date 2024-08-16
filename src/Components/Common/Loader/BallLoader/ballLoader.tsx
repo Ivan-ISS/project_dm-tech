@@ -1,6 +1,6 @@
 import * as styles from './loader.module.scss';
 
-export default function Loader() {
+export default function BallLoader() {
 
     return (
         <div className={styles.loader}>

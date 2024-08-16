@@ -1,5 +1,5 @@
 import * as styles from './loaderAddOn.module.scss';
-import Loader from '@/Components/Common/Loader/loader';
+import WheelLoader from '@/Components/Common/Loader/WheelLoader/wheelLoader';
 
 export interface LoaderAddOnProps {
     status: string;
@@ -14,7 +14,7 @@ export default function LoaderAddOn({ status, productsLength, isPagination }: Lo
             { status === 'in progress' && 
                 (!productsLength || isPagination) ? (
                     <div className={styles.elLoader}>
-                        <Loader/>
+                        <WheelLoader/>
                     </div>
                 ) : (
                     null

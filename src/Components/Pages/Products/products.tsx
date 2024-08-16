@@ -7,7 +7,7 @@ import useScrollBot from '@/hooks/useScrollBot';
 import ProductCard from './ProductCard/productCard';
 import Pagination from '../../Common/Pagination/pagination';
 import Switch from '../../Common/Switch/switch';
-import Loader from '../../../Components/Common/Loader/loader';
+import WheelLoader from '../../../Components/Common/Loader/WheelLoader/wheelLoader';
 
 export default function Products() {
     const dispatch = useAppDispatch();
@@ -39,7 +39,7 @@ export default function Products() {
             { status === 'in progress' && 
                 (!products.length || isPagination) ? (
                     <div className={styles.elLoader}>
-                        <Loader/>
+                        <WheelLoader/>
                     </div>
                 ) : (
                     <div className={styles.wrapShowcase}>
