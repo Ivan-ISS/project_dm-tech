@@ -7,8 +7,7 @@ import { selectProduct, selectStatus, selectError } from '@/redux/slices/product
 import { updateCart } from '@/redux/slices/cartSlice/cartSlice';
 import { selectCart, selectCartState } from '@/redux/slices/cartSlice/cartSelector';
 import ProductDetailedCard from './ProductDetailedCard/productDetailedCard';
-import ArrowLeft from '@/assets/images/svg/arrowLeft.svg';
-import Item from '../../Common/Item/item';
+import IconButton from '../../Common/Buttons/IconButton/iconButton';
 import Loader from '../../Common/Loader/loader';
 import Error from '../LoadError/loadError';
 
@@ -35,10 +34,9 @@ export default function ProductItem() {
 
     return (
         <section className={styles.productItem}>
-            <button className={styles.backButton} onClick={() => navigate(-1)}>
-                <ArrowLeft width={20} height={20}/>
-                <Item text={'Назад'}/>
-            </button>
+            <div className={styles.elIconButton} onClick={() => navigate(-1)}>
+                <IconButton iconName={'arrowLeft'} text={'Назад'}/>
+            </div>
             {status === 'in progress' ? (
                 <div className={styles.elLoader}>
                     <Loader/>

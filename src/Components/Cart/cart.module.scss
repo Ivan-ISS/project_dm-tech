@@ -7,11 +7,13 @@
     align-items: center;
     cursor: pointer;
 
-    & > * {
+    & div,
+    & svg {
         transition: $transitionHover;
     }
 
-    &:hover > * {
+    &:hover div,
+    &:hover svg {
         color: $baseBrand;
     }
 }

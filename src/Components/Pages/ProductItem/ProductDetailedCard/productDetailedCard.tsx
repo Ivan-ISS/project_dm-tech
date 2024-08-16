@@ -5,7 +5,7 @@ import Picture from '../../../Common/Picture/picture';
 import Title from '../../../Common/Title/title';
 import Rating from '../../../Common/Rating/rating';
 import Price from '../../../Common/Price/price';
-import Undo from './Undo/undo';
+import IconButton from '../../../Common/Buttons/IconButton/iconButton';
 import ButtonPanel from './ButtonPanel/buttonPanel';
 import Description from './Description/description';
 
@@ -32,7 +32,7 @@ export default function ProductDetailedCard({ product }: ProductDetailedCardProp
                         <ButtonPanel id={id}/>
                     </div>
                     <div className={styles.elCard}>
-                        <Undo/>
+                        <IconButton iconName={'arrowUndo'} text={'Условия возврата'}/>
                         <p>{textData.productDetailedCard[0]}</p>
                     </div>
                     <p className={styles.postscript}>

@@ -1,0 +1,49 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.iconButton {
+    display: flex;
+    column-gap: 4px;
+    align-items: center;
+    font-family: inherit;
+    background: transparent;
+    height: fit-content;
+    cursor: pointer;
+
+    .icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .trash {
+        color: $baseFocus;
+    }
+    
+    .arrowLeft {
+        color: $baseBrand;
+    }
+    
+    .arrowUndo {
+        color: $baseBrand;
+    }
+
+    .cart {
+        color: $baseBlack;
+    }
+}
+
+.trashWrap {
+    color: $baseFocus;
+}
+
+.arrowLeftWrap {
+    color: $baseBrand;
+}
+
+.arrowUndoWrap {
+    cursor: default;
+}
+
+.cart {
+    color: $baseBlack;
+}

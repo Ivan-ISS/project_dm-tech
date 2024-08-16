@@ -11,17 +11,10 @@
         margin-bottom: 30vh;
     }
     
-    .backButton {
+    .elIconButton {
         position: absolute;
         top: 0;
         left: 0;
-        display: flex;
-        column-gap: 4px;
-        font-family: inherit;
-        background: transparent;
-        height: fit-content;
-        cursor: pointer;
-        color: $baseBrand;
     }
 }
 

@@ -7,7 +7,7 @@ import PriceGroup from '../../Common/PriceGroup/priceGroup';
 import Picture from '../../Common/Picture/picture';
 import Title from '../../Common/Title/title';
 import Counter from '../../Common/Counter/counter';
-import TrashButton from './TrashButton/trashButton';
+import IconButton from '@/Components/Common/Buttons/IconButton/iconButton';
 import routes from '@/routes';
 
 export interface BasketWidgetCardProps {
@@ -50,7 +50,7 @@ export default function BasketWidgetCard({ product, quantity, handleClickProduct
             {
                 quantity <= 0 &&
                 <div className={styles.elCard}>
-                    <TrashButton onClick={ () => handleClickBtn(id, -1) }/>
+                    <IconButton iconName={'trash'} text={'Удалить'} onClick={ () => handleClickBtn(id, -1) }/>
                 </div>
             }
         </div>
