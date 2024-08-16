@@ -4,7 +4,7 @@ import { IResultValidateCart } from '@/types/dataTypes';
 import { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { selectCart, selectTotalPrice } from '@/redux/slices/cartSlice/cartSelector';
-import { submitCart } from '@/redux/slices/ordersSlice/ordersSlice';
+import { fetchSubmitCart } from '@/redux/slices/ordersSlice/ordersSlice';
 import SingleMessage from './SingleMessage/singleMessage';
 import GroupMessage from './GroupMessage/groupMessage';
 import BasketWidgetCard from './BasketWidgetCard/basketWidgetCard';
@@ -29,7 +29,7 @@ export default function CartWidget({ handleClickProduct }: CartWidgetProps) {
 
     const handleClickOrder = () => {
         handleClickProduct();
-        dispatch(submitCart());
+        dispatch(fetchSubmitCart());
     };
 
     return (

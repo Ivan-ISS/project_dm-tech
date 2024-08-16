@@ -12,7 +12,7 @@ export interface UpdateCartArgs {
     args: IUpdateCart;
 }
 
-export const updateCart = createAsyncThunk<
+export const fetchUpdateCart = createAsyncThunk<
     IGetCart[],
     IUpdateCart,
     { rejectValue: UpdateCartError | undefined }
@@ -45,12 +45,12 @@ export const updateCart = createAsyncThunk<
     }
 );
 
-export const getCart = createAsyncThunk<
+export const fetchCart = createAsyncThunk<
     IGetCart[] | undefined,
     void,
     { rejectValue: undefined }
 >(
-    'getCart/fetch',
+    'cart/fetch',
     async () => {
         try {
             const response = await fetch(routes.urlGetCart(), {
@@ -116,26 +116,26 @@ export const cartSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.
-            addCase(updateCart.pending, (state) => {
+            addCase(fetchUpdateCart.pending, (state) => {
                 state.status = 'in progress';
             }).
-            addCase(updateCart.fulfilled, (state, action: PayloadAction<IGetCart[]>) => {
+            addCase(fetchUpdateCart.fulfilled, (state, action: PayloadAction<IGetCart[]>) => {
                 state.status = 'successfully';
                 state.cart = action.payload;
                 state.totalPrice = state.cart.reduce((sum, item) => {
                     return sum + item.quantity * item.product.price;
                 }, 0);
             }).
-            addCase(updateCart.rejected, (state, action: PayloadAction<UpdateCartError | undefined>) => {
+            addCase(fetchUpdateCart.rejected, (state, action: PayloadAction<UpdateCartError | undefined>) => {
                 state.status = 'download failed';
                 if (action.payload) {
                     state.error = action.payload.message;
                 }
             }).
-            addCase(getCart.pending, (state) => {
+            addCase(fetchCart.pending, (state) => {
                 state.status = 'in progress';
             }).
-            addCase(getCart.fulfilled, (state, action: PayloadAction<IGetCart[] | undefined>) => {
+            addCase(fetchCart.fulfilled, (state, action: PayloadAction<IGetCart[] | undefined>) => {
                 state.status = 'successfully';
                 if (action.payload) {
                     state.cart = action.payload;
@@ -145,7 +145,7 @@ export const cartSlice = createSlice({
                 }, 0);
                 state.cartState = prepareDataToCart(state.cart);
             }).
-            addCase(getCart.rejected, (state) => {
+            addCase(fetchCart.rejected, (state) => {
                 state.status = 'download failed';
             });
     }

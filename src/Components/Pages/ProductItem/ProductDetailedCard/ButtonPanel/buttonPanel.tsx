@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { addToCart } from '@/redux/slices/cartSlice/cartSlice';
 import { selectCart, selectTotalPrice } from '@/redux/slices/cartSlice/cartSelector';
-import { submitCart } from '@/redux/slices/ordersSlice/ordersSlice';
+import { fetchSubmitCart } from '@/redux/slices/ordersSlice/ordersSlice';
 import PrimaryButton from '@/Components/Common/Buttons/PrimaryButton/primaryButton';
 import Counter from '@/Components/Common/Counter/counter';
 import validateCart from '@/utils/validateCart';
@@ -35,7 +35,7 @@ export default function ButtonPanel({ id }: ButtonPanelProps) {
     };
 
     const handleClickOrder = () => {
-        dispatch(submitCart());
+        dispatch(fetchSubmitCart());
     };
 
     return (

@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { fetchProduct } from '@/redux/slices/productItemSlice/productItemSlice';
 import { selectProduct, selectStatus, selectError } from '@/redux/slices/productItemSlice/productItemSelector';
-import { updateCart } from '@/redux/slices/cartSlice/cartSlice';
+import { fetchUpdateCart } from '@/redux/slices/cartSlice/cartSlice';
 import { selectCart, selectCartState } from '@/redux/slices/cartSlice/cartSelector';
 import ProductDetailedCard from './ProductDetailedCard/productDetailedCard';
 import IconButton from '../../Common/Buttons/IconButton/iconButton';
@@ -28,7 +28,7 @@ export default function ProductItem() {
 
     useEffect(() => {
         if (cartState.length || (cart.length === 1 && !cartState.length)) {
-            dispatch(updateCart({ data: cartState }));
+            dispatch(fetchUpdateCart({ data: cartState }));
         }
     }, [cart.length, cartState, dispatch]);
 

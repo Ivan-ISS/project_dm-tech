@@ -3,7 +3,7 @@ import { useEffect, useCallback } from 'react';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { selectProducts, selectStatus, selectParams, selectIsPagination } from '@/redux/slices/productsSlice/productsSelector';
 import { fetchProducts, increasePage, changePagination } from '@/redux/slices/productsSlice/productsSlice';
-import { updateCart } from '@/redux/slices/cartSlice/cartSlice';
+import { fetchUpdateCart } from '@/redux/slices/cartSlice/cartSlice';
 import { selectCartState, selectCart } from '@/redux/slices/cartSlice/cartSelector';
 import ProductCard from './ProductCard/productCard';
 import Pagination from '../../Common/Pagination/pagination';
@@ -31,7 +31,7 @@ export default function Products() {
 
     useEffect(() => {
         if (cartState.length || (cart.length === 1 && !cartState.length)) {
-            dispatch(updateCart({ data: cartState }));
+            dispatch(fetchUpdateCart({ data: cartState }));
         }
     }, [cart.length, cartState, dispatch]);
 

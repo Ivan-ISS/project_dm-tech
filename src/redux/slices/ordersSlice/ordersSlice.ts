@@ -3,14 +3,14 @@ import { IOrderInfo, IGetOrder, IMeta, IError } from '@/types/entityTypes';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import routes from '@/routes';
 
-export interface SubmitCartError {
+export interface FetchSubmitCartError {
     message: string;
 }
 
-export const submitCart = createAsyncThunk<
+export const fetchSubmitCart = createAsyncThunk<
     IOrderInfo[],
     void,
-    { rejectValue: SubmitCartError | undefined }
+    { rejectValue: FetchSubmitCartError | undefined }
 >(
     'submitCart/fetch',
     async (_, thunkAPI) => {
@@ -23,7 +23,7 @@ export const submitCart = createAsyncThunk<
             if (!response.ok) {
                 const error: IError = await response.json();
                 console.log('Ошибка ответа (статус не 200): ', error);
-                return thunkAPI.rejectWithValue({ message: error.error } as SubmitCartError);
+                return thunkAPI.rejectWithValue({ message: error.error } as FetchSubmitCartError);
             }
 
             const data: IOrderInfo[] = await response.json();
@@ -31,26 +31,26 @@ export const submitCart = createAsyncThunk<
             return data;
         } catch (error) {
             console.log('Ошибки асинхроннго кода: ', error);
-            return thunkAPI.rejectWithValue({ message: error } as SubmitCartError);
+            return thunkAPI.rejectWithValue({ message: error } as FetchSubmitCartError);
         }
     }
 );
 
-export interface GetOrdersError {
+export interface FetchOrdersError {
     message: string;
 }
 
-export interface GetOrdersArgs {
+export interface FetchOrdersArgs {
     page: number;
     limit: number;
 }
 
-export const getOrders = createAsyncThunk<
+export const fetchOrders = createAsyncThunk<
     IGetOrder,
-    GetOrdersArgs,
-    { rejectValue: SubmitCartError | undefined }
+    FetchOrdersArgs,
+    { rejectValue: FetchSubmitCartError | undefined }
 >(
-    'getOrders/fetch',
+    'orders/fetch',
     async (args, thunkAPI) => {
         try {
             const response = await fetch(`${routes.urlGetOrders()}?page=${args.page}&limit=${args.limit}`, {
@@ -61,7 +61,7 @@ export const getOrders = createAsyncThunk<
             if (!response.ok) {
                 const error: IError = await response.json();
                 console.log('Ошибка ответа (статус не 200): ', error);
-                return thunkAPI.rejectWithValue({ message: error.error } as GetOrdersError);
+                return thunkAPI.rejectWithValue({ message: error.error } as FetchOrdersError);
             }
 
             const data: IGetOrder = await response.json();
@@ -69,7 +69,7 @@ export const getOrders = createAsyncThunk<
             return data;
         } catch (error) {
             console.log('Ошибки асинхроннго кода: ', error);
-            return thunkAPI.rejectWithValue({ message: error } as GetOrdersError);
+            return thunkAPI.rejectWithValue({ message: error } as FetchOrdersError);
         }
     }
 );
@@ -108,26 +108,26 @@ export const ordersSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.
-            addCase(submitCart.pending, (state) => {
+            addCase(fetchSubmitCart.pending, (state) => {
                 state.status = 'in progress';
             }).
-            addCase(submitCart.fulfilled, (state, action: PayloadAction<IOrderInfo[]>) => {
+            addCase(fetchSubmitCart.fulfilled, (state, action: PayloadAction<IOrderInfo[]>) => {
                 state.status = 'successfully';
                 state.singleOrder = action.payload;
                 if (state.params.currentPage > Math.ceil(state.params.totalOrders / state.params.limit)) {
                     state.orders = [ ... state.orders, action.payload ];
                 }
             }).
-            addCase(submitCart.rejected, (state, action: PayloadAction<SubmitCartError | undefined>) => {
+            addCase(fetchSubmitCart.rejected, (state, action: PayloadAction<FetchSubmitCartError | undefined>) => {
                 state.status = 'download failed';
                 if (action.payload) {
                     state.error = action.payload.message;
                 }
             }).
-            addCase(getOrders.pending, (state) => {
+            addCase(fetchOrders.pending, (state) => {
                 state.status = 'in progress';
             }).
-            addCase(getOrders.fulfilled, (state, action: PayloadAction<IGetOrder>) => {
+            addCase(fetchOrders.fulfilled, (state, action: PayloadAction<IGetOrder>) => {
                 state.status = 'successfully';
                 for (let i = 0; i < action.payload.data.length; i++) {
                     state.orders = [ ... state.orders, action.payload.data[i]];
@@ -135,7 +135,7 @@ export const ordersSlice = createSlice({
                 state.meta = action.payload.meta;
                 state.params.totalOrders = action.payload.meta.total;
             }).
-            addCase(getOrders.rejected, (state, action: PayloadAction<SubmitCartError | undefined>) => {
+            addCase(fetchOrders.rejected, (state, action: PayloadAction<FetchOrdersError | undefined>) => {
                 state.status = 'download failed';
                 if (action.payload) {
                     state.error = action.payload.message;
