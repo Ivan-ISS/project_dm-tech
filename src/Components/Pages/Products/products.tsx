@@ -1,10 +1,8 @@
 import * as styles from './products.module.scss';
-import { useEffect, useCallback } from 'react';
+import { useCallback } from 'react';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { selectProducts, selectStatus, selectParams, selectIsPagination } from '@/redux/slices/productsSlice/productsSelector';
 import { fetchProducts, increasePage, changePagination } from '@/redux/slices/productsSlice/productsSlice';
-import { fetchUpdateCart } from '@/redux/slices/cartSlice/cartSlice';
-import { selectCartState, selectCart } from '@/redux/slices/cartSlice/cartSelector';
 import useScrollBot from '@/hooks/useScrollBot';
 import ProductCard from './ProductCard/productCard';
 import Pagination from '../../Common/Pagination/pagination';
@@ -15,8 +13,6 @@ export default function Products() {
     const dispatch = useAppDispatch();
     const status = useAppSelector(selectStatus);
     const products = useAppSelector(selectProducts);
-    const cart = useAppSelector(selectCart);
-    const cartState = useAppSelector(selectCartState);
     const isPagination = useAppSelector(selectIsPagination);
     const { limit, currentPage, totalProducts, totalPages } = useAppSelector(selectParams);
 
@@ -28,12 +24,6 @@ export default function Products() {
             }
         }
     });
-
-    useEffect(() => {
-        if (cartState.length || (cart.length === 1 && !cartState.length)) {
-            dispatch(fetchUpdateCart({ data: cartState }));
-        }
-    }, [cart.length, cartState, dispatch]);
 
     const handleClickPagination = useCallback((currentPage: number) => {
         dispatch(fetchProducts({ page: currentPage, limit: limit }));

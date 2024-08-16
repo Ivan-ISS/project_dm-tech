@@ -4,8 +4,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { fetchProduct } from '@/redux/slices/productItemSlice/productItemSlice';
 import { selectProduct, selectStatus, selectError } from '@/redux/slices/productItemSlice/productItemSelector';
-import { fetchUpdateCart } from '@/redux/slices/cartSlice/cartSlice';
-import { selectCart, selectCartState } from '@/redux/slices/cartSlice/cartSelector';
 import ProductDetailedCard from './ProductDetailedCard/productDetailedCard';
 import IconButton from '../../Common/Buttons/IconButton/iconButton';
 import Loader from '../../Common/Loader/loader';
@@ -16,8 +14,6 @@ export default function ProductItem() {
     const error = useAppSelector(selectError);
     const status = useAppSelector(selectStatus);
     const product = useAppSelector(selectProduct);
-    const cart = useAppSelector(selectCart);
-    const cartState = useAppSelector(selectCartState);
     const navigate = useNavigate();
     const { id } = useParams();
     // const product = products.find(product => product.id === id);
@@ -25,12 +21,6 @@ export default function ProductItem() {
     useEffect(() => {
         dispatch(fetchProduct({ id: id as string }));
     }, [dispatch, id]);
-
-    useEffect(() => {
-        if (cartState.length || (cart.length === 1 && !cartState.length)) {
-            dispatch(fetchUpdateCart({ data: cartState }));
-        }
-    }, [cart.length, cartState, dispatch]);
 
     return (
         <section className={styles.productItem}>
