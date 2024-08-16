@@ -14,10 +14,10 @@ import PrimaryButton from '../Common/Buttons/PrimaryButton/primaryButton';
 import validateCart from '@/utils/validateCart';
 
 export interface CartWidgetProps {
-    handleClickProduct: () => void;
+    handleClickWidget: () => void;
 }
 
-export default function CartWidget({ handleClickProduct }: CartWidgetProps) {
+export default function CartWidget({ handleClickWidget }: CartWidgetProps) {
     const dispatch = useAppDispatch();
     const cart = useAppSelector(selectCart);
     const totalPrice = useAppSelector(selectTotalPrice);
@@ -27,8 +27,8 @@ export default function CartWidget({ handleClickProduct }: CartWidgetProps) {
         setResValidate(validateCart(cart, totalPrice));
     }, [cart, totalPrice]);
 
-    const handleClickOrder = () => {
-        handleClickProduct();
+    const handleClickBtn = () => {
+        handleClickWidget();
         dispatch(fetchSubmitCart());
     };
 
@@ -43,7 +43,7 @@ export default function CartWidget({ handleClickProduct }: CartWidgetProps) {
                             <BasketWidgetCard
                                 product={item.product}
                                 quantity={item.quantity}
-                                handleClickProduct={handleClickProduct}
+                                handleClickCard={handleClickWidget}
                             />
                             <div className={styles.elSingleMessage}>
                                 <SingleMessage resValidate={resValidate} itemId={item.product.id}/>
@@ -65,7 +65,7 @@ export default function CartWidget({ handleClickProduct }: CartWidgetProps) {
                     !resValidate.minPrice.isValid ||
                     !resValidate.maxQuantity.isValid
                 }
-                onClick={handleClickOrder}
+                onClick={handleClickBtn}
             />
             <GroupMessage resValidate={resValidate}/>
         </div>

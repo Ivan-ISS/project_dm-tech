@@ -15,7 +15,7 @@ export default function DefaultModal({ closeModal, insert, overlay, ...props }: 
         setShow(v => !v);
     }, []);
 
-    const handleClick = () => {
+    const handleClickBtn = () => {
         setShow(v => !v);
         setTimeout(closeModal, 300);
     };
@@ -29,7 +29,7 @@ export default function DefaultModal({ closeModal, insert, overlay, ...props }: 
             }
             <div {...props} className={`${styles.modal} ${show ? styles.modalShow : null}`}>
                 <div className={styles.topPanel}>
-                    <CloseButton show={show} onClick={handleClick}></CloseButton>
+                    <CloseButton show={show} onClick={handleClickBtn}></CloseButton>
                 </div>
                 {insert}
             </div>

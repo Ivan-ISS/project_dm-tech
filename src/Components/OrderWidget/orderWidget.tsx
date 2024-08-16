@@ -10,10 +10,10 @@ import PrimaryBurron from '../Common/Buttons/PrimaryButton/primaryButton';
 export interface OrderWidgetProps {
     order: IOrderInfo[];
     orderIndex: number;
-    handleClick: () => void;
+    handleClickWidget: () => void;
 }
 
-export default function OrderWidget({ order, orderIndex, handleClick }: OrderWidgetProps) {
+export default function OrderWidget({ order, orderIndex, handleClickWidget }: OrderWidgetProps) {
     const dispatch = useAppDispatch();
     const [ cartReqArgs, setCartReqArgs ] = useState<{ id: string, quantity: number }[]>([]);
 
@@ -25,8 +25,8 @@ export default function OrderWidget({ order, orderIndex, handleClick }: OrderWid
         setCartReqArgs(updatedCartReqArgs);
     }, [order]);
 
-    const handleClickAddToCart = () => {
-        handleClick();
+    const handleClickBtn = () => {
+        handleClickWidget();
         dispatch(addToCart(cartReqArgs));
     };
 
@@ -43,7 +43,7 @@ export default function OrderWidget({ order, orderIndex, handleClick }: OrderWid
                 ))}
             </ul>
             <div className={styles.button}>
-                <PrimaryBurron text={'Добавить в корзину'} onClick={handleClickAddToCart}/>
+                <PrimaryBurron text={'Добавить в корзину'} onClick={handleClickBtn}/>
             </div>
         </div>
     );

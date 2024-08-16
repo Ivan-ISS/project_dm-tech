@@ -13,10 +13,10 @@ import routes from '@/routes';
 export interface BasketWidgetCardProps {
     product: IProduct
     quantity: number;
-    handleClickProduct: () => void;
+    handleClickCard: () => void;
 }
 
-export default function BasketWidgetCard({ product, quantity, handleClickProduct }: BasketWidgetCardProps) {
+export default function BasketWidgetCard({ product, quantity, handleClickCard }: BasketWidgetCardProps) {
     const { id, title, price, picture } = product;
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -25,17 +25,17 @@ export default function BasketWidgetCard({ product, quantity, handleClickProduct
         dispatch(addToCart([{ id, quantity }]));
     };
 
-    const handleClickCard = () => {
-        handleClickProduct();
+    const handleClickImgTitle = () => {
+        handleClickCard();
         navigate(`${routes.product()}/${id}`);
     };
 
     return (
         <div className={styles.card}>
-            <div className={styles.imgBlock} onClick={handleClickCard}>
+            <div className={styles.imgBlock} onClick={handleClickImgTitle}>
                 <Picture src={picture} alt={'product image'}/>
             </div>
-            <div className={styles.elTitle} onClick={handleClickCard}>
+            <div className={styles.elTitle} onClick={handleClickImgTitle}>
                 <Title text={title} view={'trancated'}/>
             </div>
             <div className={styles.elCounter}>

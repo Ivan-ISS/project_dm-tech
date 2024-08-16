@@ -34,7 +34,7 @@ export default function Cart({ ...props }: CartProps) {
                 />
             </div>
             <div className={`${styles.insert} ${isOpen ? styles.insertShow : null}`}>
-                { show && <CartWidget handleClickProduct={handleClick}/> }
+                { show && <CartWidget handleClickWidget={handleClick}/> }
             </div>
         </div>
     );

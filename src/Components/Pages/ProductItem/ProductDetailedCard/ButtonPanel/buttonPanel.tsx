@@ -26,7 +26,7 @@ export default function ButtonPanel({ id }: ButtonPanelProps) {
         setResValidate(validateCart(cart, totalPrice));
     }, [cart, totalPrice]);
 
-    const handleClickAddToCart = async () => {
+    const handleClickBtnCart = async () => {
         dispatch(addToCart( [{ id, quantity: 1 }] ));
     };
 
@@ -34,7 +34,7 @@ export default function ButtonPanel({ id }: ButtonPanelProps) {
         dispatch(addToCart( [{ id, quantity }] ));
     };
 
-    const handleClickOrder = () => {
+    const handleClickBtnOrder = () => {
         dispatch(fetchSubmitCart());
     };
 
@@ -43,7 +43,7 @@ export default function ButtonPanel({ id }: ButtonPanelProps) {
             {
                 !hasProductInCart(cart, id)
                 ? 
-                <PrimaryButton text={'Добавить в корзину'} onClick={handleClickAddToCart}/>
+                <PrimaryButton text={'Добавить в корзину'} onClick={handleClickBtnCart}/>
                 :
                 <div className={styles.buttonPanel}>
                     <Counter
@@ -58,7 +58,7 @@ export default function ButtonPanel({ id }: ButtonPanelProps) {
                             !resValidate.minPrice.isValid ||
                             !resValidate.maxQuantity.isValid
                         }
-                        onClick={handleClickOrder}
+                        onClick={handleClickBtnOrder}
                     />
                 </div>
             }

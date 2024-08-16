@@ -42,7 +42,7 @@ export default function OrderCard({ order, orderNum }: OrderCardProps) {
                             <OrderWidget
                                 order={order}
                                 orderIndex={orderNum}
-                                handleClick={closePortal}
+                                handleClickWidget={closePortal}
                             />
                         }
                         overlay={true}
