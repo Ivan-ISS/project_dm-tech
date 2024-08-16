@@ -1,5 +1,5 @@
 import * as styles from './priceGroup.module.scss';
-import Price from '../../Common/Price/price';
+import Price from '../Price/price';
 
 export interface PriceGroupProps {
     price: number;

@@ -3,12 +3,12 @@ import { IProduct } from '@/types/entityTypes';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '@/redux/store';
 import { addToCart } from '@/redux/slices/cartSlice/cartSlice';
+import routes from '@/routes';
 import PriceGroup from '../../Common/PriceGroup/priceGroup';
 import Picture from '../../Common/Picture/picture';
 import Title from '../../Common/Title/title';
 import Counter from '../../Common/Counter/counter';
-import IconButton from '@/Components/Common/Buttons/IconButton/iconButton';
-import routes from '@/routes';
+import IconButton from '../../Common/Buttons/IconButton/iconButton';
 
 export interface BasketWidgetCardProps {
     product: IProduct

@@ -1,11 +1,11 @@
 import * as styles from './productCard.module.scss';
 import { IProduct } from '@/types/entityTypes';
 import { useNavigate } from 'react-router-dom';
+import routes from '@/routes';
 import Picture from '../../../Common/Picture/picture';
 import Title from '../../../Common/Title/title';
 import Rating from '../../../Common/Rating/rating';
 import Price from '../../../Common/Price/price';
-import routes from '@/routes';
 
 export interface ProductCardProps {
     product: IProduct;

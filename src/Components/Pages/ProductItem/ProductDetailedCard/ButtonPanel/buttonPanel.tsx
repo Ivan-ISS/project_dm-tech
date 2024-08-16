@@ -6,11 +6,11 @@ import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { addToCart } from '@/redux/slices/cartSlice/cartSlice';
 import { selectCart, selectTotalPrice } from '@/redux/slices/cartSlice/cartSelector';
 import { fetchSubmitCart } from '@/redux/slices/ordersSlice/ordersSlice';
-import PrimaryButton from '@/Components/Common/Buttons/PrimaryButton/primaryButton';
-import Counter from '@/Components/Common/Counter/counter';
 import validateCart from '@/utils/validateCart';
 import hasProductInCart from '@/utils/hasProductInCart';
 import findProductInCart from '@/utils/findProductInCart';
+import PrimaryButton from '../../../../Common/Buttons/PrimaryButton/primaryButton';
+import Counter from '../../../../Common/Counter/counter';
 
 export interface ButtonPanelProps {
     id: string;

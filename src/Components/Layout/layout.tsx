@@ -3,6 +3,7 @@ import { navigationItems } from '@/data';
 import { useEffect } from 'react';
 import { useAppSelector } from '@/redux/store';
 import { selectSingleOrder } from '@/redux/slices/ordersSlice/ordersSelector';
+import usePortal from '@/hooks/usePortal';
 import routes from '@/routes';
 import Header from '../Header/header';
 import Footer from '../Footer/footer';
@@ -13,7 +14,6 @@ import Cart from '../Cart/cart';
 import BurgerButton from '../Common/Buttons/BurgerButton/burgerButton';
 import DropdownMenu from '../Common/DropdownMenu/dropdownMenu';
 import DefaultModal from '../Common/Modal/DefaultModal/defaultModal';
-import usePortal from '@/hooks/usePortal';
 
 export default function Layout() {
     const singleOrder = useAppSelector(selectSingleOrder);

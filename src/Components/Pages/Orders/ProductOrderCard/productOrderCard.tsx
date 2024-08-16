@@ -1,12 +1,12 @@
 import * as styles from './productOrderCard.module.scss';
 import { IOrderInfo } from '@/types/entityTypes';
 import { useState, useEffect } from 'react';
+import usePortal from '@/hooks/usePortal';
 import OrderNumber from './OrderNumber/orderNumber';
 import ImgLine from './ImgLine/imgLine';
 import Info from './Info/info';
 import OrderModal from '../../../Common/Modal/OrderModal/orderModal';
 import OrderWidget from '../../../OrderWidget/orderWidget';
-import usePortal from '@/hooks/usePortal';
 
 export interface OrderCardProps {
     order: IOrderInfo[];

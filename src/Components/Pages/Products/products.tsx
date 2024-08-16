@@ -5,11 +5,11 @@ import { selectProducts, selectStatus, selectParams, selectIsPagination } from '
 import { fetchProducts, increasePage, changePagination } from '@/redux/slices/productsSlice/productsSlice';
 import { fetchUpdateCart } from '@/redux/slices/cartSlice/cartSlice';
 import { selectCartState, selectCart } from '@/redux/slices/cartSlice/cartSelector';
+import useScrollBot from '@/hooks/useScrollBot';
 import ProductCard from './ProductCard/productCard';
 import Pagination from '../../Common/Pagination/pagination';
 import Switch from '../../Common/Switch/switch';
 import Loader from '../../../Components/Common/Loader/loader';
-import useScrollBot from '@/hooks/useScrollBot';
 
 export default function Products() {
     const dispatch = useAppDispatch();

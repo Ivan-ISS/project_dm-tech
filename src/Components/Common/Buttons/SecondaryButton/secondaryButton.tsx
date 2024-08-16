@@ -1,7 +1,7 @@
 import * as styles from './secondaryButton.module.scss';
 import { ButtonHTMLAttributes } from 'react';
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
+export interface SecondaryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     text?: number | string;
     segment?: 'counter'; 
     edges?: 'rounded' | 'leftRounded' | 'rightRounded';
@@ -11,7 +11,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     children?: JSX.Element;
 }
 
-export default function Button({ text, segment, edges, adaptive, isActive, isDisabled, children, ...props }: ButtonProps) {
+export default function SecondaryButton({ text, segment, edges, adaptive, isActive, isDisabled, children, ...props }: SecondaryButtonProps) {
 
     const handleClickBtn = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         if (props.onClick) {

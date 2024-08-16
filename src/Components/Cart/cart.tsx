@@ -2,10 +2,10 @@ import * as styles from './cart.module.scss';
 import { useState, useEffect, HTMLAttributes } from 'react';
 import { useAppSelector } from '@/redux/store';
 import { selectCart } from '@/redux/slices/cartSlice/cartSelector';
-import IconButton from '../Common/Buttons/IconButton/iconButton';
-import CartWidget from '../CartWidget/cartWidget';
 import useScreenSize from '@/hooks/useScreenSize';
 import useCloseOut from '@/hooks/useCloseOut';
+import IconButton from '../Common/Buttons/IconButton/iconButton';
+import CartWidget from '../CartWidget/cartWidget';
 
 export interface CartProps extends HTMLAttributes<HTMLDivElement>{}
 

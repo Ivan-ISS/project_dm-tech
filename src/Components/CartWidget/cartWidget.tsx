@@ -5,13 +5,13 @@ import { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { selectCart, selectTotalPrice } from '@/redux/slices/cartSlice/cartSelector';
 import { fetchSubmitCart } from '@/redux/slices/ordersSlice/ordersSlice';
-import SingleMessage from './SingleMessage/singleMessage';
-import GroupMessage from './GroupMessage/groupMessage';
+import validateCart from '@/utils/validateCart';
 import BasketWidgetCard from './BasketWidgetCard/basketWidgetCard';
+import GroupMessage from './GroupMessage/groupMessage';
+import SingleMessage from './SingleMessage/singleMessage';
 import Title from '../Common/Title/title';
 import Price from '../Common/Price/price';
 import PrimaryButton from '../Common/Buttons/PrimaryButton/primaryButton';
-import validateCart from '@/utils/validateCart';
 
 export interface CartWidgetProps {
     handleClickWidget: () => void;

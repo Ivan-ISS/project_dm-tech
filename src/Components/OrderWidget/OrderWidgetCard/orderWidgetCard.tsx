@@ -1,10 +1,10 @@
 import * as styles from './orderWidgetCard.module.scss';
 import { IOrderInfo } from '@/types/entityTypes';
 import { useNavigate } from 'react-router-dom';
+import routes from '@/routes';
 import Picture from '../../Common/Picture/picture';
 import Title from '../../Common/Title/title';
 import PriceGroup from '../../Common/PriceGroup/priceGroup';
-import routes from '@/routes';
 
 export interface OrderWidgetCardProps {
     data: IOrderInfo;

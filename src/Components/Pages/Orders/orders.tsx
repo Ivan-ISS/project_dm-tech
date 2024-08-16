@@ -5,8 +5,8 @@ import { fetchOrders, increasePage } from '@/redux/slices/ordersSlice/ordersSlic
 import { selectOrders, selectParams, selectStatus } from '@/redux/slices/ordersSlice/ordersSelector';
 import { fetchUpdateCart } from '@/redux/slices/cartSlice/cartSlice';
 import { selectCartState, selectCart } from '@/redux/slices/cartSlice/cartSelector';
-import ProductOrderCard from './ProductOrderCard/productOrderCard';
 import useScrollBot from '@/hooks/useScrollBot';
+import ProductOrderCard from './ProductOrderCard/productOrderCard';
 
 export default function Orders() {
     const dispatch = useAppDispatch();

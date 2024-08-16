@@ -1,13 +1,13 @@
 import * as styles from './productDetailedCard.module.scss';
 import { textData } from '@/data';
 import { IProduct } from '@/types/entityTypes';
+import ButtonPanel from './ButtonPanel/buttonPanel';
+import Description from './Description/description';
 import Picture from '../../../Common/Picture/picture';
 import Title from '../../../Common/Title/title';
 import Rating from '../../../Common/Rating/rating';
 import Price from '../../../Common/Price/price';
 import IconButton from '../../../Common/Buttons/IconButton/iconButton';
-import ButtonPanel from './ButtonPanel/buttonPanel';
-import Description from './Description/description';
 
 export interface ProductDetailedCardProps {
     product: IProduct;
