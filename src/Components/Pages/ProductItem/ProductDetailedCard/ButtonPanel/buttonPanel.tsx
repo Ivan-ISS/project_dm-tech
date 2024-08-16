@@ -17,10 +17,10 @@ export interface ButtonPanelProps {
 }
 
 export default function ButtonPanel({ id }: ButtonPanelProps) {
-    const [ resValidate, setResValidate ] = useState<IResultValidateCart>(defaultStateValid);
+    const dispatch = useAppDispatch();
     const cart = useAppSelector(selectCart);
     const totalPrice = useAppSelector(selectTotalPrice);
-    const dispatch = useAppDispatch();
+    const [ resValidate, setResValidate ] = useState<IResultValidateCart>(defaultStateValid);
 
     useEffect(() => {
         setResValidate(validateCart(cart, totalPrice));

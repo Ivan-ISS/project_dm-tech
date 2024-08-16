@@ -10,11 +10,11 @@ import ProductOrderCard from './ProductOrderCard/productOrderCard';
 
 export default function Orders() {
     const dispatch = useAppDispatch();
-    const orders = useAppSelector(selectOrders);
-    const { limit, currentPage, totalOrders } = useAppSelector(selectParams);
     const status = useAppSelector(selectStatus);
-    const cartState = useAppSelector(selectCartState);
+    const orders = useAppSelector(selectOrders);
     const cart = useAppSelector(selectCart);
+    const cartState = useAppSelector(selectCartState);
+    const { limit, currentPage, totalOrders } = useAppSelector(selectParams);
 
     const { targetElement: section } = useScrollBot({
         func: async () => {

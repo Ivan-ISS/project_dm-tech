@@ -9,9 +9,9 @@ import { selectSingleOrder } from '@/redux/slices/ordersSlice/ordersSelector';
 import Layout from '@/Components/Layout/layout';
 
 export default function App() {
+    const dispatch = useAppDispatch();
     const isPagination = useAppSelector(selectIsPagination);
     const singleOrder = useAppSelector(selectSingleOrder);
-    const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(fetchCart());

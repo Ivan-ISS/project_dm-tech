@@ -13,13 +13,13 @@ import Error from '../LoadError/loadError';
 
 export default function ProductItem() {
     const dispatch = useAppDispatch();
+    const error = useAppSelector(selectError);
     const status = useAppSelector(selectStatus);
     const product = useAppSelector(selectProduct);
-    const { id } = useParams();
-    const cartState = useAppSelector(selectCartState);
     const cart = useAppSelector(selectCart);
-    const error = useAppSelector(selectError);
+    const cartState = useAppSelector(selectCartState);
     const navigate = useNavigate();
+    const { id } = useParams();
     // const product = products.find(product => product.id === id);
 
     useEffect(() => {

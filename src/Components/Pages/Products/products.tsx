@@ -14,11 +14,11 @@ import Loader from '../../../Components/Common/Loader/loader';
 export default function Products() {
     const dispatch = useAppDispatch();
     const status = useAppSelector(selectStatus);
-    const { limit, currentPage, totalProducts, totalPages } = useAppSelector(selectParams);
     const products = useAppSelector(selectProducts);
-    const cartState = useAppSelector(selectCartState);
     const cart = useAppSelector(selectCart);
+    const cartState = useAppSelector(selectCartState);
     const isPagination = useAppSelector(selectIsPagination);
+    const { limit, currentPage, totalProducts, totalPages } = useAppSelector(selectParams);
 
     const { targetElement: section } = useScrollBot({
         func: async () => {

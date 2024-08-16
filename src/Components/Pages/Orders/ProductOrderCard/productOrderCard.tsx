@@ -15,8 +15,8 @@ export interface OrderCardProps {
 
 export default function OrderCard({ order, orderNum }: OrderCardProps) {
     const pictures = order.map((item) => item.product.picture);
-    const { isOpenPortal, openPortal, closePortal, Portal } = usePortal();
     const [ price, setPrice] = useState<number>(0);
+    const { isOpenPortal, openPortal, closePortal, Portal } = usePortal();
 
     useEffect(() => {
         setPrice(order.reduce((sum, item) => {

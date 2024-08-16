@@ -11,8 +11,8 @@ export interface CartProps extends HTMLAttributes<HTMLDivElement>{}
 
 export default function Cart({ ...props }: CartProps) {
     const cart = useAppSelector(selectCart);
-    const [ screenWidth ] = useScreenSize();
     const [ show, setShow ] = useState<boolean>(false);
+    const [ screenWidth ] = useScreenSize();
     const { isOpen, handleClick, targetElement } = useCloseOut();
 
     useEffect(() => {
