@@ -1,0 +1,9 @@
+.eslintrc.js
+tsconfig.*
+package*
+README.md
+**/*.html
+*.scss
+dist
+config
+webpack.config.ts

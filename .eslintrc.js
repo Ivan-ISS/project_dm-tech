@@ -7,6 +7,7 @@ module.exports = {
         'plugin:react/recommended',
         'plugin:react-hooks/recommended',
         'plugin:react/jsx-runtime',                             // Чтобы не импортировать React в каждый компонент (но для useEffect и т.п. нужно)
+        'prettier',
     ],
     ignorePatterns: ['build', 'buildProject', 'dist', 'webpack.config.ts', '.eslintrc.js'],
     parser: '@typescript-eslint/parser',

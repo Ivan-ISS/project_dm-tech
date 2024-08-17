@@ -1,10 +1,5 @@
 import routes from '@/routes';
-import {
-    INavigationItems,
-    ILoadParams,
-    ITextData,
-    IResultValidateCart,
-} from './types/dataTypes';
+import { INavigationItems, ILoadParams, ITextData, IResultValidateCart } from './types/dataTypes';
 
 // Данные навигации
 export const navigationItems: INavigationItems[] = [
@@ -13,12 +8,11 @@ export const navigationItems: INavigationItems[] = [
 ];
 
 // Текстовые данные
-export const textData: ITextData = { 
-    productDetailedCard:
-        [
-            'Обменять или вернуть товар надлежащего качества можно в течение 14 дней с момента покупки.',
-            'Цены в интернет-магазине могут отличаться от розничных магазинов.',
-        ]
+export const textData: ITextData = {
+    productDetailedCard: [
+        'Обменять или вернуть товар надлежащего качества можно в течение 14 дней с момента покупки.',
+        'Цены в интернет-магазине могут отличаться от розничных магазинов.',
+    ],
 };
 
 // Изначальное состояние валидации
