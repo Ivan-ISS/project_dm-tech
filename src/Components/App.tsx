@@ -21,12 +21,14 @@ export default function App() {
     }, [dispatch, singleOrder]);
 
     useEffect(() => {
-        dispatch(fetchOrders({ page: productsLoadParams.firstPage, limit: productsLoadParams.limit }));
-        dispatch(increasePageOrders());
-
         dispatch(fetchProducts({ page: ordersLoadParams.firstPage, limit: ordersLoadParams.limit }));
         dispatch(increasePage());
     }, [dispatch, isPagination]);
+
+    useEffect(() => {
+        dispatch(fetchOrders({ page: productsLoadParams.firstPage, limit: productsLoadParams.limit }));
+        dispatch(increasePageOrders());
+    }, [dispatch]);
 
     useEffect(() => {
         if (isFirstRender.current) {
