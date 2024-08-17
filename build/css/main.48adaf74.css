@@ -4,8 +4,8 @@
     font-weight: 400;
     font-display: swap;
     src: local("Nunito"),
-             url(../fonts/16489621a9b23085cc59.woff2) format("woff2"),
-             url(../fonts/9144703ca1c8225d762c.woff) format("woff");
+             url(/fonts/16489621a9b23085cc59.woff2) format("woff2"),
+             url(/fonts/9144703ca1c8225d762c.woff) format("woff");
 }
 
 @font-face {
@@ -14,8 +14,8 @@
     font-weight: 700;
     font-display: swap;
     src: local("Nunito"),
-             url(../fonts/77e3ab6700fc4e52fce4.woff2) format("woff2"),
-             url(../fonts/f75afecb2220c7dda1a0.woff) format("woff");
+             url(/fonts/77e3ab6700fc4e52fce4.woff2) format("woff2"),
+             url(/fonts/f75afecb2220c7dda1a0.woff) format("woff");
 }
 
 @font-face {
@@ -24,8 +24,8 @@
     font-weight: 800;
     font-display: swap;
     src: local("Nunito"),
-             url(../fonts/ae2bc237a96280a82c27.woff2) format("woff2"),
-             url(../fonts/552ca45bd4b6acd00ed5.woff) format("woff");
+             url(/fonts/ae2bc237a96280a82c27.woff2) format("woff2"),
+             url(/fonts/552ca45bd4b6acd00ed5.woff) format("woff");
 }
 
 @font-face {
@@ -34,8 +34,8 @@
     font-weight: 700;
     font-display: swap;
     src: local("Circe Rounded"),
-             url(../fonts/3ee2e7db9172197b6318.woff2) format("woff2"),
-             url(../fonts/be0b1eedf4f4b9bf898c.woff) format("woff");
+             url(/fonts/3ee2e7db9172197b6318.woff2) format("woff2"),
+             url(/fonts/be0b1eedf4f4b9bf898c.woff) format("woff");
 }
 
 @font-face {
@@ -44,8 +44,8 @@
     font-weight: 800;
     font-display: swap;
     src: local("Circe Rounded"),
-             url(../fonts/7e67c0579fe5b70ec8c9.woff2) format("woff2"),
-             url(../fonts/ddd87000ead3331e43c4.woff) format("woff");
+             url(/fonts/7e67c0579fe5b70ec8c9.woff2) format("woff2"),
+             url(/fonts/ddd87000ead3331e43c4.woff) format("woff");
 }
 *,*::before,*::after{margin:0;padding:0;border:0;box-sizing:border-box;vertical-align:baseline;font-weight:inherit;font-style:inherit;font-size:100%}ol,ul,li{list-style:none}a{text-decoration:none}h1,h2,h3,h4,h5,h6{font-weight:inherit;font-size:inherit}html,body{height:100%;font-family:"Nunito";color:#172029;font-size:16px;font-weight:400;line-height:normal;background:#f2f6fa}#Aca5Y7cc{height:100%;overflow:hidden;overflow-y:auto}@media(max-width: 767px){body{font-size:14px}}::-webkit-scrollbar{border-radius:10px;width:12.5px;height:12.5px}::-webkit-scrollbar-track{background:#fff;border-radius:10px;position:absolute;right:10px}::-webkit-scrollbar-thumb{background:#cbcbcb;border-radius:10px}::-webkit-scrollbar-thumb:hover{background:#acacac}
 .l7rvLqOh{min-height:100%;display:flex;flex-direction:column}.l7rvLqOh .rl1OQOF1{display:flex;flex:1}.l7rvLqOh .rl1OQOF1 .FK4piX6j{width:100%;max-width:1920px;min-width:270px;margin:0 auto;padding:25px 32px;box-sizing:content-box}@media(max-width: 767px){.l7rvLqOh .rl1OQOF1 .FK4piX6j{padding:25px 10px}}
@@ -85,4 +85,4 @@
 .CiHfN4NK{position:fixed;top:0;right:-100%;width:100%;height:100%;background:rgba(0,0,0,0);z-index:555;transition:.3s ease}.X68u8I_0{right:0;background:gray;transition:.3s ease}.WmDG18LZ{position:fixed;top:10px;left:50%;transform:translateX(-50%);width:80%;height:100%;max-width:1050px;max-height:100px;background:rgba(0,0,0,0);padding:16px;box-shadow:0 16px 40px 0 rgba(23,32,41,.32);border-radius:24px;z-index:1000;display:flex;opacity:0;transition:.3s ease;display:flex;flex-direction:column}.WmDG18LZ .ePh4dAXj{padding-bottom:3px;display:flex;align-items:center;justify-content:end}.DL8mMhp_{background:#fff;opacity:1;transition:.3s ease}
 .V1Wv9fkR{width:30px;height:25px;border:none;background:rgba(0,0,0,0);position:relative;cursor:pointer}.V1Wv9fkR::before,.V1Wv9fkR::after{content:"";position:absolute;left:0;width:100%;height:5px;background-color:#0073e6;transition:.3s ease}.eRnYLgUr::before{transform:rotate(45deg);transition:.3s ease}.eRnYLgUr::after{transform:rotate(-45deg);transition:.3s ease}
 
-/*# sourceMappingURL=main.08ad1bea.css.map*/
+/*# sourceMappingURL=main.48adaf74.css.map*/
