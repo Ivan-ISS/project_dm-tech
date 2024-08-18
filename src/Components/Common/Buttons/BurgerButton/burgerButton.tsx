@@ -7,11 +7,11 @@ export interface BurgerButtonProps extends ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 export default function BurgerButton({ children, ...props }: BurgerButtonProps) {
-    const [ show, setShow ] = useState<boolean>(false);
+    const [show, setShow] = useState<boolean>(false);
     const {
         isOpen: menuOpen,
         handleClick: handleClickBtn,
-        targetElement: burgerButton
+        targetElement: burgerButton,
     } = useCloseOut();
 
     useEffect(() => {
@@ -19,18 +19,22 @@ export default function BurgerButton({ children, ...props }: BurgerButtonProps) 
             setShow(true);
         } else {
             setTimeout(() => setShow(false), 300); // Для плавного ичезновения (чтобы стили успели отработать)
-        } 
+        }
     }, [menuOpen]);
 
     return (
         <div ref={burgerButton} className={styles.burgerWrap}>
-            <button {...props} className={`${styles.burgerButton} ${menuOpen ? styles.active : styles.inactive}`} onClick={handleClickBtn}>
+            <button
+                {...props}
+                className={`${styles.burgerButton} ${menuOpen ? styles.active : styles.inactive}`}
+                onClick={handleClickBtn}
+            >
                 <span className={styles.band}></span>
                 <span className={styles.band}></span>
                 <span className={styles.band}></span>
             </button>
             <div className={`${styles.insert} ${menuOpen ? styles.insertShow : null}`}>
-                { show && children }
+                {show && children}
             </div>
         </div>
     );

@@ -6,10 +6,9 @@ export interface RatingProps {
 }
 
 export default function Rating({ rating }: RatingProps) {
-    
     return (
         <div className={styles.rating}>
-            <Stars className={styles.substrate}/>
+            <Stars className={styles.substrate} />
             <Stars
                 className={styles.fill}
                 color={`${rating ? '#fabc22' : '#f2f6fa'}`}

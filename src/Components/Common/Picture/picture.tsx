@@ -19,7 +19,5 @@ export default function Picture({ src, alt, ...props }: PictureProps) {
         }
     }, [src]);
 
-    return (
-        <img {...props} className={styles.image} src={imageUrl} alt={alt}/>
-    );
+    return <img {...props} className={styles.image} src={imageUrl} alt={alt} />;
 }

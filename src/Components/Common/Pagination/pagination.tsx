@@ -11,8 +11,8 @@ export interface PaginationProps {
 }
 
 export default function Pagination({ totalPages, handlePagination }: PaginationProps) {
-    const [ showPages, setShowPages ] = useState<(string | number)[]>([]);
-    const [ currentPage, setCurrentPage ] = useState<number>(1);
+    const [showPages, setShowPages] = useState<(string | number)[]>([]);
+    const [currentPage, setCurrentPage] = useState<number>(1);
 
     useEffect(() => {
         setShowPages(getPaginationView(totalPages, currentPage));
@@ -24,10 +24,10 @@ export default function Pagination({ totalPages, handlePagination }: PaginationP
             <SecondaryButton
                 edges={'rounded'}
                 adaptive={true}
-                onClick={ () => setCurrentPage(currentPage - 1) }
+                onClick={() => setCurrentPage(currentPage - 1)}
                 isDisabled={currentPage === 1}
             >
-                <ArrowLeft width={20} height={20}/>
+                <ArrowLeft width={20} height={20} />
             </SecondaryButton>
             {showPages.map((page, index) => (
                 <SecondaryButton
@@ -36,16 +36,16 @@ export default function Pagination({ totalPages, handlePagination }: PaginationP
                     edges={'rounded'}
                     adaptive={true}
                     isActive={page === currentPage}
-                    onClick={ typeof page === 'number' ? () => setCurrentPage(page) : () => null }
+                    onClick={typeof page === 'number' ? () => setCurrentPage(page) : () => null}
                 />
             ))}
             <SecondaryButton
                 edges={'rounded'}
                 adaptive={true}
-                onClick={ () => setCurrentPage(currentPage + 1) }
+                onClick={() => setCurrentPage(currentPage + 1)}
                 isDisabled={currentPage === totalPages}
             >
-                <ArrowRight width={20} height={20}/>
+                <ArrowRight width={20} height={20} />
             </SecondaryButton>
         </div>
     );

@@ -13,14 +13,17 @@ export interface IconButtonProps extends HTMLAttributes<HTMLButtonElement> {
 }
 
 export default function IconButton({ iconName, text, value, ...props }: IconButtonProps) {
-
     return (
         <button {...props} className={` ${styles.iconButton} ${styles[iconName + 'Wrap']} `}>
-            { iconName === 'trash' && <Trash className={` ${styles.icon} ${styles[iconName]} `}/> }
-            { iconName === 'arrowLeft' && <ArrowLeft className={` ${styles.icon} ${styles[iconName]} `}/> }
-            { iconName === 'arrowUndo' && <ArrowUndo className={` ${styles.icon} ${styles[iconName]} `}/> }
-            { iconName === 'cart' && <Cart className={` ${styles.icon} ${styles[iconName]} `}/> }
-            <Item text={text} value={value}/>
+            {iconName === 'trash' && <Trash className={` ${styles.icon} ${styles[iconName]} `} />}
+            {iconName === 'arrowLeft' && (
+                <ArrowLeft className={` ${styles.icon} ${styles[iconName]} `} />
+            )}
+            {iconName === 'arrowUndo' && (
+                <ArrowUndo className={` ${styles.icon} ${styles[iconName]} `} />
+            )}
+            {iconName === 'cart' && <Cart className={` ${styles.icon} ${styles[iconName]} `} />}
+            <Item text={text} value={value} />
         </button>
     );
 }

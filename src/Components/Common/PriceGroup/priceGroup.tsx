@@ -7,11 +7,10 @@ export interface PriceGroupProps {
 }
 
 export default function PriceGroup({ price, quantity }: PriceGroupProps) {
-
     return (
         <div className={styles.group}>
-            <Price price={price} size={'tiny'} text={'за шт'}/>
-            <Price price={price * quantity} size={'medium'}/>
+            <Price price={price} size={'tiny'} text={'за шт'} />
+            <Price price={price * quantity} size={'medium'} />
         </div>
     );
 }

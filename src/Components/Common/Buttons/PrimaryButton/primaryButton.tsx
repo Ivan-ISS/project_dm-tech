@@ -1,14 +1,18 @@
 import * as styles from './primaryButton.module.scss';
 import { ButtonHTMLAttributes } from 'react';
 
-export interface PrimaryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
+export interface PrimaryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     text?: number | string;
     isActive?: boolean;
     isDisabled?: boolean;
 }
 
-export default function PrimaryButton({ text, isActive, isDisabled, ...props }: PrimaryButtonProps) {
-
+export default function PrimaryButton({
+    text,
+    isActive,
+    isDisabled,
+    ...props
+}: PrimaryButtonProps) {
     const handleClickBtn = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         if (props.onClick) {
             props.onClick(e);

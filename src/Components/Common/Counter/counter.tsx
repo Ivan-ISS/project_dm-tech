@@ -5,15 +5,20 @@ import IconMinus from '@/assets/images/svg/minus.svg';
 import SecondaryButton from '../Buttons/SecondaryButton/secondaryButton';
 import CounterInput from '../Input/CounterInput/counterInput';
 
-export interface CounterProps extends ButtonHTMLAttributes<HTMLButtonElement>{
+export interface CounterProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     idEntity: string;
     value: number;
     canBeDisabled?: boolean;
     handleClickCounter: (id: string, quantity: number) => void;
 }
 
-export default function Counter({ idEntity, value, canBeDisabled=false, handleClickCounter }: CounterProps) {
-    const [ count, setCount ] = useState(value);
+export default function Counter({
+    idEntity,
+    value,
+    canBeDisabled = false,
+    handleClickCounter,
+}: CounterProps) {
+    const [count, setCount] = useState(value);
 
     useEffect(() => {
         setCount(value);
@@ -45,9 +50,9 @@ export default function Counter({ idEntity, value, canBeDisabled=false, handleCl
                 onClick={handleClickMinus}
                 isDisabled={canBeDisabled && count < 1}
             >
-                <IconMinus width={20} height={20}/>
+                <IconMinus width={20} height={20} />
             </SecondaryButton>
-            <CounterInput value={count} handleChangeInput={(count) => handleChangeInput(count)}/>
+            <CounterInput value={count} handleChangeInput={(count) => handleChangeInput(count)} />
             <SecondaryButton
                 segment={'counter'}
                 edges={'rightRounded'}
@@ -55,7 +60,7 @@ export default function Counter({ idEntity, value, canBeDisabled=false, handleCl
                 onClick={handleClickPlus}
                 isDisabled={count > 9}
             >
-                <IconPlus width={20} height={20}/>
+                <IconPlus width={20} height={20} />
             </SecondaryButton>
         </div>
     );

@@ -10,7 +10,7 @@ export default function BurgerMenuItems({ itemMenu, path }: BurgerMenuItemsProps
     const { pathname } = useLocation();
 
     return (
-        <Link to={path} className={`${styles.link} ${pathname === path && styles.active}` }>
+        <Link to={path} className={`${styles.link} ${pathname === path && styles.active}`}>
             {itemMenu}
         </Link>
     );

@@ -1,7 +1,6 @@
 import * as styles from './loader.module.scss';
 
 export default function BallLoader() {
-
     return (
         <div className={styles.loader}>
             <span className={`${styles.one} ${styles.item}`}></span>

@@ -8,11 +8,10 @@ export interface LogoProps extends SVGAttributes<SVGSVGElement> {
 }
 
 export default function Logo({ pathLink, ...props }: LogoProps) {
-
     return (
         <>
             <Link to={pathLink} className={styles.link}>
-                <LogoIcon {...props} className={styles.logo}/>
+                <LogoIcon {...props} className={styles.logo} />
             </Link>
         </>
     );

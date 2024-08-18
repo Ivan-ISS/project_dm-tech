@@ -16,7 +16,13 @@ export default function Switch({ isActive, label, ...props }: SwitchProps) {
     return (
         <div>
             <label className={styles.switch}>
-                <input { ...props } className={styles.input} type={'checkbox'} checked={isChecked} onChange={handleChange}/>
+                <input
+                    {...props}
+                    className={styles.input}
+                    type={'checkbox'}
+                    checked={isChecked}
+                    onChange={handleChange}
+                />
                 <span className={styles.slider}></span>
             </label>
             {label && ' - ' + label}

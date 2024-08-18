@@ -6,10 +6,5 @@ export interface TitleProps {
 }
 
 export default function Title({ text, view }: TitleProps) {
-    
-    return (
-        <div className={styles[view]}>
-            {text}
-        </div>
-    );
+    return <div className={styles[view]}>{text}</div>;
 }
