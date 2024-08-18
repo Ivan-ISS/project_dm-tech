@@ -25,26 +25,31 @@ export default function Layout() {
             setTimeout(closePortal, 3000);
         }
     }, [closePortal, openPortal, singleOrder]);
-    
+
     return (
         <div className={styles.layout}>
             <Header>
                 <BurgerButton>
-                    <DropdownMenu itemsMenu={navigationItems} insert={'burgerMenu'}/>
+                    <DropdownMenu itemsMenu={navigationItems} insert={'burgerMenu'} />
                 </BurgerButton>
-                <Logo pathLink={routes.products()}/>
-                <Navigation navigationItems={navigationItems}/>
-                <Cart/>
+                <Logo pathLink={routes.products()} />
+                <Navigation navigationItems={navigationItems} />
+                <Cart />
             </Header>
             <main className={styles.main}>
                 <div className={styles.container}>
-                    <Content/>
+                    <Content />
                 </div>
             </main>
-            <Footer>
-                Подвал
-            </Footer>
-            { isOpenPortal && <Portal><DefaultModal insert={<div style={{ textAlign: 'center' }}>Ваш заказ оформлен</div>} closeModal={closePortal}/></Portal> }
+            <Footer>Подвал</Footer>
+            {isOpenPortal && (
+                <Portal>
+                    <DefaultModal
+                        insert={<div style={{ textAlign: 'center' }}>Ваш заказ оформлен</div>}
+                        closeModal={closePortal}
+                    />
+                </Portal>
+            )}
         </div>
     );
 }

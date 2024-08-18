@@ -20,27 +20,25 @@ export default function ProductDetailedCard({ product }: ProductDetailedCardProp
         <div className={styles.card}>
             <div className={styles.body}>
                 <div className={styles.imgBlock}>
-                    <Picture src={picture} alt={'product image'}/>
+                    <Picture src={picture} alt={'product image'} />
                 </div>
                 <div className={styles.infoBlock}>
                     <div className={styles.elCard}>
-                        <Title text={title} view={'full'}/>
-                        <Rating rating={rating}/>
+                        <Title text={title} view={'full'} />
+                        <Rating rating={rating} />
                     </div>
                     <div className={styles.elCard}>
-                        <Price price={price} size={'huge'}/>
-                        <ButtonPanel id={id}/>
+                        <Price price={price} size={'huge'} />
+                        <ButtonPanel id={id} />
                     </div>
                     <div className={styles.elCard}>
-                        <IconButton iconName={'arrowUndo'} text={'Условия возврата'}/>
+                        <IconButton iconName={'arrowUndo'} text={'Условия возврата'} />
                         <p>{textData.productDetailedCard[0]}</p>
                     </div>
-                    <p className={styles.postscript}>
-                        {textData.productDetailedCard[1]}
-                    </p>
+                    <p className={styles.postscript}>{textData.productDetailedCard[1]}</p>
                 </div>
             </div>
-            <Description text={description}/>
+            <Description text={description} />
         </div>
     );
 }

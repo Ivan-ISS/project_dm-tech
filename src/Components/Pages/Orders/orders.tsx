@@ -1,7 +1,11 @@
 import * as styles from './orders.module.scss';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { fetchOrders, increasePage } from '@/redux/slices/ordersSlice/ordersSlice';
-import { selectOrders, selectParams, selectStatus } from '@/redux/slices/ordersSlice/ordersSelector';
+import {
+    selectOrders,
+    selectParams,
+    selectStatus,
+} from '@/redux/slices/ordersSlice/ordersSelector';
 import useScrollBot from '@/hooks/useScrollBot';
 import ProductOrderCard from './ProductOrderCard/productOrderCard';
 
@@ -17,14 +21,14 @@ export default function Orders() {
                 await dispatch(fetchOrders({ page: currentPage, limit: limit }));
                 dispatch(increasePage());
             }
-        }
+        },
     });
 
     return (
         <section ref={section} className={styles.orders}>
             <div className={styles.set}>
                 {orders.map((order, index) => (
-                    <ProductOrderCard key={index} order={order} orderNum={index + 1}/>
+                    <ProductOrderCard key={index} order={order} orderNum={index + 1} />
                 ))}
             </div>
         </section>

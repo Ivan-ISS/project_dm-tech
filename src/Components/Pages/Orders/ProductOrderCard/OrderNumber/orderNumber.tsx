@@ -5,7 +5,6 @@ export interface OrderNumberProps {
 }
 
 export default function OrderNumber({ orderNum }: OrderNumberProps) {
-
     return (
         <div className={styles.orderNumber}>
             <div className={styles.label}>Заказ</div>

@@ -7,21 +7,14 @@ export interface ISingleMessageProps {
 }
 
 export default function SingleMessage({ resValidate, itemId }: ISingleMessageProps) {
-
     return (
         <>
-            {
-                resValidate.warnQuantity.productId.find(id => id === itemId) &&
-                <div className={styles.warningMessage}>
-                    {resValidate.warnQuantity.warning}
-                </div>
-            }
-            {
-                resValidate.maxQuantity.productId.find(id => id === itemId) &&
-                <div className={styles.errorMessage}>
-                    {resValidate.maxQuantity.error}
-                </div>
-            }
+            {resValidate.warnQuantity.productId.find((id) => id === itemId) && (
+                <div className={styles.warningMessage}>{resValidate.warnQuantity.warning}</div>
+            )}
+            {resValidate.maxQuantity.productId.find((id) => id === itemId) && (
+                <div className={styles.errorMessage}>{resValidate.maxQuantity.error}</div>
+            )}
         </>
     );
 }

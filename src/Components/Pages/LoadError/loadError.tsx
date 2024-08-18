@@ -12,14 +12,13 @@ export default function LoadError({ text }: LoadErrorProps) {
 
     return (
         <section className={styles.error}>
-            <h1 className={styles.titleError}>
-                404
-            </h1>
+            <h1 className={styles.titleError}>404</h1>
             <div className={styles.shadow}></div>
-            <p className={styles.textError}>
-                {text}
-            </p>
-            <PrimaryButton text={'На страницу товаров'} onClick={ () => navigate(routes.products()) }/>
+            <p className={styles.textError}>{text}</p>
+            <PrimaryButton
+                text={'На страницу товаров'}
+                onClick={() => navigate(routes.products())}
+            />
         </section>
     );
 }

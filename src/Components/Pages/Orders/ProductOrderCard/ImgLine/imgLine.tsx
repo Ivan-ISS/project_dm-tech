@@ -8,9 +8,9 @@ export interface ImgLineProps {
 }
 
 export default function ImgLine({ pictures }: ImgLineProps) {
-    const [ numImg, setNumImg ] = useState<number>(8);
-    const [ widthLine, setWidthLine ] = useState<number>(464);
-    const [ screenWidth ] = useScreenSize();
+    const [numImg, setNumImg] = useState<number>(8);
+    const [widthLine, setWidthLine] = useState<number>(464);
+    const [screenWidth] = useScreenSize();
 
     useEffect(() => {
         if (screenWidth > 900) {
@@ -32,24 +32,20 @@ export default function ImgLine({ pictures }: ImgLineProps) {
             className={styles.imgLine}
             style={{
                 minWidth: `${widthLine}`,
-                maxWidth: `${widthLine}`
+                maxWidth: `${widthLine}`,
             }}
         >
-            {pictures.map((picture, index) => (
-                index < numImg
-                ?
-                <div key={index} className={styles.imgBlock}>
-                    <Picture src={picture} alt={'product image'}/>
-                </div>
-                : 
-                index === pictures.length - 1
-                ?
-                <div key={index} className={styles.ellipsis}>
-                    ... 
-                </div>
-                :
-                null
-            ))}
+            {pictures.map((picture, index) =>
+                index < numImg ? (
+                    <div key={index} className={styles.imgBlock}>
+                        <Picture src={picture} alt={'product image'} />
+                    </div>
+                ) : index === pictures.length - 1 ? (
+                    <div key={index} className={styles.ellipsis}>
+                        ...
+                    </div>
+                ) : null
+            )}
         </div>
     );
 }

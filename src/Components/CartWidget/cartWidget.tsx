@@ -21,7 +21,7 @@ export default function CartWidget({ handleClickWidget }: CartWidgetProps) {
     const dispatch = useAppDispatch();
     const cart = useAppSelector(selectCart);
     const totalPrice = useAppSelector(selectTotalPrice);
-    const [ resValidate, setResValidate ] = useState<IResultValidateCart>(defaultStateValid);
+    const [resValidate, setResValidate] = useState<IResultValidateCart>(defaultStateValid);
 
     useEffect(() => {
         setResValidate(validateCart(cart, totalPrice));
@@ -34,9 +34,7 @@ export default function CartWidget({ handleClickWidget }: CartWidgetProps) {
 
     return (
         <div className={styles.widget}>
-            {
-                cart.length
-                ?
+            {cart.length ? (
                 <ul className={styles.list}>
                     {cart.map((item, index) => (
                         <li key={index} className={styles.itemList}>
@@ -46,17 +44,17 @@ export default function CartWidget({ handleClickWidget }: CartWidgetProps) {
                                 handleClickCard={handleClickWidget}
                             />
                             <div className={styles.elSingleMessage}>
-                                <SingleMessage resValidate={resValidate} itemId={item.product.id}/>
+                                <SingleMessage resValidate={resValidate} itemId={item.product.id} />
                             </div>
                         </li>
                     ))}
                 </ul>
-                :
-                <Title text={'Корзина ждёт товаров'} view={'full'}/>
-            }
+            ) : (
+                <Title text={'Корзина ждёт товаров'} view={'full'} />
+            )}
             <div className={styles.totalPrice}>
                 <div className={styles.label}>Итого</div>
-                <Price price={totalPrice} size={'huge'}/>
+                <Price price={totalPrice} size={'huge'} />
             </div>
             <PrimaryButton
                 text={'Оформить заказ'}
@@ -67,7 +65,7 @@ export default function CartWidget({ handleClickWidget }: CartWidgetProps) {
                 }
                 onClick={handleClickBtn}
             />
-            <GroupMessage resValidate={resValidate}/>
+            <GroupMessage resValidate={resValidate} />
         </div>
     );
 }

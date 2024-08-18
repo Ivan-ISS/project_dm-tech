@@ -3,7 +3,11 @@ import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import { fetchProduct } from '@/redux/slices/productItemSlice/productItemSlice';
-import { selectProduct, selectStatus, selectError } from '@/redux/slices/productItemSlice/productItemSelector';
+import {
+    selectProduct,
+    selectStatus,
+    selectError,
+} from '@/redux/slices/productItemSlice/productItemSelector';
 import ProductDetailedCard from './ProductDetailedCard/productDetailedCard';
 import IconButton from '../../Common/Buttons/IconButton/iconButton';
 import WheelLoader from '../../Common/Loader/WheelLoader/wheelLoader';
@@ -25,16 +29,16 @@ export default function ProductItem() {
     return (
         <section className={styles.productItem}>
             <div className={styles.elIconButton} onClick={() => navigate(-1)}>
-                <IconButton iconName={'arrowLeft'} text={'Назад'}/>
+                <IconButton iconName={'arrowLeft'} text={'Назад'} />
             </div>
             {status === 'in progress' ? (
                 <div className={styles.elLoader}>
-                    <WheelLoader/>
+                    <WheelLoader />
                 </div>
             ) : error ? (
-                <Error text={error}/> 
+                <Error text={error} />
             ) : (
-                <ProductDetailedCard product={product}/>
+                <ProductDetailedCard product={product} />
             )}
         </section>
     );

@@ -15,24 +15,26 @@ export interface OrderCardProps {
 
 export default function OrderCard({ order, orderNum }: OrderCardProps) {
     const pictures = order.map((item) => item.product.picture);
-    const [ price, setPrice] = useState<number>(0);
+    const [price, setPrice] = useState<number>(0);
     const { isOpenPortal, openPortal, closePortal, Portal } = usePortal();
 
     useEffect(() => {
-        setPrice(order.reduce((sum, item) => {
-            return sum + item.quantity * item.product.price;
-        }, 0));
+        setPrice(
+            order.reduce((sum, item) => {
+                return sum + item.quantity * item.product.price;
+            }, 0)
+        );
     }, [order]);
 
     return (
         <div>
             <div className={styles.card} onClick={openPortal}>
                 <div className={styles.elCard}>
-                    <OrderNumber orderNum={orderNum}/>
-                    <ImgLine pictures={pictures}/>
+                    <OrderNumber orderNum={orderNum} />
+                    <ImgLine pictures={pictures} />
                 </div>
                 <div className={styles.elCard}>
-                    <Info createdAt={order[0].createdAt} price={price}/>
+                    <Info createdAt={order[0].createdAt} price={price} />
                 </div>
             </div>
             {isOpenPortal && (

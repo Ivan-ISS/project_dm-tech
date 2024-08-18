@@ -6,21 +6,14 @@ export interface GroupMessageProps {
 }
 
 export default function GroupMessage({ resValidate }: GroupMessageProps) {
-
     return (
         <>
-            {
-                !resValidate.maxPrice.isValid &&
-                <div className={styles.errorMessage}>
-                    {resValidate.maxPrice.error}
-                </div>
-            }
-            {
-                !resValidate.maxQuantity.isValid &&
-                <div className={styles.errorMessage}>
-                    {resValidate.maxQuantity.error}
-                </div>
-            }
+            {!resValidate.maxPrice.isValid && (
+                <div className={styles.errorMessage}>{resValidate.maxPrice.error}</div>
+            )}
+            {!resValidate.maxQuantity.isValid && (
+                <div className={styles.errorMessage}>{resValidate.maxQuantity.error}</div>
+            )}
         </>
     );
 }

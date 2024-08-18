@@ -20,18 +20,18 @@ export default function ButtonPanel({ id }: ButtonPanelProps) {
     const dispatch = useAppDispatch();
     const cart = useAppSelector(selectCart);
     const totalPrice = useAppSelector(selectTotalPrice);
-    const [ resValidate, setResValidate ] = useState<IResultValidateCart>(defaultStateValid);
+    const [resValidate, setResValidate] = useState<IResultValidateCart>(defaultStateValid);
 
     useEffect(() => {
         setResValidate(validateCart(cart, totalPrice));
     }, [cart, totalPrice]);
 
     const handleClickBtnCart = async () => {
-        dispatch(addToCart( [{ id, quantity: 1 }] ));
+        dispatch(addToCart([{ id, quantity: 1 }]));
     };
 
     const handleClickCounter = async (id: string, quantity: number) => {
-        dispatch(addToCart( [{ id, quantity }] ));
+        dispatch(addToCart([{ id, quantity }]));
     };
 
     const handleClickBtnOrder = () => {
@@ -40,17 +40,15 @@ export default function ButtonPanel({ id }: ButtonPanelProps) {
 
     return (
         <>
-            {
-                !hasProductInCart(cart, id)
-                ? 
-                <PrimaryButton text={'Добавить в корзину'} onClick={handleClickBtnCart}/>
-                :
+            {!hasProductInCart(cart, id) ? (
+                <PrimaryButton text={'Добавить в корзину'} onClick={handleClickBtnCart} />
+            ) : (
                 <div className={styles.buttonPanel}>
                     <Counter
                         idEntity={id}
                         value={findProductInCart(cart, id)?.quantity || 0}
                         handleClickCounter={handleClickCounter}
-                    /> 
+                    />
                     <PrimaryButton
                         text={'Оформить заказ'}
                         isDisabled={
@@ -61,8 +59,10 @@ export default function ButtonPanel({ id }: ButtonPanelProps) {
                         onClick={handleClickBtnOrder}
                     />
                 </div>
-            }
-            { !resValidate.maxPrice.isValid && <div className={styles.errorMessage}>{resValidate.maxPrice.error}</div> }
+            )}
+            {!resValidate.maxPrice.isValid && (
+                <div className={styles.errorMessage}>{resValidate.maxPrice.error}</div>
+            )}
         </>
     );
 }

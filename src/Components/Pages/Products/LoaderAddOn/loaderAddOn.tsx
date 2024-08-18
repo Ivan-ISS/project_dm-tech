@@ -8,18 +8,13 @@ export interface LoaderAddOnProps {
 }
 
 export default function LoaderAddOn({ status, productsLength, isPagination }: LoaderAddOnProps) {
-
     return (
         <>
-            { status === 'in progress' && 
-                (!productsLength || isPagination) ? (
-                    <div className={styles.elLoader}>
-                        <WheelLoader/>
-                    </div>
-                ) : (
-                    null
-                )
-            }
+            {status === 'in progress' && (!productsLength || isPagination) ? (
+                <div className={styles.elLoader}>
+                    <WheelLoader />
+                </div>
+            ) : null}
         </>
     );
 }

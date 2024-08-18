@@ -7,12 +7,12 @@ import useCloseOut from '@/hooks/useCloseOut';
 import IconButton from '../Common/Buttons/IconButton/iconButton';
 import CartWidget from '../CartWidget/cartWidget';
 
-export interface CartProps extends HTMLAttributes<HTMLDivElement>{}
+export interface CartProps extends HTMLAttributes<HTMLDivElement> {}
 
 export default function Cart({ ...props }: CartProps) {
     const cart = useAppSelector(selectCart);
-    const [ show, setShow ] = useState<boolean>(false);
-    const [ screenWidth ] = useScreenSize();
+    const [show, setShow] = useState<boolean>(false);
+    const [screenWidth] = useScreenSize();
     const { isOpen, handleClick, targetElement } = useCloseOut();
 
     useEffect(() => {
@@ -20,11 +20,11 @@ export default function Cart({ ...props }: CartProps) {
             setShow(true);
         } else {
             setTimeout(() => setShow(false), 300);
-        } 
+        }
     }, [isOpen]);
 
     return (
-        <div ref={targetElement} { ...props } className={styles.wrapCart}>
+        <div ref={targetElement} {...props} className={styles.wrapCart}>
             <div className={styles.cart}>
                 <IconButton
                     iconName={'cart'}
@@ -34,7 +34,7 @@ export default function Cart({ ...props }: CartProps) {
                 />
             </div>
             <div className={`${styles.insert} ${isOpen ? styles.insertShow : null}`}>
-                { show && <CartWidget handleClickWidget={handleClick}/> }
+                {show && <CartWidget handleClickWidget={handleClick} />}
             </div>
         </div>
     );

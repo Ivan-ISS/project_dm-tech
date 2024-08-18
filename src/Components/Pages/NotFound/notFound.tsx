@@ -8,15 +8,14 @@ export default function NotFound() {
 
     return (
         <section className={styles.notFound}>
-            <h1 className={styles.title}>
-                404
-            </h1>
+            <h1 className={styles.title}>404</h1>
             <div className={styles.shadow}></div>
-            <p className={styles.text}>
-                Такой страницы не существует
-            </p>
+            <p className={styles.text}>Такой страницы не существует</p>
             <div className={styles.elButton}>
-                <PrimaryButton text={'На страницу товаров'} onClick={ () => navigate(routes.products()) }/>
+                <PrimaryButton
+                    text={'На страницу товаров'}
+                    onClick={() => navigate(routes.products())}
+                />
             </div>
         </section>
     );

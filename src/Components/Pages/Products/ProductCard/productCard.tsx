@@ -22,14 +22,14 @@ export default function ProductCard({ product }: ProductCardProps) {
     return (
         <div className={styles.card} onClick={handleClickCard}>
             <div className={styles.imgBlock}>
-                <Picture src={picture} alt={'product image'}/>
+                <Picture src={picture} alt={'product image'} />
             </div>
             <div className={styles.infoBlock}>
-                <Title text={title} view={'trancated'}/>
+                <Title text={title} view={'trancated'} />
                 <div className={styles.elCard}>
-                    <Rating rating={rating}/>
+                    <Rating rating={rating} />
                 </div>
-                <Price price={price} size={'large'}/>
+                <Price price={price} size={'large'} />
             </div>
         </div>
     );

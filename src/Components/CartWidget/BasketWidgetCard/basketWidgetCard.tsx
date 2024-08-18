@@ -11,12 +11,16 @@ import Counter from '../../Common/Counter/counter';
 import IconButton from '../../Common/Buttons/IconButton/iconButton';
 
 export interface BasketWidgetCardProps {
-    product: IProduct
+    product: IProduct;
     quantity: number;
     handleClickCard: () => void;
 }
 
-export default function BasketWidgetCard({ product, quantity, handleClickCard }: BasketWidgetCardProps) {
+export default function BasketWidgetCard({
+    product,
+    quantity,
+    handleClickCard,
+}: BasketWidgetCardProps) {
     const { id, title, price, picture } = product;
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -33,26 +37,33 @@ export default function BasketWidgetCard({ product, quantity, handleClickCard }:
     return (
         <div className={styles.card}>
             <div className={styles.imgBlock} onClick={handleClickImgTitle}>
-                <Picture src={picture} alt={'product image'}/>
+                <Picture src={picture} alt={'product image'} />
             </div>
             <div className={styles.elTitle} onClick={handleClickImgTitle}>
-                <Title text={title} view={'trancated'}/>
+                <Title text={title} view={'trancated'} />
             </div>
             <div className={styles.elCounter}>
-                <Counter idEntity={id} value={quantity} canBeDisabled={true} handleClickCounter={handleClickBtn}/>
+                <Counter
+                    idEntity={id}
+                    value={quantity}
+                    canBeDisabled={true}
+                    handleClickCounter={handleClickBtn}
+                />
             </div>
-            {
-                quantity > 0 &&
+            {quantity > 0 && (
                 <div className={styles.elCard}>
-                    <PriceGroup price={price} quantity={quantity}/>
+                    <PriceGroup price={price} quantity={quantity} />
                 </div>
-            }
-            {
-                quantity <= 0 &&
+            )}
+            {quantity <= 0 && (
                 <div className={styles.elCard}>
-                    <IconButton iconName={'trash'} text={'Удалить'} onClick={ () => handleClickBtn(id, -1) }/>
+                    <IconButton
+                        iconName={'trash'}
+                        text={'Удалить'}
+                        onClick={() => handleClickBtn(id, -1)}
+                    />
                 </div>
-            }
+            )}
         </div>
     );
 }

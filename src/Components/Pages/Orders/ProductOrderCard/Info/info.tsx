@@ -8,13 +8,14 @@ export interface InfoProps {
 }
 
 export default function Info({ createdAt, price }: InfoProps) {
-
     return (
         <div className={styles.info}>
             <div className={styles.label}>Оформлено</div>
             <div className={styles.value}>{formatDate(createdAt)}</div>
             <div className={styles.label}>На сумму</div>
-            <div className={styles.value}><Price price={price} size={'small'}/></div>
+            <div className={styles.value}>
+                <Price price={price} size={'small'} />
+            </div>
         </div>
     );
 }

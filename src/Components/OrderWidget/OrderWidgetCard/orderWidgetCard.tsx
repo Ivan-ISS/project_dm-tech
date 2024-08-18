@@ -22,16 +22,14 @@ export default function OrderWidgetCard({ data }: OrderWidgetCardProps) {
     return (
         <div className={styles.card} onClick={handleClickCard}>
             <div className={styles.imgBlock}>
-                <Picture src={picture} alt={'product image'}/>
+                <Picture src={picture} alt={'product image'} />
             </div>
             <div className={styles.elTitle}>
-                <Title text={title} view={'trancated'}/>
+                <Title text={title} view={'trancated'} />
             </div>
-            <div>
-                {`${quantity} шт`}
-            </div>
+            <div>{`${quantity} шт`}</div>
             <div className={styles.elPriceGroup}>
-                <PriceGroup price={price} quantity={quantity}/>
+                <PriceGroup price={price} quantity={quantity} />
             </div>
         </div>
     );
