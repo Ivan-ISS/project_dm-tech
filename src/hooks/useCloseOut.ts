@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 
 export default function useCloseOut() {
-    const [ isOpen, setIsOpen ] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
     const targetElement = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -19,7 +19,7 @@ export default function useCloseOut() {
     }, []);
 
     const handleClick = () => {
-        setIsOpen(v => !v);
+        setIsOpen((v) => !v);
     };
 
     return { isOpen, handleClick, targetElement };

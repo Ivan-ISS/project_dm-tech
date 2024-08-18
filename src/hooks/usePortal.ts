@@ -18,7 +18,7 @@ export default function usePortal() {
         setIsOpen(false);
         //document.removeEventListener('click', handleClickOutside);
     }, []);
-    
+
     useEffect(() => {
         const modalRoot = document.getElementById('modal');
         if (modalRoot && elRef.current) {
@@ -46,12 +46,10 @@ export default function usePortal() {
         }
     }; */
 
-    return (
-        {
-            isOpenPortal: isOpen,
-            openPortal,
-            closePortal,
-            Portal
-        }
-    );
+    return {
+        isOpenPortal: isOpen,
+        openPortal,
+        closePortal,
+        Portal,
+    };
 }

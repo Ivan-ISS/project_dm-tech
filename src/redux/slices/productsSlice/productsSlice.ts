@@ -16,30 +16,30 @@ export const fetchProducts = createAsyncThunk<
     IGetProducts,
     FetchProductsArgs,
     { rejectValue: FetchProductsError | undefined }
->(
-    'products/fetch',
-    async (args, thunkAPI) => {
-        try {
-            const response = await fetch(`${routes.urlProducts()}?page=${args.page}&limit=${args.limit}`, {
+>('products/fetch', async (args, thunkAPI) => {
+    try {
+        const response = await fetch(
+            `${routes.urlProducts()}?page=${args.page}&limit=${args.limit}`,
+            {
                 method: 'GET',
                 credentials: 'include',
-            });
-
-            if (!response.ok) {
-                const error: IError = await response.json();
-                console.log('Ошибка ответа (статус не 200): ', error);
-                return thunkAPI.rejectWithValue({ message: error.error } as FetchProductsError);
             }
+        );
 
-            const data: IGetProducts = await response.json();
-            console.log('Данные с сервера: ', data);
-            return data;
-        } catch (error) {
-            console.log('Ошибки асинхроннго кода: ', error);
-            return thunkAPI.rejectWithValue({message: error} as FetchProductsError);
+        if (!response.ok) {
+            const error: IError = await response.json();
+            console.log('Ошибка ответа (статус не 200): ', error);
+            return thunkAPI.rejectWithValue({ message: error.error } as FetchProductsError);
         }
+
+        const data: IGetProducts = await response.json();
+        console.log('Данные с сервера: ', data);
+        return data;
+    } catch (error) {
+        console.log('Ошибки асинхроннго кода: ', error);
+        return thunkAPI.rejectWithValue({ message: error } as FetchProductsError);
     }
-);
+});
 
 export interface IState {
     products: IProduct[];
@@ -81,30 +81,35 @@ export const productsSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        builder.
-            addCase(fetchProducts.pending, (state) => {
+        builder
+            .addCase(fetchProducts.pending, (state) => {
                 state.status = 'in progress';
-            }).
-            addCase(fetchProducts.fulfilled, (state, action: PayloadAction<IGetProducts>) => {
+            })
+            .addCase(fetchProducts.fulfilled, (state, action: PayloadAction<IGetProducts>) => {
                 state.status = 'successfully';
                 if (!state.isPagination) {
                     for (let i = 0; i < action.payload.data.length; i++) {
-                        state.products = [ ... state.products, action.payload.data[i]];
+                        state.products = [...state.products, action.payload.data[i]];
                     }
                 } else {
                     state.products = action.payload.data;
                 }
                 state.meta = action.payload.meta;
                 state.params.totalProducts = action.payload.meta.total;
-                state.params.totalPages = Math.ceil(state.params.totalProducts / state.params.limit);
-            }).
-            addCase(fetchProducts.rejected, (state, action: PayloadAction<FetchProductsError | undefined>) => {
-                state.status = 'download failed';
-                if (action.payload) {
-                    state.error = action.payload.message;
+                state.params.totalPages = Math.ceil(
+                    state.params.totalProducts / state.params.limit
+                );
+            })
+            .addCase(
+                fetchProducts.rejected,
+                (state, action: PayloadAction<FetchProductsError | undefined>) => {
+                    state.status = 'download failed';
+                    if (action.payload) {
+                        state.error = action.payload.message;
+                    }
                 }
-            });
-    }
+            );
+    },
 });
 
 export const { increasePage, changePagination } = productsSlice.actions;

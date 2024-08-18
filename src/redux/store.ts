@@ -5,7 +5,6 @@ import { productItemSlice } from './slices/productItemSlice/productItemSlice';
 import { cartSlice } from './slices/cartSlice/cartSlice';
 import { ordersSlice } from './slices/ordersSlice/ordersSlice';
 
-
 const store = configureStore({
     reducer: {
         productsData: productsSlice.reducer,

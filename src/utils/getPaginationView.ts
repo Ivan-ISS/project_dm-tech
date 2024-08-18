@@ -1,4 +1,7 @@
-export default function getPaginationView(totalPages: number, currentPage: number): (string | number)[] {
+export default function getPaginationView(
+    totalPages: number,
+    currentPage: number
+): (string | number)[] {
     if (totalPages > 7) {
         if (currentPage === 3) {
             return [2, 3, 4, '...', totalPages - 2, totalPages - 1, totalPages];

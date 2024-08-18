@@ -9,7 +9,7 @@ export interface IMeta {
         field: string;
         direction: string;
         availableFields: string[];
-    }
+    };
 }
 
 export interface IProduct {

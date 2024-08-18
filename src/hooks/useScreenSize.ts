@@ -15,5 +15,5 @@ export default function useScreenSize() {
         };
     }, []);
 
-    return [ screenWidth ];
+    return [screenWidth];
 }

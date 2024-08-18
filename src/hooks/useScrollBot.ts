@@ -1,4 +1,4 @@
-import { /* useState,  */useEffect, useRef } from 'react';
+import { /* useState,  */ useEffect, useRef } from 'react';
 
 export interface IUseScrollBot {
     func: () => void;
@@ -18,16 +18,18 @@ export default function useCloseOut({ func }: IUseScrollBot) {
         } */
 
         const handleScroll = () => {
-
             if (root && targetElement.current) {
-                if (window.clientHeight + root.scrollTop - 121 >= targetElement.current.clientHeight) {
+                if (
+                    window.clientHeight + root.scrollTop - 121 >=
+                    targetElement.current.clientHeight
+                ) {
                     func();
                 }
             }
         };
-    
+
         root?.addEventListener('scroll', handleScroll);
-    
+
         return () => {
             root?.removeEventListener('scroll', handleScroll);
         };
