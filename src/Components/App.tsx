@@ -10,6 +10,8 @@ import {
 import { selectSingleOrder } from '@/redux/slices/ordersSlice/ordersSelector';
 import { fetchCart, fetchUpdateCart } from '@/redux/slices/cartSlice/cartSlice';
 import { selectCartState } from '@/redux/slices/cartSlice/cartSelector';
+import { selectFilters } from '@/redux/slices/filtersSlice/filtersSelector';
+import { fetchCategories } from '@/redux/slices/categoriesSlice/categoriesSlice';
 import Layout from '@/Components/Layout/layout';
 
 export default function App() {
@@ -17,6 +19,7 @@ export default function App() {
     const isPagination = useAppSelector(selectIsPagination);
     const singleOrder = useAppSelector(selectSingleOrder);
     const cartState = useAppSelector(selectCartState);
+    const filters = useAppSelector(selectFilters);
     const isFirstRender = useRef(true);
 
     useEffect(() => {
@@ -24,15 +27,26 @@ export default function App() {
     }, [dispatch, singleOrder]);
 
     useEffect(() => {
-        dispatch(
-            fetchProducts({ page: ordersLoadParams.firstPage, limit: ordersLoadParams.limit })
-        );
-        dispatch(increasePage());
-    }, [dispatch, isPagination]);
+        dispatch(fetchCategories());
+    }, [dispatch]);
 
     useEffect(() => {
         dispatch(
-            fetchOrders({ page: productsLoadParams.firstPage, limit: productsLoadParams.limit })
+            fetchProducts({
+                page: productsLoadParams.firstPage,
+                limit: productsLoadParams.limit,
+                ...filters,
+            })
+        );
+        dispatch(increasePage());
+    }, [dispatch, isPagination, filters]);
+
+    useEffect(() => {
+        dispatch(
+            fetchOrders({
+                page: ordersLoadParams.firstPage,
+                limit: ordersLoadParams.limit,
+            })
         );
         dispatch(increasePageOrders());
     }, [dispatch]);

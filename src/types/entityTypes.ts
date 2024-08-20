@@ -46,3 +46,5 @@ export interface IUpdateCart {
         quantity: number;
     }[];
 }
+
+export type TGetCategories = string[];

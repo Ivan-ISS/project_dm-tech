@@ -1,13 +1,15 @@
 import { productsLoadParams } from '@/data';
 import { IMeta, IProduct, IGetProducts, IError } from '@/types/entityTypes';
+import { IFilters } from '@/types/dataTypes';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import getProductsParams from '@/utils/getProductsParams';
 import routes from '@/routes';
 
 export interface FetchProductsError {
     message: string;
 }
 
-export interface FetchProductsArgs {
+export interface FetchProductsArgs extends IFilters {
     page: number;
     limit: number;
 }
@@ -19,7 +21,7 @@ export const fetchProducts = createAsyncThunk<
 >('products/fetch', async (args, thunkAPI) => {
     try {
         const response = await fetch(
-            `${routes.urlProducts()}?page=${args.page}&limit=${args.limit}`,
+            `${routes.urlProducts()}?${getProductsParams(args).toString()}`,
             {
                 method: 'GET',
                 credentials: 'include',
@@ -49,6 +51,7 @@ export interface IState {
         currentPage: number;
         totalProducts: number;
         totalPages: number;
+        sortFields: string[];
     };
     isPagination: boolean;
     status: 'not started' | 'in progress' | 'successfully' | 'download failed';
@@ -65,6 +68,7 @@ export const productsSlice = createSlice({
             currentPage: productsLoadParams.firstPage,
             totalProducts: 0,
             totalPages: 0,
+            sortFields: [],
         },
         isPagination: false,
         status: 'not started',
@@ -78,6 +82,10 @@ export const productsSlice = createSlice({
         },
         increasePage: (state) => {
             state.params.currentPage += 1;
+        },
+        resetProducts: (state) => {
+            state.products = [];
+            state.params.currentPage = 1;
         },
     },
     extraReducers: (builder) => {
@@ -99,6 +107,7 @@ export const productsSlice = createSlice({
                 state.params.totalPages = Math.ceil(
                     state.params.totalProducts / state.params.limit
                 );
+                state.params.sortFields = action.payload.meta.sort.availableFields;
             })
             .addCase(
                 fetchProducts.rejected,
@@ -112,4 +121,4 @@ export const productsSlice = createSlice({
     },
 });
 
-export const { increasePage, changePagination } = productsSlice.actions;
+export const { increasePage, changePagination, resetProducts } = productsSlice.actions;

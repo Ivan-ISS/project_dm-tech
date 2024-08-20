@@ -9,6 +9,7 @@ interface IRoutes {
     urlGetCart: () => string;
     urlSubmitCart: () => string;
     urlGetOrders: () => string;
+    urlGetCategories: () => string;
 }
 
 const routes: IRoutes = {
@@ -20,6 +21,7 @@ const routes: IRoutes = {
     urlGetCart: () => `${BASE_URL}/cart`,
     urlSubmitCart: () => `${BASE_URL}/cart/submit`,
     urlGetOrders: () => `${BASE_URL}/orders`,
+    urlGetCategories: () => `${BASE_URL}/categories`,
 };
 
 export default routes;

@@ -1,0 +1,100 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.searchFrom {
+    display: grid;
+    grid-template-columns: 1fr 1fr 200px;
+    gap: 24px;
+    width: 100%;
+
+    .inputFields {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        width: 100%;
+
+        .elDefaultInput {
+            min-width: 125px;
+
+            &:nth-child(1) {
+                grid-column: span 2;
+            }
+        }
+    }
+
+    .selectFields {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        width: 100%;
+
+        .elSelect {
+            min-width: 210px;
+        }
+    }
+
+    .buttonPanel {
+        display: flex;
+        flex-direction: column;
+        align-self: end;
+        gap: 24px;
+        width: 100%;
+
+        .elButton {
+            min-width: 185px;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+
+    .searchFrom {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 52px;
+        gap: 16px;
+
+        .inputFields {
+            gap: 16px;
+        }
+
+        .selectFields {
+            gap: 16px;
+        }
+
+        .buttonPanel {
+            flex-direction: row;
+            grid-column: span 2;
+            gap: 16px;
+        }
+    }
+}
+
+@media (max-width: 560px) {
+
+    .searchFrom {
+        display: flex;
+        flex-direction: column;
+
+        .inputFields {
+            gap: 16px;
+        }
+
+        .selectFields {
+            gap: 16px;
+        }
+
+        .buttonPanel {
+            gap: 16px;
+        }
+    }
+}
+
+@media (max-width: 450px) {
+
+    .searchFrom {
+
+        .buttonPanel {
+            flex-direction: column;
+        }
+    }
+}

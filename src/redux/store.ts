@@ -4,6 +4,8 @@ import { productsSlice } from './slices/productsSlice/productsSlice';
 import { productItemSlice } from './slices/productItemSlice/productItemSlice';
 import { cartSlice } from './slices/cartSlice/cartSlice';
 import { ordersSlice } from './slices/ordersSlice/ordersSlice';
+import { filtersSlice } from './slices/filtersSlice/filtersSlice';
+import { categoriesSlice } from './slices/categoriesSlice/categoriesSlice';
 
 const store = configureStore({
     reducer: {
@@ -11,6 +13,8 @@ const store = configureStore({
         productItemData: productItemSlice.reducer,
         cartData: cartSlice.reducer,
         ordersData: ordersSlice.reducer,
+        filtersData: filtersSlice.reducer,
+        categoriesData: categoriesSlice.reducer,
     },
 });
 

@@ -1,0 +1,84 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.selectWrap {
+    min-width: 150px;
+    font-weight: 700;
+}
+
+.multiple {
+    padding: 16px;
+    width: 100%;
+    height: 132px;
+    background: $baseWhite;
+    border: 1px solid $baseGrayLight1;
+    border-radius: 12px;
+    transition: $transitionHover;
+
+    &:hover {
+        box-shadow: inset 0 0 0 1px $baseBrand;
+    }
+
+    &:focus-within {
+        box-shadow: inset 0 0 0 2px $baseBrand;
+    }
+
+    .select {
+        outline: none;
+        width: 100%;
+
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        option {
+            width: 98%;
+            font-family: "Nunito";
+        }
+    }
+}
+
+.notMultiple {
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 12px;
+        right: 21px;
+        width: 13px;
+        height: 13px;
+        border-top: 8px solid $baseWhite;
+        border-right: 8px solid $baseWhite;
+        border-left: 8px solid $baseGray;
+        border-bottom: 8px solid $baseGray;
+        rotate: -45deg;
+    }
+
+    .select {
+        font-family: "Nunito";
+        padding: 16px;
+        outline: none;
+        width: 100%;
+        background: $baseWhite;
+        border: 1px solid $baseGrayLight1;
+        border-radius: 12px;
+        transition: $transitionHover;
+
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        &:hover {
+            box-shadow: inset 0 0 0 1px $baseBrand;
+        }
+
+        &:focus {
+            box-shadow: inset 0 0 0 2px $baseBrand;
+        }
+
+        option {
+            font-family: "Nunito";
+        }
+    }
+}
