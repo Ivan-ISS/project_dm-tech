@@ -12,6 +12,7 @@
         width: 100%;
         padding: 16px 0;
         cursor: pointer;
+        transition: $transitionHover;
 
         &:hover {
             background: $baseBrandLight2;

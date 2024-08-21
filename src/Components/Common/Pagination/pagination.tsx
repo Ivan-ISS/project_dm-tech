@@ -6,14 +6,20 @@ import ArrowRight from '@/assets/images/svg/arrowRight.svg';
 import SecondaryButton from '../Buttons/SecondaryButton/secondaryButton';
 
 export interface PaginationProps {
+    startPage: number;
     totalPages: number;
     resetPage: unknown;
     handlePagination: (currentPage: number) => void;
 }
 
-export default function Pagination({ totalPages, resetPage, handlePagination }: PaginationProps) {
+export default function Pagination({
+    startPage,
+    totalPages,
+    resetPage,
+    handlePagination,
+}: PaginationProps) {
     const [showPages, setShowPages] = useState<(string | number)[]>([]);
-    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [currentPage, setCurrentPage] = useState<number>(startPage);
     const isFirstRender = useRef(true);
 
     useEffect(() => {

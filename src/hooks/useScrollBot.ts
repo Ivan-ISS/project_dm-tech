@@ -4,7 +4,7 @@ export interface IUseScrollBot {
     func: () => void;
 }
 
-export default function useCloseOut({ func }: IUseScrollBot) {
+export default function useScrollBot({ func }: IUseScrollBot) {
     const targetElement = useRef<HTMLDivElement>(null);
     /* const [ check, setCheck ] = useState<boolean>(true); */
 

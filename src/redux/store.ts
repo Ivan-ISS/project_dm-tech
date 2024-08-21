@@ -6,6 +6,7 @@ import { cartSlice } from './slices/cartSlice/cartSlice';
 import { ordersSlice } from './slices/ordersSlice/ordersSlice';
 import { filtersSlice } from './slices/filtersSlice/filtersSlice';
 import { categoriesSlice } from './slices/categoriesSlice/categoriesSlice';
+import { userSlice } from './slices/userSlice/userSlice';
 
 const store = configureStore({
     reducer: {
@@ -15,6 +16,7 @@ const store = configureStore({
         ordersData: ordersSlice.reducer,
         filtersData: filtersSlice.reducer,
         categoriesData: categoriesSlice.reducer,
+        userData: userSlice.reducer,
     },
 });
 

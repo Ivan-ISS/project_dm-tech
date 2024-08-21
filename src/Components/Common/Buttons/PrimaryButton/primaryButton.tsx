@@ -5,12 +5,14 @@ export interface PrimaryButtonProps extends ButtonHTMLAttributes<HTMLButtonEleme
     text?: number | string;
     isActive?: boolean;
     isDisabled?: boolean;
+    isDisabledStyles?: boolean;
 }
 
 export default function PrimaryButton({
     text,
     isActive,
     isDisabled,
+    isDisabledStyles,
     ...props
 }: PrimaryButtonProps) {
     const handleClickBtn = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -26,7 +28,7 @@ export default function PrimaryButton({
             className={`
                 ${styles.button}
                 ${isActive ? styles.active : null}
-                ${isDisabled ? styles.disabled : null}
+                ${isDisabled && !isDisabledStyles ? styles.disabled : null}
             `}
             disabled={isDisabled}
         >

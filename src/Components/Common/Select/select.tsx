@@ -6,12 +6,14 @@ export interface SelectProps extends HTMLAttributes<HTMLSelectElement> {
     values: string[];
     multiple: boolean;
     placeholder?: string;
+    currentValue?: string | number | string[];
     handleSelect: (value: string | string[]) => void;
 }
 
 export default function Select({
     name,
     values,
+    currentValue,
     multiple,
     placeholder,
     handleSelect,
@@ -41,12 +43,15 @@ export default function Select({
                 className={styles.select}
                 id={name}
                 multiple={multiple}
+                value={currentValue}
                 onChange={handleChange}
             >
                 <option value={''}>{placeholder}</option>
                 {values.map((value, index) => (
                     <option key={index} value={value}>
-                        {value.toLocaleLowerCase()}
+                        {multiple && index + 1}
+                        {multiple && '. '}
+                        {value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()}
                     </option>
                 ))}
             </select>

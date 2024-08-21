@@ -68,7 +68,7 @@ export const productsLoadParams: ILoadParams = {
 export const defaultFilters: IFilters = {
     search: '',
     sort: '',
-    categoryNames: [''],
+    categoryNames: [],
     priceFrom: '',
     priceTo: '',
     ratingFrom: '',

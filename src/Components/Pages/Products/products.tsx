@@ -13,7 +13,10 @@ import {
     changePagination,
 } from '@/redux/slices/productsSlice/productsSlice';
 import { selectFilters } from '@/redux/slices/filtersSlice/filtersSelector';
+import { rememberScroll, rememberPage } from '@/redux/slices/userSlice/userSlice';
+import { selectScrollPosition, selectPagePosition } from '@/redux/slices/userSlice/userSelector';
 import useScrollBot from '@/hooks/useScrollBot';
+import useScrollTo from '@/hooks/useScrollTo';
 import ProductCard from './ProductCard/productCard';
 import Pagination from '../../Common/Pagination/pagination';
 import Switch from '../../Common/Switch/switch';
@@ -26,6 +29,8 @@ export default function Products() {
     const products = useAppSelector(selectProducts);
     const isPagination = useAppSelector(selectIsPagination);
     const filters = useAppSelector(selectFilters);
+    const scrollPosition = useAppSelector(selectScrollPosition);
+    const pagePosition = useAppSelector(selectPagePosition);
     const { limit, currentPage, totalProducts, totalPages } = useAppSelector(selectParams);
 
     const { targetElement: section } = useScrollBot({
@@ -41,9 +46,17 @@ export default function Products() {
         },
     });
 
+    useScrollTo({
+        startScroll: scrollPosition,
+        func: (currentScroll: number) => {
+            dispatch(rememberScroll(currentScroll));
+        },
+    });
+
     const handleClickPagination = useCallback(
         (currentPage: number) => {
             dispatch(fetchProducts({ page: currentPage, limit: limit, ...filters }));
+            dispatch(rememberPage(currentPage));
         },
         [dispatch, limit, filters]
     ); // В useCallback ф-я не пересоздается при каждом рендере
@@ -71,6 +84,7 @@ export default function Products() {
             )}
             {isPagination && (
                 <Pagination
+                    startPage={pagePosition}
                     totalPages={totalPages}
                     resetPage={filters}
                     handlePagination={handleClickPagination}

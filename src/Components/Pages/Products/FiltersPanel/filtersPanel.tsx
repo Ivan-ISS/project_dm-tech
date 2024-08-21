@@ -1,12 +1,15 @@
 import * as styles from './filtersPanel.module.scss';
-import { useState } from 'react';
+import { useAppSelector, useAppDispatch } from '@/redux/store';
+import { changeFiltersPanelShow } from '@/redux/slices/userSlice/userSlice';
+import { selectFiltersPanelShow } from '@/redux/slices/userSlice/userSelector';
 import SearchForm from '../SearchForm/searchForm';
 
 export default function FiltersPanel() {
-    const [show, setShow] = useState<boolean>(false);
+    const dispatch = useAppDispatch();
+    const show = useAppSelector(selectFiltersPanelShow);
 
     const handleClickLabel = () => {
-        setShow((v) => !v);
+        dispatch(changeFiltersPanelShow());
     };
 
     return (
