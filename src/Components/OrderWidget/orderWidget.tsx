@@ -14,19 +14,19 @@ export interface OrderWidgetProps {
 
 export default function OrderWidget({ order, orderIndex, handleClickWidget }: OrderWidgetProps) {
     const dispatch = useAppDispatch();
-    const [cartReqArgs, setCartReqArgs] = useState<{ id: string; quantity: number }[]>([]);
+    const [orderState, setOrderState] = useState<{ id: string; quantity: number }[]>([]);
 
     useEffect(() => {
-        const updatedCartReqArgs = order.map((item) => ({
+        const updatedOrderState = order.map((item) => ({
             id: item.product.id,
             quantity: item.quantity,
         }));
-        setCartReqArgs(updatedCartReqArgs);
+        setOrderState(updatedOrderState);
     }, [order]);
 
     const handleClickBtn = () => {
         handleClickWidget();
-        dispatch(addToCart(cartReqArgs));
+        dispatch(addToCart(orderState));
     };
 
     return (
