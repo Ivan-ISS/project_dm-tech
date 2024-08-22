@@ -82,6 +82,7 @@ export default function Products() {
                     </div>
                 </div>
             )}
+            <br />
             {isPagination && (
                 <Pagination
                     startPage={pagePosition}
