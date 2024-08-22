@@ -1,5 +1,6 @@
 import * as styles from './select.module.scss';
 import { HTMLAttributes } from 'react';
+import translateSort from '@/utils/translateSort';
 
 export interface SelectProps extends HTMLAttributes<HTMLSelectElement> {
     name: string;
@@ -51,7 +52,8 @@ export default function Select({
                     <option key={index} value={value}>
                         {multiple && index + 1}
                         {multiple && '. '}
-                        {value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()}
+                        {translateSort(value).charAt(0).toUpperCase() +
+                            translateSort(value).slice(1).toLowerCase()}
                     </option>
                 ))}
             </select>

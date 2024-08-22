@@ -22,7 +22,7 @@ export default function Layout() {
     useEffect(() => {
         if (singleOrder.length) {
             openPortal();
-            setTimeout(closePortal, 3000);
+            setTimeout(closePortal, 1500);
         }
     }, [closePortal, openPortal, singleOrder]);
 
@@ -41,11 +41,12 @@ export default function Layout() {
                     <Content />
                 </div>
             </main>
-            <Footer>Подвал</Footer>
+            <Footer></Footer>
             {isOpenPortal && (
                 <Portal>
                     <DefaultModal
                         insert={<div style={{ textAlign: 'center' }}>Ваш заказ оформлен</div>}
+                        overlay={true}
                         closeModal={closePortal}
                     />
                 </Portal>
