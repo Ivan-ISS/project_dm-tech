@@ -1,6 +1,6 @@
 import { IError, IUpdateCart, IGetCart } from '@/types/entityTypes';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import hasProductInReqArgs from '@/utils/hasProductInReqArgs';
+import hasProductInCartState from '@/utils/hasProductInCartState';
 import prepareDataToCart from '@/utils/prepareDataToCart';
 import routes from '@/routes';
 
@@ -34,7 +34,7 @@ export const fetchUpdateCart = createAsyncThunk<
         }
 
         const data: IGetCart[] = await response.json();
-        console.log('Данные с сервера: ', data);
+        // console.log('Данные с сервера: ', data);
         return data;
     } catch (error) {
         console.log('Ошибки асинхроннго кода: ', error);
@@ -57,7 +57,7 @@ export const fetchCart = createAsyncThunk<IGetCart[] | undefined, void, { reject
             }
 
             const data: IGetCart[] = await response.json();
-            console.log('Данные с сервера: ', data);
+            // console.log('Данные с сервера: ', data);
             return data;
         } catch (error) {
             console.log('Ошибки асинхроннго кода: ', error);
@@ -90,7 +90,7 @@ export const cartSlice = createSlice({
         addToCart: (state, action: PayloadAction<{ id: string; quantity: number }[]>) => {
             state.cartState = prepareDataToCart(state.cart); // чтобы инф-я была всегда актуальной в store
             for (let i = 0; i < action.payload.length; i++) {
-                if (!hasProductInReqArgs(state.cartState, action.payload[i].id)) {
+                if (!hasProductInCartState(state.cartState, action.payload[i].id)) {
                     state.cartState.data = [
                         ...state.cartState.data,
                         { id: action.payload[i].id, quantity: action.payload[i].quantity },
@@ -106,7 +106,7 @@ export const cartSlice = createSlice({
                     }
                 }
             }
-            console.log('state.cartState.data: ', state.cartState.data);
+            // console.log('state.cartState.data: ', state.cartState.data);
         },
     },
     extraReducers: (builder) => {

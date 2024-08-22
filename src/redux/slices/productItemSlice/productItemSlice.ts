@@ -28,7 +28,7 @@ export const fetchProduct = createAsyncThunk<
         }
 
         const data: IProduct = await response.json();
-        console.log('Данные с сервера: ', data);
+        // console.log('Данные с сервера: ', data);
         return data;
     } catch (error) {
         console.log('Ошибки асинхроннго кода: ', error);

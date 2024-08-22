@@ -25,7 +25,7 @@ export const fetchSubmitCart = createAsyncThunk<
         }
 
         const data: IOrderInfo[] = await response.json();
-        console.log('Данные с сервера: ', data);
+        // console.log('Данные с сервера: ', data);
         return data;
     } catch (error) {
         console.log('Ошибки асинхроннго кода: ', error);
@@ -63,7 +63,7 @@ export const fetchOrders = createAsyncThunk<
         }
 
         const data: IGetOrder = await response.json();
-        console.log('Данные с сервера: ', data);
+        // console.log('Данные с сервера: ', data);
         return data;
     } catch (error) {
         console.log('Ошибки асинхроннго кода: ', error);
