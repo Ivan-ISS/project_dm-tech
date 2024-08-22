@@ -108,6 +108,7 @@ __Клиентская часть сервиса проекта__ состоит
 &nbsp; :heavy_check_mark: Клиентская часть написана с помощью React, Redux Toolkit и TypeScript<br>
 &nbsp; :heavy_check_mark: Разработка проекта выполнена с использованием сборщика webpack<br>
 &nbsp; :heavy_check_mark: Подключен линтинг кода (ESLint)<br>
+&nbsp; :heavy_check_mark: Настроен линтинг кода автоматическим при коммите<br>
 &nbsp; :heavy_check_mark: Для запросов к API используются методы createAsyncThunk<br>
 &nbsp; :heavy_check_mark: Вёрстка соответствует макету<br>
 &nbsp; :heavy_check_mark: Приложение корректно отображается на различных разрешениях<br>

@@ -29,9 +29,6 @@ export default function OrderWidget({ order, orderIndex, handleClickWidget }: Or
         dispatch(addToCart(orderState));
     };
 
-    a = 5;
-    sadad;
-
     return (
         <div className={styles.widget}>
             <h2 className={styles.heading}>Состав заказа № {orderIndex}</h2>
