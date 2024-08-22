@@ -4,6 +4,7 @@ package*
 README.md
 **/*.html
 *.scss
+*.css
 dist
 config
 webpack.config.ts
